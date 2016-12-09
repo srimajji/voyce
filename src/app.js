@@ -8,9 +8,11 @@ const cors = require('cors');
 const feathers = require('feathers');
 const configuration = require('feathers-configuration');
 const hooks = require('feathers-hooks');
+const logger = require('feathers-logger');
 const rest = require('feathers-rest');
 const bodyParser = require('body-parser');
 const socketio = require('feathers-socketio');
+const winston = require('winston');
 const middleware = require('./middleware');
 const services = require('./services');
 
@@ -25,6 +27,7 @@ app.use(compress())
 	.use('/', serveStatic( app.get('public') ))
 	.use(bodyParser.json())
 	.use(bodyParser.urlencoded({ extended: true }))
+	.configure(logger(winston))
 	.configure(hooks())
 	.configure(rest())
 	.configure(socketio())
