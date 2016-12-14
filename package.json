@@ -9,7 +9,7 @@
 	],
 	"license": "MIT",
 	"repository": {},
-	"author": {},
+	"author": "Sri Majji",
 	"contributors": [],
 	"bugs": {},
 	"engines": {
@@ -17,9 +17,9 @@
 	},
 	"scripts": {
 		"test": "npm run jshint && npm run mocha",
-		"jshint": "jshint src/. test/. --config",
-		"start": "node src/",
-		"start:dev": "nodemon src/",
+		"jshint": "jshint server/. test/. --config",
+		"start": "node server/",
+		"start:dev": "nodemon server/",
 		"mocha": "mocha test/ --recursive"
 	},
 	"dependencies": {
@@ -35,10 +35,12 @@
 		"feathers-rest": "^1.5.2",
 		"feathers-sequelize": "^1.4.0",
 		"feathers-socketio": "^1.4.2",
+		"morgan": "^1.7.0",
 		"mysql": "^2.12.0",
 		"passport": "^0.3.2",
 		"passport-facebook": "^2.1.1",
 		"passport-facebook-token": "^3.3.0",
+		"react": "^15.4.1",
 		"sequelize": "^3.27.0",
 		"serve-favicon": "^2.3.2",
 		"winston": "^2.3.0"
@@ -49,6 +51,7 @@
 		"jshint": "^2.9.4",
 		"mocha": "^3.2.0",
 		"nodemon": "^1.11.0",
-		"request": "^2.79.0"
+		"request": "^2.79.0",
+		"webpack-dev-middleware": "^1.8.4"
 	}
 }
