@@ -29,13 +29,11 @@ module.exports = {
 	],
 	resolve: {
 		alias: {
-			'react': path.resolve(__dirname, 'node_modules', 'react')
+			'react': path.resolve(__dirname, 'node_modules', 'react'),
+			'react-toolbox': path.resolve(__dirname, 'node_modules', 'react-toolbox')
 		},
-		extensions: ['', '.js', '.jsx'],
+		extensions: ['', '.js', '.jsx', '.scss', '.css'],
 		modulesDirectories: ['node_modules'],
-	},
-	resolveLoader: {
-		'fallback': path.resolve(__dirname, 'node_modules')
 	},
 	module: {
 		loaders: [
@@ -46,9 +44,9 @@ module.exports = {
 				include: path.join(__dirname, '/client/')
 			},
 			{
-				test: /\.css$/,
-				loader: 'style-loader!css-loader',
-				include: path.join(__dirname, '/client/')
+				test: /(\.css|\.scss)$/,
+				loaders: ['style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]', 'sass?sourceMap'],
+				include: [path.resolve(__dirname, 'node_modules/react-toolbox'), path.resolve(__dirname, 'client')]
 			},
 			{
 				test: /\.(png|woff|woff2|eot|ttf|svg)$/,

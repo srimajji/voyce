@@ -15,7 +15,8 @@
 	},
 	"watch": [
 		"server/",
-		".nodemon.json"
+		".nodemon.json",
+		"webpack.dev.config.js"
 		],
 	"env": {
 		"NODE_ENV": "development"
