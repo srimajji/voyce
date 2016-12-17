@@ -1,3 +1,4 @@
+const autoprefixer = require('autoprefixer');
 var path = require('path');
 var webpack = require('webpack');
 module.exports = {
@@ -30,11 +31,11 @@ module.exports = {
 	resolve: {
 		alias: {
 			'react': path.resolve(__dirname, 'node_modules', 'react'),
-			'react-toolbox': path.resolve(__dirname, 'node_modules', 'react-toolbox')
 		},
-		extensions: ['', '.js', '.jsx', '.scss', '.css'],
+		extensions: ['', '.js', '.jsx', '.scss', '.css', '.jpg'],
 		modulesDirectories: ['node_modules'],
 	},
+	postcss: [autoprefixer],
 	module: {
 		loaders: [
 			{
@@ -45,13 +46,14 @@ module.exports = {
 			},
 			{
 				test: /(\.css|\.scss)$/,
-				loaders: ['style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]', 'sass?sourceMap'],
-				include: [path.resolve(__dirname, 'node_modules/react-toolbox'), path.resolve(__dirname, 'client')]
+				loaders: ['style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap'],
+				include: path.resolve(__dirname, 'client')
 			},
 			{
-				test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+				test: /\.(png|woff|woff2|eot|ttf|svg|jpg)$/,
 				loader: 'url-loader?limit=100000',
-				include: path.join(__dirname, '/client/')
+				//loader: 'file-loader?name=res/[name].[ext]?[hash]',
+				include: path.resolve(__dirname, 'client')
 			},
 			{
 				test: /\.json$/,

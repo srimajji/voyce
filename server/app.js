@@ -28,15 +28,17 @@ app.configure(configuration(path.join(__dirname, '..')));
 app.use(compress())
 	.options('*', cors())
 	.use(cors())
-	.use(favicon( path.join(app.get('public'), 'favicon.ico') ))
-	.use('/', serveStatic( app.get('public') ))
+	.use(favicon(path.join(app.get('public'), 'favicon.ico')))
+	.use('/assets', serveStatic(app.get('public')))
 	.use(bodyParser.json())
 	.use(bodyParser.urlencoded({ extended: true }))
 	.use(morgan('combined', { 'stream': logger.stream }))
-	.use(webpackDevMiddleware(webpackCompiler, { 
-		publicPath: webpackConfig.output.publicPath, 
+	.use(webpackDevMiddleware(webpackCompiler, {
+		publicPath: webpackConfig.output.publicPath,
 		stats: { colors: true },
-		inInfo: true}))
+		inInfo: true
+	}))
+
 	// .use(webpackHotMiddleware(webpackCompiler, {
 	// 	log: logger.info
 	// }))
@@ -45,5 +47,8 @@ app.use(compress())
 	.configure(socketio())
 	.configure(services)
 	.configure(middleware);
+app.get('*', (req, res) => {
+	res.sendFile(path.resolve(__dirname, '..', 'public', 'index.html'));
+});
 
 module.exports = app;
