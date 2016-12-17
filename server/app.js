@@ -20,16 +20,16 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 // const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackConfig = require('../webpack.dev.config.js');
 
+const root = process.cwd();
 const app = feathers();
 const webpackCompiler = webpack(webpackConfig);
 
 app.configure(configuration(path.join(__dirname, '..')));
-
+logger.info(path.join(root, 'public'));
 app.use(compress())
 	.options('*', cors())
 	.use(cors())
-	.use(favicon(path.join(app.get('public'), 'favicon.ico')))
-	.use('/assets', serveStatic(app.get('public')))
+	.use(favicon(path.join(path.join(root, 'public'), 'favicon.ico')))
 	.use(bodyParser.json())
 	.use(bodyParser.urlencoded({ extended: true }))
 	.use(morgan('combined', { 'stream': logger.stream }))
@@ -38,6 +38,9 @@ app.use(compress())
 		stats: { colors: true },
 		inInfo: true
 	}))
+	.use('/', serveStatic(path.join(root, 'public')))
+	.all('/api/*', (res, req, next) => { next(); })
+	.get('/*', serveHTML)
 
 	// .use(webpackHotMiddleware(webpackCompiler, {
 	// 	log: logger.info
@@ -46,9 +49,9 @@ app.use(compress())
 	.configure(rest())
 	.configure(socketio())
 	.configure(services)
-	.configure(middleware);
-app.get('*', (req, res) => {
-	res.sendFile(path.resolve(__dirname, '..', 'public', 'index.html'));
-});
+	.configure(middleware)
+function serveHTML(req, res, next) {
+	res.sendFile(path.join(root, 'public/index.html'));
+}
 
 module.exports = app;
