@@ -1,8 +1,5 @@
 {
-  "host": "localhost",
-  "port": 3030,
   "mysql": "mysql://root:root@localhost:3306/gripe",
-  "public": "../public/",
   "auth": {
     "idField": "id",
     "token": {
@@ -13,7 +10,10 @@
       "clientID": "your facebook client id",
       "clientSecret": "your facebook client secret",
       "permissions": {
-        "scope": ["public_profile","email"]
+        "scope": [
+          "public_profile",
+          "email"
+        ]
       }
     }
   }
