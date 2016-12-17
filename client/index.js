@@ -13,7 +13,7 @@ const Main = () => {
 		<MuiThemeProvider>
 			<Router history={browserHistory}>
 				<Route path='/' component={AppWrapper}>
-					<Route path='/app' component={App}>
+					<Route path='app' component={App}>
 						<Route path='/login' component={NotFound} />
 					</Route>
 					<Route path='*' component={NotFound} />
