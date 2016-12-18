@@ -1,8 +1,9 @@
 'use strict';
 const authentication = require('./authentication');
 const user = require('./user');
+const company = require('./company');
 const Sequelize = require('sequelize');
-module.exports = function() {
+module.exports = function () {
 	const app = this;
 
 	const sequelize = new Sequelize(app.get('mysql'), {
@@ -13,4 +14,5 @@ module.exports = function() {
 
 	app.configure(authentication);
 	app.configure(user);
+	app.configure(company);
 };
