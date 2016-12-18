@@ -1,7 +1,6 @@
 'use strict';
 
 const path = require('path');
-const compress = require('compression');
 const feathers = require('feathers');
 const configuration = require('feathers-configuration');
 const hooks = require('feathers-hooks');
@@ -16,8 +15,7 @@ const app = feathers();
 
 app.configure(configuration(path.join(__dirname, '..')));
 
-app.use(compress())
-	.use(bodyParser.json())
+app.use(bodyParser.json())
 	.use(bodyParser.urlencoded({ extended: true }))
 	.configure(hooks())
 	.configure(rest())

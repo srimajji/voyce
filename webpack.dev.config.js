@@ -1,4 +1,5 @@
 const autoprefixer = require('autoprefixer');
+const normalize = require('postcss-normalize');
 var path = require('path');
 var webpack = require('webpack');
 module.exports = {
@@ -15,7 +16,7 @@ module.exports = {
 		publicPath: '/dist/'
 	},
 	plugins: [
-		// new webpack.optimize.OccurenceOrderPlugin(),
+		new webpack.optimize.OccurenceOrderPlugin(),
 		// new webpack.HotModuleReplacementPlugin(),
 		new webpack.ProvidePlugin({
 			'window.jQuery': 'jquery'
@@ -35,7 +36,7 @@ module.exports = {
 		extensions: ['', '.js', '.jsx', '.scss', '.css', '.jpg'],
 		modulesDirectories: ['node_modules'],
 	},
-	postcss: [autoprefixer],
+	postcss: [normalize, autoprefixer],
 	module: {
 		loaders: [
 			{
@@ -46,7 +47,7 @@ module.exports = {
 			},
 			{
 				test: /(\.css|\.scss)$/,
-				loaders: ['style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap'],
+				loaders: ['style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap'],
 				include: path.resolve(__dirname, 'client')
 			},
 			{

@@ -1,4 +1,7 @@
 {
+  "host": "localhost",
+  "port": 3030,
+  "public": "../public/",
   "mysql": "mysql://root:root@localhost:3306/gripe",
   "auth": {
     "idField": "id",
