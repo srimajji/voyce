@@ -14,7 +14,6 @@ module.exports = function () {
 		title: {
 			type: Sequelize.STRING,
 			allowNull: false,
-			unique: true
 		},
 		description: {
 			type: Sequelize.STRING,
@@ -27,6 +26,11 @@ module.exports = function () {
 		website: {
 			type: Sequelize.STRING,
 			allowNull: true
+		},
+		companyId: {
+			type: Sequelize.INTEGER,
+			model: sequelize.model('company'),
+			key: 'id',
 		}
 	},
 		{

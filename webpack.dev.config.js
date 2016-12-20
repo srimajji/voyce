@@ -17,6 +17,7 @@ module.exports = {
 	},
 	plugins: [
 		new webpack.optimize.OccurenceOrderPlugin(),
+		new webpack.OldWatchingPlugin(),
 		// new webpack.HotModuleReplacementPlugin(),
 		new webpack.ProvidePlugin({
 			'window.jQuery': 'jquery'

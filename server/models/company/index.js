@@ -33,8 +33,7 @@ module.exports = function () {
 			freezeTableName: true,
 			classMethods: {
 				associate() {
-					const models = app.get('models');
-					company.hasMany(models['feedback']);
+					company.hasMany(sequelize.model('feedback'));
 				}
 			}
 		}

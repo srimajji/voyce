@@ -10,7 +10,8 @@ module.exports = function () {
 	const app = this;
 	const sequelize = new Sequelize(app.get('mysql'), {
 		dialect: 'mysql',
-		logging: logger.info
+		logging: logger.info,
+		define: { underscored: true },
 	});
 	app.set('sequelize', sequelize);
 	app.configure(user);

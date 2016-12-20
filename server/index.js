@@ -22,8 +22,17 @@ app.options('*', cors())
 	// serve webpack files via '/dist'
 	.use(webpackDevMiddleware(webpackCompiler, {
 		publicPath: webpackConfig.output.publicPath,
-		stats: { colors: true },
-		inInfo: true
+		stats: {
+			assets: true,
+			colors: true,
+			version: false,
+			hash: false,
+			timings: true,
+			chunks: false,
+			chunkModules: false
+		},
+		noInfo: false,
+		quiet: false,
 	}))
 
 	// serve public folder via '/'
@@ -47,8 +56,8 @@ app.options('*', cors())
 // .use(webpackHotMiddleware(webpackCompiler, {
 // 	log: logger.info
 // }))
-
-const server = app.listen(3030);
+const port = 3030;
+const server = app.listen(port);
 api.setup(server);
 
 function serveHtml(req, res) {
@@ -56,5 +65,5 @@ function serveHtml(req, res) {
 }
 
 server.on('listening', () =>
-	logger.info(`Feathers application started on ${app.get('host')}:${3030}`)
+	logger.info(`Feathers application started on localhost:${port}`)
 );
