@@ -7,8 +7,11 @@
 
 const Sequelize = require('sequelize');
 
-module.exports = function (sequelize) {
-	const user = sequelize.define('users', {
+module.exports = function () {
+	const app = this;
+	const sequelize = app.get('sequelize');
+
+	const user = sequelize.define('user', {
 		facebookId: {
 			type: Sequelize.STRING,
 			allowNull: true
@@ -26,8 +29,6 @@ module.exports = function (sequelize) {
 		{
 			freezeTableName: true
 		});
-
-	user.sync();
 
 	return user;
 };

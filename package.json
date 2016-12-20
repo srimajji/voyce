@@ -20,6 +20,7 @@
     "jshint": "jshint server/. test/. --config",
     "start": "node server/",
     "start:dev": "nodemon --config .nodemon.json",
+    "start:dev-debug": "nodemon --config .nodemon.json debug",
     "mocha": "mocha test/ --recursive"
   },
   "dependencies": {

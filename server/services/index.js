@@ -1,18 +1,17 @@
 'use strict';
 const authentication = require('./authentication');
-const user = require('./user');
-const company = require('./company');
-const Sequelize = require('sequelize');
+const userService = require('./user');
+const companyService = require('./company');
+const feedbackService = require('./feedback');
+const models = require('../models');
+
 module.exports = function () {
 	const app = this;
 
-	const sequelize = new Sequelize(app.get('mysql'), {
-		dialect: 'mysql',
-		logging: false
-	});
-	app.set('sequelize', sequelize);
-
+	app.configure(models);
 	app.configure(authentication);
-	app.configure(user);
-	app.configure(company);
+	app.configure(userService);
+	app.configure(companyService);
+	app.configure(feedbackService);
+
 };
