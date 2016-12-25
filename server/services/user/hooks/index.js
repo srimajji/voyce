@@ -1,42 +1,45 @@
 'use strict';
 
-const globalHooks = require('../../../hooks');
-const hooks = require('feathers-hooks');
 const auth = require('feathers-authentication').hooks;
+const local = require('feathers-authentication-local').hooks;
+const hooks = require('feathers-hooks-common');
+const populate = require('feathers-populate-hook');
+const permissions = require('feathers-permissions');
 
 exports.before = {
 	all: [],
 	find: [
-		auth.verifyToken(),
-		auth.populateUser(),
-		auth.restrictToAuthenticated()
+		auth.authenticate('jwt'),
+		populate('user', { service: '/users', field: 'userId' }),
+		permissions.hooks.checkPermissions({ service: '/users' }),
+		permissions.hooks.isPermitted()
 	],
 	get: [
-		auth.verifyToken(),
-		auth.populateUser(),
-		auth.restrictToAuthenticated(),
-		auth.restrictToOwner({ ownerField: 'id' })
+		auth.authenticate('jwt'),
+		populate('user', { service: '/users', field: 'userId' }),
+		permissions.hooks.checkPermissions({ service: '/users' }),
+		permissions.hooks.isPermitted()
 	],
 	create: [
-		auth.hashPassword()
+		local.hashPassword({ passwordField: 'password' })
 	],
 	update: [
-		auth.verifyToken(),
-		auth.populateUser(),
-		auth.restrictToAuthenticated(),
-		auth.restrictToOwner({ ownerField: 'id' })
+		auth.authenticate('jwt'),
+		populate('user', { service: '/users', field: 'userId' }),
+		permissions.hooks.checkPermissions({ service: '/users' }),
+		permissions.hooks.isPermitted()
 	],
 	patch: [
-		auth.verifyToken(),
-		auth.populateUser(),
-		auth.restrictToAuthenticated(),
-		auth.restrictToOwner({ ownerField: 'id' })
+		auth.authenticate('jwt'),
+		populate('user', { service: '/users', field: 'userId' }),
+		permissions.hooks.checkPermissions({ service: '/users' }),
+		permissions.hooks.isPermitted()
 	],
 	remove: [
-		auth.verifyToken(),
-		auth.populateUser(),
-		auth.restrictToAuthenticated(),
-		auth.restrictToOwner({ ownerField: 'id' })
+		auth.authenticate('jwt'),
+		populate('user', { service: '/users', field: 'userId' }),
+		permissions.hooks.checkPermissions({ service: '/users' }),
+		permissions.hooks.isPermitted()
 	]
 };
 

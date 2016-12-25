@@ -31,6 +31,7 @@ module.exports = function () {
 			type: Sequelize.INTEGER,
 			model: sequelize.model('company'),
 			key: 'id',
+			field: 'company_id'
 		}
 	},
 		{

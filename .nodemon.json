@@ -10,14 +10,12 @@
 	"execMap": {
 		"js": "node --harmony --use_strict ./server/index.js"
 	},
-	"events": {
-		"restart": "osascript -e 'display notification \"app restarted\" with title \"nodemon\"'"
-	},
+	"events": {},
 	"watch": [
 		"server/",
 		".nodemon.json",
 		"webpack.dev.config.js"
-		],
+	],
 	"env": {
 		"NODE_ENV": "development"
 	},

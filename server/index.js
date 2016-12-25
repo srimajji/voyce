@@ -18,7 +18,13 @@ const api = require('./api');
 const app = feathers();
 app.options('*', cors())
 	.use(cors())
+
+	// set log config using the custom logger.js
+	.use(morgan('combined', { 'stream': logger.stream }))
+
+	// compress 
 	.use(compress())
+
 	// serve webpack files via '/dist'
 	.use(webpackDevMiddleware(webpackCompiler, {
 		publicPath: webpackConfig.output.publicPath,
@@ -48,10 +54,7 @@ app.options('*', cors())
 	.get('/*', serveHtml)
 
 	// set favicon
-	.use(favicon(path.join(__dirname, '..', 'public/favicon.ico')))
-
-	// set log config using the custom logger.js
-	.use(morgan('combined', { 'stream': logger.stream }));
+	.use(favicon(path.join(__dirname, '..', 'public/favicon.ico')));
 
 // .use(webpackHotMiddleware(webpackCompiler, {
 // 	log: logger.info

@@ -24,5 +24,5 @@ module.exports = function () {
 		}
 	});
 
-	sequelize.sync();
+	sequelize.sync({ force: true });
 };
