@@ -18,7 +18,7 @@ module.exports = function () {
 	app.use('/companies', service(options));
 
 	// Get our initialize service to that we can bind hooks
-	const companyService = app.service('/companies');
+	const companyService = app.service('companies');
 
 	// Set up our before hooks
 	companyService.before(hooks.before);

@@ -10,7 +10,7 @@ module.exports = function () {
 	const app = this;
 	const sequelize = new Sequelize(app.get('mysql'), {
 		dialect: 'mysql',
-		logging: logger.info,
+		logging: logger.debug,
 		define: { underscored: true },
 	});
 	app.set('sequelize', sequelize);
@@ -24,5 +24,22 @@ module.exports = function () {
 		}
 	});
 
-	sequelize.sync({ force: true });
+	sequelize.sync({ force: true }).then(() => {
+		app.service('users').create({
+			email: 'sri@sri.com',
+			password: 'password',
+			name: 'Sri Majji',
+		}).then((user) => {
+			logger.info('Created user', user.toJSON());
+		});
+
+		app.service('companies').create({
+			alias: 'bestbuy',
+			name: 'bestbuy',
+			location: 'Geary St, San Francisco',
+			website: 'http://bestbuy.com'
+		}).then((company) => {
+			logger.info('Created company', company.toJSON());
+		});
+	});
 };

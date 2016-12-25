@@ -12,7 +12,7 @@ module.exports = function () {
 
 	app.set('auth', config);
 	app.configure(authentication(config))
-		.configure(authManagement({ service: '/users' }))
+		.configure(authManagement({ service: 'users' }))
 		.configure(jwt())
 		.configure(local());
 };

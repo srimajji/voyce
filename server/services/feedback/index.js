@@ -18,7 +18,7 @@ module.exports = function () {
 	app.use('/feedbacks', service(options));
 
 	// Get our initialize service to that we can bind hooks
-	const feedbackService = app.service('/feedbacks');
+	const feedbackService = app.service('feedbacks');
 
 	// Set up our before hooks
 	feedbackService.before(hooks.before);
