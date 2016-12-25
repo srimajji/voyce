@@ -10,12 +10,17 @@
     background-repeat: no-repeat;
 }
 
-.form {
+.paperContainer {
 	height: 500px;
 	width: 600px;
 	padding: 40px;
 	display: flex;
+}
+
+.formContainer {
+	display: flex;
 	flex-direction: column;
+	width: 100%;
 }
 
 .formTitle {
@@ -28,5 +33,23 @@
 }
 
 .newFeedbackField {
+	margin-top: 20px;
+}
+
+.successContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+.successIcon {
+	font-size: 100px;
+	margin-bottom: 20px;
+	color: green;
+}
+
+.newFeedbackBtn {
 	margin-top: 20px;
 }

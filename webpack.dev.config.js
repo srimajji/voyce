@@ -8,17 +8,15 @@ const bundles = require('./webpack.bundles');
 
 const sharedConfig = {
 	devtool: 'inline-source-map',
-	// entry: [
-	// 	'babel-polyfill',
-	// 	// 'webpack/hot/dev-server',
-	// 	// 'webpack-hot-middleware/client',
-	// 	'./client/index.js'
-	// ],
-	// output: {
-	// 	path: path.resolve(__dirname, '..', 'public/dist'),
-	// 	filename: 'bundle.js',
-	// 	publicPath: '/dist/'
-	// },
+	entry: {
+		newFeedback: ['babel-polyfill', './client/gripe/index.js'],
+		adminPanel: ['babel-polyfill', './client/adminPanel/index.js']
+	},
+	output: {
+		path: path.resolve(__dirname, '..', 'public/dist'),
+		filename: '[name].bundle.js',
+		publicPath: '/dist/'
+	},
 	plugins: [
 		new webpack.optimize.OccurenceOrderPlugin(),
 		new webpack.OldWatchingPlugin(),
