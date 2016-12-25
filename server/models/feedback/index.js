@@ -32,7 +32,13 @@ module.exports = function () {
 		}
 	},
 		{
-			freezeTableName: true
+			freezeTableName: true,
+			classMethods: {
+				associate() {
+					feedback.belongsTo(sequelize.model('company'));
+				}
+			}
+
 		});
 
 	return feedback;

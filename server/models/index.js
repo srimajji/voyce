@@ -25,6 +25,7 @@ module.exports = function () {
 	});
 
 	sequelize.sync({ force: true }).then(() => {
+		// temp to test rest
 		app.service('users').create({
 			email: 'sri@sri.com',
 			password: 'password',

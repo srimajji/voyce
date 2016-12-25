@@ -33,9 +33,7 @@ module.exports = function () {
 			freezeTableName: true,
 			classMethods: {
 				associate() {
-					company.hasMany(sequelize.model('feedback'), {
-						constraints: true
-					});
+					company.hasMany(sequelize.model('feedback'));
 				}
 			}
 		}
