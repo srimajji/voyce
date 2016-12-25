@@ -1,20 +1,24 @@
 const autoprefixer = require('autoprefixer');
+const merge = require('lodash/merge');
 const normalize = require('postcss-normalize');
-var path = require('path');
-var webpack = require('webpack');
-module.exports = {
+const path = require('path');
+const webpack = require('webpack');
+
+const bundles = require('./webpack.bundles');
+
+const sharedConfig = {
 	devtool: 'inline-source-map',
-	entry: [
-		'babel-polyfill',
-		// 'webpack/hot/dev-server',
-		// 'webpack-hot-middleware/client',
-		'./client/index.js'
-	],
-	output: {
-		path: path.resolve(__dirname, '..', 'public/dist'),
-		filename: 'bundle.js',
-		publicPath: '/dist/'
-	},
+	// entry: [
+	// 	'babel-polyfill',
+	// 	// 'webpack/hot/dev-server',
+	// 	// 'webpack-hot-middleware/client',
+	// 	'./client/index.js'
+	// ],
+	// output: {
+	// 	path: path.resolve(__dirname, '..', 'public/dist'),
+	// 	filename: 'bundle.js',
+	// 	publicPath: '/dist/'
+	// },
 	plugins: [
 		new webpack.optimize.OccurenceOrderPlugin(),
 		new webpack.OldWatchingPlugin(),
@@ -65,3 +69,12 @@ module.exports = {
 		]
 	}
 };
+
+module.exports = merge({
+	entry: bundles,
+	output: {
+		path: path.resolve(__dirname, '..', 'public/dist'),
+		filename: '[name].bundle.js',
+		publicPath: '/dist/'
+	},
+}, sharedConfig);

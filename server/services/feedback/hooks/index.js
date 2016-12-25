@@ -2,20 +2,35 @@
 
 const populate = require('feathers-populate-hook');
 const hooks = require('feathers-hooks-common');
-// const auth = require('feathers-authentication').hooks;
-// const permissions = require('feathers-permissions');
+const auth = require('feathers-authentication').hooks;
+const permissions = require('feathers-permissions');
 
 exports.before = {
 	all: [
 		// auth.authenticate('jwt'),
 		// permissions.hooks.checkPermissions({ service: 'users' })
 	],
-	find: [],
-	get: [],
+	find: [
+		auth.authenticate('jwt'),
+		permissions.hooks.checkPermissions({ service: 'users' })
+	],
+	get: [
+		auth.authenticate('jwt'),
+		permissions.hooks.checkPermissions({ service: 'users' })
+	],
 	create: [],
-	update: [],
-	patch: [],
-	remove: []
+	update: [
+		auth.authenticate('jwt'),
+		permissions.hooks.checkPermissions({ service: 'users' })
+	],
+	patch: [
+		auth.authenticate('jwt'),
+		permissions.hooks.checkPermissions({ service: 'users' })
+	],
+	remove: [
+		auth.authenticate('jwt'),
+		permissions.hooks.checkPermissions({ service: 'users' })
+	]
 };
 
 exports.after = {
