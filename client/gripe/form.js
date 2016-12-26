@@ -23,7 +23,7 @@ class WriteFeedback extends React.Component {
 		this._onClickSubmitFeedbackBtn = this._onClickSubmitFeedbackBtn.bind(this);
 	}
 
-	shouldComponentUpdate() {
+	componentShouldUpdate() {
 		fetch('/api/companies?alias=bestbuy')
 			.then(response => response.json())
 			.then(response => console.log(response));
