@@ -7,6 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FontIcon from 'material-ui/FontIcon';
 import { green500 } from 'material-ui/styles/colors';
 import styles from './form.scss';
+import $ from 'jquery';
 
 class WriteFeedback extends React.Component {
 	constructor() {
@@ -14,11 +15,19 @@ class WriteFeedback extends React.Component {
 
 		this.state = {
 			feedbackType: '',
-			submitSuccess: true
+			submitSuccess: false
 		};
 		this._handleSelectFieldOnChange = this._handleSelectFieldOnChange.bind(this);
 		this._onClickNewFeedbackBtn = this._onClickNewFeedbackBtn.bind(this);
 		this._renderNewFeedbackForm = this._renderNewFeedbackForm.bind(this);
+		this._onClickSubmitFeedbackBtn = this._onClickSubmitFeedbackBtn.bind(this);
+	}
+
+	shouldComponentUpdate() {
+		fetch('/api/companies?alias=bestbuy')
+			.then(response => response.json())
+			.then(response => console.log(response));
+		return true;
 	}
 
 	_handleSelectFieldOnChange(event, index, value) {
@@ -27,6 +36,10 @@ class WriteFeedback extends React.Component {
 
 	_onClickNewFeedbackBtn() {
 		this.setState({ submitSuccess: false });
+	}
+
+	_onClickSubmitFeedbackBtn() {
+		this.setState({ submitSuccess: true });
 	}
 
 	_renderNewFeedbackForm() {
@@ -50,7 +63,7 @@ class WriteFeedback extends React.Component {
 						rows={5}
 						fullWidth={true} />
 				</div>
-				<RaisedButton label='Submit' fullWidth={true} primary={true} type='submit' />
+				<RaisedButton label='Submit' fullWidth={true} primary={true} onClick={this._onClickSubmitFeedbackBtn} />
 			</form>
 		);
 	}
