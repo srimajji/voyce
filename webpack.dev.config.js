@@ -1,21 +1,25 @@
 const autoprefixer = require('autoprefixer');
-var path = require('path');
-var webpack = require('webpack');
-module.exports = {
+const merge = require('lodash/merge');
+const normalize = require('postcss-normalize');
+const path = require('path');
+const webpack = require('webpack');
+
+const bundles = require('./webpack.bundles');
+
+const sharedConfig = {
 	devtool: 'inline-source-map',
-	entry: [
-		'babel-polyfill',
-		// 'webpack/hot/dev-server',
-		// 'webpack-hot-middleware/client',
-		'./client/index.js'
-	],
+	entry: {
+		newFeedback: ['babel-polyfill', './client/gripe/index.js'],
+		adminPanel: ['babel-polyfill', './client/adminPanel/index.js']
+	},
 	output: {
-		path: path.join(__dirname, './public/dist'),
-		filename: 'bundle.js',
+		path: path.resolve(__dirname, '..', 'public/dist'),
+		filename: '[name].bundle.js',
 		publicPath: '/dist/'
 	},
 	plugins: [
-		// new webpack.optimize.OccurenceOrderPlugin(),
+		new webpack.optimize.OccurenceOrderPlugin(),
+		new webpack.OldWatchingPlugin(),
 		// new webpack.HotModuleReplacementPlugin(),
 		new webpack.ProvidePlugin({
 			'window.jQuery': 'jquery'
@@ -35,7 +39,7 @@ module.exports = {
 		extensions: ['', '.js', '.jsx', '.scss', '.css', '.jpg'],
 		modulesDirectories: ['node_modules'],
 	},
-	postcss: [autoprefixer],
+	postcss: [normalize, autoprefixer],
 	module: {
 		loaders: [
 			{
@@ -46,7 +50,7 @@ module.exports = {
 			},
 			{
 				test: /(\.css|\.scss)$/,
-				loaders: ['style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap'],
+				loaders: ['style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap'],
 				include: path.resolve(__dirname, 'client')
 			},
 			{
@@ -63,3 +67,12 @@ module.exports = {
 		]
 	}
 };
+
+module.exports = merge({
+	entry: bundles,
+	output: {
+		path: path.resolve(__dirname, '..', 'public/dist'),
+		filename: '[name].bundle.js',
+		publicPath: '/dist/'
+	},
+}, sharedConfig);

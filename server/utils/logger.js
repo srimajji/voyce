@@ -15,7 +15,7 @@ const logger = new winston.Logger({
 			colorize: true,
 			timestamp: () => {
 				const date = new Date();
-				return `${last2(date.getHours())}:${last2(date.getMinutes())}:${last2(date.getSeconds())}`
+				return `${last2(date.getHours())}:${last2(date.getMinutes())}:${last2(date.getSeconds())}`;
 			}
 		})
 	],
@@ -24,7 +24,7 @@ const logger = new winston.Logger({
 
 module.exports = logger;
 module.exports.stream = {
-	write: function(message, encoding){
+	write: function (message, encoding) {
 		logger.info(message);
 	}
 };
