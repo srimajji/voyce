@@ -18,7 +18,11 @@ exports.before = {
 		auth.authenticate('jwt'),
 		permissions.hooks.checkPermissions({ service: 'users' })
 	],
-	create: [],
+	create(hook) {
+		if (hook.data.description && !hook.data.title) {
+			hook.data.title = hook.data.description.slice(0, 140);
+		}
+	},
 	update: [
 		auth.authenticate('jwt'),
 		permissions.hooks.checkPermissions({ service: 'users' })
