@@ -4,9 +4,7 @@ const normalize = require('postcss-normalize');
 const path = require('path');
 const webpack = require('webpack');
 
-const bundles = require('./webpack.bundles');
-
-const sharedConfig = {
+module.exports = {
 	devtool: 'inline-source-map',
 	entry: {
 		newFeedback: ['babel-polyfill', './client/gripe/index.js'],
@@ -67,12 +65,3 @@ const sharedConfig = {
 		]
 	}
 };
-
-module.exports = merge({
-	entry: bundles,
-	output: {
-		path: path.resolve(__dirname, '..', 'public/dist'),
-		filename: '[name].bundle.js',
-		publicPath: '/dist/'
-	},
-}, sharedConfig);
