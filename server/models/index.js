@@ -38,6 +38,7 @@ module.exports = function () {
 			alias: 'bestbuy',
 			name: 'bestbuy',
 			location: 'Geary St, San Francisco',
+			categories: '[employee, building, food]',
 			website: 'http://bestbuy.com'
 		}).then((company) => {
 			logger.info('Created company', company.toJSON());
