@@ -17,24 +17,49 @@ class Form extends React.Component {
 		this.state = {
 			feedbackType: '',
 			submitSuccess: false,
-			company: null
+			descriptionText: ''
 		};
 		this._handleSelectFieldOnChange = this._handleSelectFieldOnChange.bind(this);
 		this._onClickNewFeedbackBtn = this._onClickNewFeedbackBtn.bind(this);
 		this._renderNewFeedbackForm = this._renderNewFeedbackForm.bind(this);
 		this._onClickSubmitFeedbackBtn = this._onClickSubmitFeedbackBtn.bind(this);
+		this._onChangeDescriptionField = this._onChangeDescriptionField.bind(this);
 	}
 
 	_handleSelectFieldOnChange(event, index, value) {
 		this.setState({ feedbackType: value });
 	}
 
+	_onChangeDescriptionField(event, value) {
+		this.setState({ descriptionText: value });
+	}
+
 	_onClickNewFeedbackBtn() {
-		this.setState({ submitSuccess: false });
+		this.setState({ submitSuccess: false, feedbackType: '', descriptionText: '' });
 	}
 
 	_onClickSubmitFeedbackBtn() {
-		this.setState({ submitSuccess: true });
+		const { feedbackType, descriptionText } = this.state;
+		const companyId = this.props.id;
+		const params = {
+			method: 'POST',
+			headers: {
+				'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+			},
+			body: `companyId=${companyId}&type=${feedbackType}&description=${descriptionText}`
+		};
+		fetch('/api/feedbacks', params)
+			.then(response => {
+				if (response.status !== 200) {
+					console.error('Error sending feedback', response.status);
+				} else {
+					console.log('Feedback added', response.json());
+					this.setState({ submitSuccess: true });
+				}
+			})
+			.catch(error => {
+				console.error(error);
+			});
 	}
 
 	_renderNewFeedbackForm() {
@@ -56,7 +81,10 @@ class Form extends React.Component {
 						hintText={feedbackPlaceholder}
 						multiLine={true}
 						rows={5}
-						fullWidth={true} />
+						fullWidth={true}
+						value={this.state.descriptionText}
+						onChange={this._onChangeDescriptionField}
+						/>
 				</div>
 				<RaisedButton label='Submit' fullWidth={true} primary={true} onClick={this._onClickSubmitFeedbackBtn} />
 			</form>
