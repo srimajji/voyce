@@ -50,15 +50,12 @@ class Form extends React.Component {
 		};
 		fetch('/api/feedbacks', params)
 			.then(response => {
-				if (response.status !== 200) {
+				if (response.status !== 200 && response.status !== 201) {
 					console.error('Error sending feedback', response.status);
 				} else {
 					console.log('Feedback added', response.json());
 					this.setState({ submitSuccess: true });
 				}
-			})
-			.catch(error => {
-				console.error(error);
 			});
 	}
 
