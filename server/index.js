@@ -23,10 +23,11 @@ app.options('*', cors())
 	.use(morgan('combined', { 'stream': logger.stream }))
 
 	// compress 
-	.use(compress())
+	.use(compress());
 
-	// serve webpack files via '/dist'
-	.use(webpackDevMiddleware(webpackCompiler, {
+// serve webpack files via '/dist'
+if (process.env.NODE_ENV === 'development') {
+	app.use(webpackDevMiddleware(webpackCompiler, {
 		publicPath: webpackConfig.output.publicPath,
 		stats: {
 			assets: true,
@@ -39,10 +40,13 @@ app.options('*', cors())
 		},
 		noInfo: false,
 		quiet: false,
-	}))
+	}));
+} else {
+	app.use('/dist', feathers.static(path.join(root, 'public/dist')));
+}
 
-	// serve public folder via '/'
-	.use('/', feathers.static(path.join(root, 'public')))
+// serve public folder via '/'
+app.use('/', feathers.static(path.join(root, 'public')))
 
 	// serve public/dist folder via '/'
 	.use('/', feathers.static(path.join(root, 'public/dist')))

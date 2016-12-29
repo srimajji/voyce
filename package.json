@@ -18,9 +18,12 @@
   "scripts": {
     "test": "npm run jshint && npm run mocha",
     "jshint": "jshint server/. test/. --config",
+    "prebuild": "rm -rf public/dist/*",
     "start": "node server/",
     "start:dev": "nodemon --config .nodemon.json",
     "start:dev-debug": "nodemon --config .nodemon.json debug",
+    "build": "NODE_ENV=production webpack --progress --colors --config webpack.prod.config.js",
+    "start:prod": "npm run prebuild && npm run build && node --harmony server/",
     "mocha": "mocha test/ --recursive"
   },
   "dependencies": {
