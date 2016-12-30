@@ -26,6 +26,7 @@ app.options('*', cors())
 	.use(compress());
 
 // serve webpack files via '/dist'
+console.log('main app', process.env.NODE_ENV);
 if (process.env.NODE_ENV === 'development') {
 	app.use(webpackDevMiddleware(webpackCompiler, {
 		publicPath: webpackConfig.output.publicPath,
