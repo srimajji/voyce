@@ -26,6 +26,7 @@ app.options('*', cors())
 	.use(compress());
 
 // serve webpack files via '/dist'
+console.log('main app', process.env.NODE_ENV);
 if (process.env.NODE_ENV === 'development') {
 	app.use(webpackDevMiddleware(webpackCompiler, {
 		publicPath: webpackConfig.output.publicPath,
@@ -54,8 +55,11 @@ app.use('/', feathers.static(path.join(root, 'public')))
 	// serve sub-app feathers from api.js 
 	.use('/api', api)
 
+	// serve admin.html 
+	.get('/admin/*', serveAdmin)
+
 	// route everything else to client/react-router
-	.get('/*', serveHtml)
+	.get('/*', serveIndex)
 
 	// set favicon
 	.use(favicon(path.join(__dirname, '..', 'public/favicon.ico')));
@@ -67,8 +71,12 @@ const port = 3030;
 const server = app.listen(port);
 api.setup(server);
 
-function serveHtml(req, res) {
+function serveIndex(req, res) {
 	res.sendFile('index.html', { root: path.join(root, 'public') });
+}
+
+function serveAdmin(req, res) {
+	res.sendFile('admin.html', { root: path.join(root, 'public') });
 }
 
 server.on('listening', () =>

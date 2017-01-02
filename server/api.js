@@ -11,6 +11,7 @@ const middleware = require('./middleware');
 const services = require('./services');
 
 
+console.log(process.env.NODE_ENV);
 
 
 const app = feathers();
