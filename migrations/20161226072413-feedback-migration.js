@@ -12,6 +12,11 @@ module.exports = {
     return queryInterface.createTable('feedback',
       {
 
+      id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+      },
         title: {
           type: Sequelize.STRING,
           allowNull: false,

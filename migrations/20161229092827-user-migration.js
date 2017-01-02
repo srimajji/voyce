@@ -13,6 +13,11 @@ module.exports = {
     return queryInterface.createTable('user',
     {
 
+    id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
     facebookId: {
       type: Sequelize.STRING,
       allowNull: true,
@@ -35,7 +40,7 @@ module.exports = {
       type: Sequelize.BOOLEAN,
       field: 'is_verified'
     },
-    verifyToekn: {
+    verifyToken: {
       type: Sequelize.STRING,
       allowNul: false,
       field: 'verify_token'
