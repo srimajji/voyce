@@ -26,6 +26,16 @@ module.exports = {
           type: Sequelize.STRING,
           allowNull: false
         },
+        categories: {
+          type: Sequelize.STRING,
+          allowNull: false,
+          get: function () {
+            return JSON.parse(this.getDataValue('categories'));
+          },
+          set: function (val) {
+            return this.setDataValue('categories', JSON.stringify(val));
+          }
+        },
         location: {
           type: Sequelize.STRING,
           allowNull: false
