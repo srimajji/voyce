@@ -1,5 +1,4 @@
 const autoprefixer = require('autoprefixer');
-const merge = require('lodash/merge');
 const normalize = require('postcss-normalize');
 const path = require('path');
 const webpack = require('webpack');
