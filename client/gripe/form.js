@@ -1,4 +1,5 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
@@ -7,40 +8,69 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FontIcon from 'material-ui/FontIcon';
 import { green500 } from 'material-ui/styles/colors';
 import styles from './form.scss';
+import $ from 'jquery';
 
-class WriteFeedback extends React.Component {
+class Form extends React.Component {
 	constructor() {
 		super();
 
 		this.state = {
 			feedbackType: '',
-			submitSuccess: true
+			submitSuccess: false,
+			descriptionText: ''
 		};
 		this._handleSelectFieldOnChange = this._handleSelectFieldOnChange.bind(this);
 		this._onClickNewFeedbackBtn = this._onClickNewFeedbackBtn.bind(this);
 		this._renderNewFeedbackForm = this._renderNewFeedbackForm.bind(this);
+		this._onClickSubmitFeedbackBtn = this._onClickSubmitFeedbackBtn.bind(this);
+		this._onChangeDescriptionField = this._onChangeDescriptionField.bind(this);
 	}
 
 	_handleSelectFieldOnChange(event, index, value) {
 		this.setState({ feedbackType: value });
 	}
 
+	_onChangeDescriptionField(event, value) {
+		this.setState({ descriptionText: value });
+	}
+
 	_onClickNewFeedbackBtn() {
-		this.setState({ submitSuccess: false });
+		this.setState({ submitSuccess: false, feedbackType: '', descriptionText: '' });
+	}
+
+	_onClickSubmitFeedbackBtn() {
+		const { feedbackType, descriptionText } = this.state;
+		const companyId = this.props.id;
+		const params = {
+			method: 'POST',
+			headers: {
+				'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+			},
+			body: `companyId=${companyId}&type=${feedbackType}&description=${descriptionText}`
+		};
+		fetch('/api/feedbacks', params)
+			.then(response => {
+				if (response.status !== 200 && response.status !== 201) {
+					console.error('Error sending feedback', response.status);
+				} else {
+					console.log('Feedback added', response.json());
+					this.setState({ submitSuccess: true });
+				}
+			});
 	}
 
 	_renderNewFeedbackForm() {
-		const { routeParams } = this.props;
-		const formTitle = <h2 className={styles.formTitle}>Got feedback for {routeParams.company ? routeParams.company : 'company'}?</h2>;
+		const { name, categories } = this.props;
+		const formTitle = <h2 className={styles.formTitle}>Got feedback for {name}?</h2>;
 		const feedbackPlaceholder = 'Your feedback is very valuable to us. Please try to be as constructive as possible';
 		return (
 			<form className={styles.formContainer}>
 				{formTitle}
 				<div className={styles.fieldWrapper}>
 					<SelectField floatingLabelText='Type of feedback?' fullWidth={true} value={this.state.feedbackType} onChange={this._handleSelectFieldOnChange} >
-						<MenuItem value={1} primaryText='Customer Service' />
-						<MenuItem value={2} primaryText='Building' />
-						<MenuItem value={3} primaryText='Other' />
+						{categories.map((category, key) => {
+							return <MenuItem value={category} key={key} primaryText={category} />;
+						})}
 					</SelectField>
 					<TextField
 						className={styles.newFeedbackField}
@@ -48,9 +78,12 @@ class WriteFeedback extends React.Component {
 						hintText={feedbackPlaceholder}
 						multiLine={true}
 						rows={5}
-						fullWidth={true} />
+						fullWidth={true}
+						value={this.state.descriptionText}
+						onChange={this._onChangeDescriptionField}
+						/>
 				</div>
-				<RaisedButton label='Submit' fullWidth={true} primary={true} type='submit' />
+				<RaisedButton label='Submit' fullWidth={true} primary={true} onClick={this._onClickSubmitFeedbackBtn} />
 			</form>
 		);
 	}
@@ -82,4 +115,4 @@ class WriteFeedback extends React.Component {
 	}
 }
 
-export default WriteFeedback;
+export default Form;

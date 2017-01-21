@@ -1,11 +1,11 @@
 {
-	"host": "gripe-app.feathersjs.com",
-	"port": 80,
-	"mysql": "DATABASE_URL",
+	"host": "localhost",
+	"port": 3030,
 	"public": "../public/",
+	"mysql": "mysql://root@localhost:3306/gripe",
 	"auth": {
 		"idField": "id",
-		"secret": "FEATHERS_AUTH_SECRET",
+		"secret": "/f8l5dQUaPOfIK40dQCFJvAliA1sLZeG3hIEZv0hzZXOi1UbKkRxnqIzGvNHy5YHemetzKpPhvreoTc0Gvz5og==",
 		"local": {},
 		"facebook": {
 			"clientID": "your facebook client id",

@@ -1,32 +1,37 @@
 const autoprefixer = require('autoprefixer');
-const merge = require('lodash/merge');
 const normalize = require('postcss-normalize');
 const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-	devtool: 'inline-source-map',
+	devtool: 'cheap-module-source-map',
 	entry: {
 		newFeedback: ['babel-polyfill', './client/gripe/index.js'],
 		adminPanel: ['babel-polyfill', './client/adminPanel/index.js']
 	},
 	output: {
-		path: path.resolve(__dirname, '..', 'public/dist'),
+		path: path.resolve(__dirname, 'public/dist'),
 		filename: '[name].bundle.js',
-		publicPath: '/dist/'
 	},
 	plugins: [
-		new webpack.optimize.OccurenceOrderPlugin(),
-		new webpack.OldWatchingPlugin(),
-		// new webpack.HotModuleReplacementPlugin(),
+		new webpack.optimize.DedupePlugin(),
+		new webpack.optimize.AggressiveMergingPlugin(),
 		new webpack.ProvidePlugin({
 			'window.jQuery': 'jquery'
 		}),
 		new webpack.DefinePlugin({
 			'process.env': {
-				'NODE_ENV': JSON.stringify('development'),
+				'NODE_ENV': JSON.stringify('production'),
 				'API_URL': JSON.stringify('http://localhost:3030/api/')
 			}
+		}),
+		new webpack.optimize.UglifyJsPlugin({
+			compress: { warnings: false },
+			comments: false,
+			sourceMap: false,
+			mangle: true,
+			minimize: true,
+			verbose: false,
 		}),
 		new webpack.NoErrorsPlugin()
 	],
@@ -43,8 +48,8 @@ module.exports = {
 			{
 				test: /\.jsx?$/,
 				loaders: ['babel'],
-				exclude: path.join(__dirname, '../node_modules/'),
-				include: path.join(__dirname, '/client/')
+				exclude: path.join(__dirname, 'node_modules'),
+				include: path.resolve(__dirname, 'client')
 			},
 			{
 				test: /(\.css|\.scss)$/,

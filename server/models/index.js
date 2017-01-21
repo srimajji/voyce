@@ -8,7 +8,7 @@ const logger = require('../utils/logger');
 
 module.exports = function () {
 	const app = this;
-	const sequelize = new Sequelize(app.get('mysql'), {
+    const sequelize = new Sequelize(app.get('mysql'), {
 		dialect: 'mysql',
 		logging: logger.debug,
 		define: { underscored: true },
@@ -24,6 +24,7 @@ module.exports = function () {
 		}
 	});
 
+    /*
 	sequelize.sync({ force: true }).then(() => {
 		// temp to test rest
 		app.service('users').create({
@@ -38,9 +39,11 @@ module.exports = function () {
 			alias: 'bestbuy',
 			name: 'bestbuy',
 			location: 'Geary St, San Francisco',
+			categories: ['food', 'employee', 'building', 'merchendise'],
 			website: 'http://bestbuy.com'
 		}).then((company) => {
 			logger.info('Created company', company.toJSON());
 		});
 	});
+    */
 };

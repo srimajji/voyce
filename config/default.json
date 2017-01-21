@@ -1,19 +1,19 @@
 {
-	"host": "localhost",
-	"port": 3030,
-	"public": "../public/",
-	"mysql": "mysql://root:root@localhost:3306/gripe",
-	"auth": {
-		"idField": "id",
-		"secret": "/f8l5dQUaPOfIK40dQCFJvAliA1sLZeG3hIEZv0hzZXOi1UbKkRxnqIzGvNHy5YHemetzKpPhvreoTc0Gvz5og==",
-		"local": {},
-		"facebook": {
-			"clientID": "your facebook client id",
-			"clientSecret": "your facebook client secret",
-			"scope": [
-				"public_profile",
-				"email"
-			]
-		}
-	}
+  "host": "localhost",
+  "port": 3030,
+  "public": "../public/",
+  "mysql": "mysql://l7ikaj16j2hfxx1o:of3j4d9l2kvciugh@rtzsaka6vivj2zp1.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/nmgwtcxv9mjrh6og",
+  "auth": {
+    "idField": "id",
+    "secret": "/f8l5dQUaPOfIK40dQCFJvAliA1sLZeG3hIEZv0hzZXOi1UbKkRxnqIzGvNHy5YHemetzKpPhvreoTc0Gvz5og==",
+    "local": {},
+    "facebook": {
+      "clientID": "your facebook client id",
+      "clientSecret": "your facebook client secret",
+      "scope": [
+        "public_profile",
+        "email"
+      ]
+    }
+  }
 }
