@@ -42,7 +42,7 @@ module.exports = {
 				},
 				verifyToken: {
 					type: Sequelize.STRING,
-					allowNul: false,
+					allowNull: false,
 					field: 'verify_token'
 				},
 				verifyExpires: {
@@ -68,13 +68,15 @@ module.exports = {
 					type: Sequelize.DATE,
 					field: 'reset_expires'
 				},
-				created_at: {
+				createdAt: {
 					type: Sequelize.DATE,
-					defaultValue: Sequelize.NOW
+					defaultValue: Sequelize.NOW,
+					field: 'created_at'
 				},
-				updated_at: {
+				updatedAt: {
 					type: Sequelize.DATE,
-					allowNull: true
+					defaultValue: Sequelize.NOW,
+					field: 'updated_at',
 				}
 
 

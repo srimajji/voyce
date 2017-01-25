@@ -12,11 +12,11 @@ module.exports = {
     return queryInterface.createTable('feedback',
       {
 
-      id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-      },
+        id: {
+          type: Sequelize.INTEGER,
+          primaryKey: true,
+          autoIncrement: true
+        },
         title: {
           type: Sequelize.STRING,
           allowNull: false,
@@ -35,13 +35,16 @@ module.exports = {
           key: 'id',
           field: 'company_id'
         },
-        created_at: {
+        createdAt: {
           type: Sequelize.DATE,
-          defaultValue: Sequelize.NOW
+          defaultValue: Sequelize.NOW,
+          field: 'created_at'
+
         },
-        updated_at: {
+        updatedAt: {
           type: Sequelize.DATE,
-          allowNull: true
+          defaultValue: Sequelize.NOW,
+          field: 'updated_at'
         }
 
       },

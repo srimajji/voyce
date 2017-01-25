@@ -4,6 +4,7 @@
     "password": "",
     "database": "gripe",
     "host": "127.0.0.1",
+    "seederStorageTableName": "sequelize_data",
     "dialect": "mysql"
   },
   "test": {
