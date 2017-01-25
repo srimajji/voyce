@@ -21,7 +21,11 @@ module.exports = {
 		new webpack.ProvidePlugin({
 			$: 'jquery',
 			jQuery: 'jquery',
-			'window.jQuery': 'jquery'
+			'window.jQuery': 'jquery',
+			React: 'React',
+			react: 'React',
+			'window.react': 'React',
+			'window.React': 'React'
 		}),
 		new webpack.DefinePlugin({
 			'process.env': {
@@ -38,10 +42,6 @@ module.exports = {
 		},
 		extensions: ['', '.js', '.jsx', '.scss', '.css', '.jpg'],
 		modulesDirectories: ['node_modules'],
-	},
-	externals: {
-		'react': 'React',
-		'react-dom': 'ReactDOM'
 	},
 	postcss: [normalize, autoprefixer],
 	module: {

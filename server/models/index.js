@@ -8,7 +8,7 @@ const logger = require('../utils/logger');
 
 module.exports = function () {
 	const app = this;
-    const sequelize = new Sequelize(app.get('mysql'), {
+	const sequelize = new Sequelize(app.get('mysql'), {
 		dialect: 'mysql',
 		logging: logger.debug,
 		define: { underscored: true },
@@ -24,6 +24,7 @@ module.exports = function () {
 		}
 	});
 
+	sequelize.sync({ force: true });
     /*
 	sequelize.sync({ force: true }).then(() => {
 		// temp to test rest

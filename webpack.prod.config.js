@@ -45,10 +45,6 @@ module.exports = {
 		extensions: ['', '.js', '.jsx', '.scss', '.css', '.jpg'],
 		modulesDirectories: ['node_modules'],
 	},
-	externals: {
-		'react': 'React',
-		'react-dom': 'ReactDOM'
-	},
 	postcss: [normalize, autoprefixer],
 	module: {
 		loaders: [
