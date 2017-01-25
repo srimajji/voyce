@@ -19,6 +19,8 @@ module.exports = {
 		new webpack.OldWatchingPlugin(),
 		// new webpack.HotModuleReplacementPlugin(),
 		new webpack.ProvidePlugin({
+			$: 'jquery',
+			jQuery: 'jquery',
 			'window.jQuery': 'jquery'
 		}),
 		new webpack.DefinePlugin({
@@ -32,9 +34,14 @@ module.exports = {
 	resolve: {
 		alias: {
 			'react': path.resolve(__dirname, 'node_modules', 'react'),
+			'react-dom': path.resolve(__dirname, 'node_modules', 'react-dom')
 		},
 		extensions: ['', '.js', '.jsx', '.scss', '.css', '.jpg'],
 		modulesDirectories: ['node_modules'],
+	},
+	externals: {
+		'react': 'React',
+		'react-dom': 'ReactDOM'
 	},
 	postcss: [normalize, autoprefixer],
 	module: {
@@ -42,7 +49,7 @@ module.exports = {
 			{
 				test: /\.jsx?$/,
 				loaders: ['babel'],
-				exclude: path.join(__dirname, '../node_modules/'),
+				exclude: path.join(__dirname, '/node_modules/'),
 				include: path.join(__dirname, '/client/')
 			},
 			{

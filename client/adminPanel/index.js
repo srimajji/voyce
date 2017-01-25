@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -24,4 +24,4 @@ const Main = () => {
 		</MuiThemeProvider>
 	);
 };
-ReactDOM.render(<Main />, document.getElementById('root'));
+render(<Main />, document.getElementById('root'));
