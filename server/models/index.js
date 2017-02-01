@@ -24,9 +24,9 @@ module.exports = function () {
 		}
 	});
 
-	sequelize.sync({ force: true });
-    /*
-	sequelize.sync({ force: true }).then(() => {
+	sequelize.sync();
+
+	/* sequelize.sync().then(() => {
 		// temp to test rest
 		app.service('users').create({
 			email: 'sri@sri.com',
@@ -44,7 +44,30 @@ module.exports = function () {
 			website: 'http://bestbuy.com'
 		}).then((company) => {
 			logger.info('Created company', company.toJSON());
+			app.service('feedbacks').create({
+				companyId: 1,
+				title: 'This is a sample feedback',
+				description: 'This is a sample description',
+				type: 'water'
+			}).then((feedback) => {
+				logger.info('Created feedback', feedback.toJSON());
+
+			}).catch(error => {
+				logger.error(error);
+				const Feedback = app.get('models').feedback;
+				const Company = app.get('models').company;
+
+				Company.findOne().then(company => {
+					logger.info(company)
+					company.getFeedbacks().then(feedbacks => {
+						console.log(feedbacks);
+					})
+				});
+
+				Feedback.findOne({ include: [{ model: Company }] }).then(feedback => {
+					logger.info(feedback.toJSON());
+				}).catch(error => logger.error(error));
+			})
 		});
-	});
-    */
+	}); */
 };

@@ -36,38 +36,6 @@ module.exports = {
 					type: Sequelize.STRING,
 					allowNull: false
 				},
-				isVerified: {
-					type: Sequelize.BOOLEAN,
-					field: 'is_verified'
-				},
-				verifyToken: {
-					type: Sequelize.STRING,
-					allowNull: false,
-					field: 'verify_token'
-				},
-				verifyExpires: {
-					type: Sequelize.DATE,
-					field: 'verify_expires'
-				},
-
-				verifyChanges: {
-					type: Sequelize.STRING,
-					field: 'verify_changes',
-					get: function () {
-						return JSON.parse(this.getDataValue('verifyChanges'));
-					},
-					set: function (val) {
-						return this.setDataValue('verifyChanges', JSON.stringify(val));
-					}
-				},
-				resetToken: {
-					type: Sequelize.STRING,
-					field: 'reset_token'
-				},
-				resetExpires: {
-					type: Sequelize.DATE,
-					field: 'reset_expires'
-				},
 				createdAt: {
 					type: Sequelize.DATE,
 					defaultValue: Sequelize.NOW,

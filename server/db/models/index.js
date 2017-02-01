@@ -12,4 +12,4 @@ const db = Object.assign({
 	sequelize
 }, models);
 
-models.exports = db;
+module.exports = db;
