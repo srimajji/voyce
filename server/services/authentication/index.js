@@ -9,10 +9,7 @@ module.exports = function () {
 	const app = this;
 
 	let config = app.get('auth');
-
-	app.set('auth', config);
 	app.configure(authentication(config))
-		.configure(authManagement({ service: 'users' }))
 		.configure(jwt())
 		.configure(local());
 };

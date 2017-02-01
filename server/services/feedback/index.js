@@ -15,7 +15,7 @@ module.exports = function () {
 	};
 
 	// Initialize our service with any options it requires
-	app.use('/feedbacks', service(options));
+	app.use('feedbacks', service(options));
 
 	// Get our initialize service to that we can bind hooks
 	const feedbackService = app.service('feedbacks');

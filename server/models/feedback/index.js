@@ -26,8 +26,8 @@ module.exports = function () {
 		companyId: {
 			type: Sequelize.INTEGER,
 			allowNull: false,
-			model: sequelize.model('company'),
-			key: 'id',
+			// model: sequelize.model('company'),
+			// key: 'id',
 			field: 'company_id'
 		}
 	},
