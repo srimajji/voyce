@@ -1,5 +1,4 @@
 const autoprefixer = require('autoprefixer');
-const merge = require('lodash/merge');
 const normalize = require('postcss-normalize');
 const path = require('path');
 const webpack = require('webpack');
@@ -20,7 +19,13 @@ module.exports = {
 		new webpack.OldWatchingPlugin(),
 		// new webpack.HotModuleReplacementPlugin(),
 		new webpack.ProvidePlugin({
-			'window.jQuery': 'jquery'
+			$: 'jquery',
+			jQuery: 'jquery',
+			'window.jQuery': 'jquery',
+			React: 'React',
+			react: 'React',
+			'window.react': 'React',
+			'window.React': 'React'
 		}),
 		new webpack.DefinePlugin({
 			'process.env': {
@@ -33,6 +38,7 @@ module.exports = {
 	resolve: {
 		alias: {
 			'react': path.resolve(__dirname, 'node_modules', 'react'),
+			'react-dom': path.resolve(__dirname, 'node_modules', 'react-dom')
 		},
 		extensions: ['', '.js', '.jsx', '.scss', '.css', '.jpg'],
 		modulesDirectories: ['node_modules'],
@@ -43,7 +49,7 @@ module.exports = {
 			{
 				test: /\.jsx?$/,
 				loaders: ['babel'],
-				exclude: path.join(__dirname, '../node_modules/'),
+				exclude: path.join(__dirname, '/node_modules/'),
 				include: path.join(__dirname, '/client/')
 			},
 			{

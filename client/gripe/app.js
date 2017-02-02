@@ -1,6 +1,6 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
-import { isEmpty } from 'lodash';
+import { isEmpty } from 'lodash/isEmpty';
 import Form from './form.js';
 
 class App extends React.Component {

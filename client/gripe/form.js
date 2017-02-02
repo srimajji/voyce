@@ -8,7 +8,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FontIcon from 'material-ui/FontIcon';
 import { green500 } from 'material-ui/styles/colors';
 import styles from './form.scss';
-import $ from 'jquery';
 
 class Form extends React.Component {
 	constructor() {

@@ -30,43 +30,19 @@ module.exports = function () {
 			type: Sequelize.STRING,
 			allowNull: false
 		},
-
-		// fields for feathers-authentication-management
-		isVerified: {
-			type: Sequelize.BOOLEAN,
-			field: 'is_verified'
-		},
-		verifyToekn: {
+		roles: {
 			type: Sequelize.STRING,
-			allowNul: false,
-			field: 'verify_token'
-		},
-		verifyExpires: {
-			type: Sequelize.DATE,
-			field: 'verify_expires'
-		},
-
+			allowNull: false,
+			get: function () {
+				return JSON.parse(this.getDataValue('roles'));
+			},
+			set: function (val) {
+				return this.setDataValue('roles', JSON.stringify(val));
+			}
+		}
 		// sequelize mysql doesn't support Sequelize.ARRAY so get/set () are used to mimick
 		// storing array of strings
 		// https://stackoverflow.com/questions/25565212/how-to-define-array-of-objects-in-sequelize-js
-		verifyChanges: {
-			type: Sequelize.STRING,
-			field: 'verify_changes',
-			get: function () {
-				return JSON.parse(this.getDataValue('verifyChanges'));
-			},
-			set: function (val) {
-				return this.setDataValue('verifyChanges', JSON.stringify(val));
-			}
-		},
-		resetToken: {
-			type: Sequelize.STRING,
-			field: 'reset_token'
-		},
-		resetExpires: {
-			type: Sequelize.DATE,
-			field: 'reset_expires'
-		}
 	},
 		{
 			freezeTableName: true

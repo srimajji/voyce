@@ -1,45 +1,42 @@
 'use strict';
 
+const globalHooks = require('../../../hooks');
+const hooks = require('feathers-hooks');
 const auth = require('feathers-authentication').hooks;
-const local = require('feathers-authentication-local').hooks;
-const hooks = require('feathers-hooks-common');
-const populate = require('feathers-populate-hook');
-const permissions = require('feathers-permissions');
 
 exports.before = {
 	all: [],
 	find: [
-		auth.authenticate('jwt'),
-		populate('user', { service: '/users', field: 'userId' }),
-		permissions.hooks.checkPermissions({ service: '/users' }),
-		permissions.hooks.isPermitted()
+		auth.verifyToken(),
+		auth.populateUser(),
+		auth.restrictToAuthenticated(),
 	],
 	get: [
-		auth.authenticate('jwt'),
-		populate('user', { service: '/users', field: 'userId' }),
-		permissions.hooks.checkPermissions({ service: '/users' }),
-		permissions.hooks.isPermitted()
+		auth.verifyToken(),
+		auth.populateUser(),
+		auth.restrictToAuthenticated(),
+		auth.restrictToOwner({ ownerField: 'id' })
 	],
 	create: [
-		local.hashPassword({ passwordField: 'password' })
+		auth.hashPassword()
 	],
 	update: [
-		auth.authenticate('jwt'),
-		populate('user', { service: '/users', field: 'userId' }),
-		permissions.hooks.checkPermissions({ service: '/users' }),
-		permissions.hooks.isPermitted()
+		auth.verifyToken(),
+		auth.populateUser(),
+		auth.restrictToAuthenticated(),
+		auth.restrictToOwner({ ownerField: 'id' })
 	],
 	patch: [
-		auth.authenticate('jwt'),
-		populate('user', { service: '/users', field: 'userId' }),
-		permissions.hooks.checkPermissions({ service: '/users' }),
-		permissions.hooks.isPermitted()
+		auth.verifyToken(),
+		auth.populateUser(),
+		auth.restrictToAuthenticated(),
+		auth.restrictToOwner({ ownerField: 'id' })
 	],
 	remove: [
-		auth.authenticate('jwt'),
-		populate('user', { service: '/users', field: 'userId' }),
-		permissions.hooks.checkPermissions({ service: '/users' }),
-		permissions.hooks.isPermitted()
+		auth.verifyToken(),
+		auth.populateUser(),
+		auth.restrictToAuthenticated(),
+		auth.restrictToOwner({ ownerField: 'id' })
 	]
 };
 

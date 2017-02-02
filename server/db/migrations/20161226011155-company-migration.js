@@ -1,5 +1,4 @@
 'use strict';
-
 module.exports = {
   up: function (queryInterface, Sequelize) {
     /*
@@ -22,7 +21,7 @@ module.exports = {
           allowNull: false,
           unique: true
         },
-        name:  {
+        name: {
           type: Sequelize.STRING,
           allowNull: false
         },
@@ -44,13 +43,15 @@ module.exports = {
           type: Sequelize.STRING,
           allowNull: true
         },
-        created_at: {
+        createdAt: {
           type: Sequelize.DATE,
-          defaultValue: Sequelize.NOW
+          defaultValue: Sequelize.NOW,
+          field: 'created_at'
         },
-        updated_at: {
+        updatedAt: {
           type: Sequelize.DATE,
-          allowNull: true
+          defaultValue: Sequelize.NOW,
+          field: 'updated_at'
         }
 
       },

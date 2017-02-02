@@ -1,28 +1,26 @@
 'use strict';
 
 const auth = require('feathers-authentication').hooks;
-const permissions = require('feathers-permissions');
+const hooks = require('feathers-hooks');
 
 exports.before = {
-	all: [],
+	all: [
+		auth.verifyToken(),
+		auth.populateUser(),
+		auth.restrictToAuthenticated(),
+		auth.restrictToRoles({
+			roles: ['superadmin'],
+			fieldName: 'roles',
+			idField: 'id',
+			owner: false
+		})
+	],
 	find: [],
 	get: [],
-	create: [
-		auth.authenticate('jwt'),
-		permissions.hooks.checkPermissions({ service: 'users' })
-	],
-	update: [
-		auth.authenticate('jwt'),
-		permissions.hooks.checkPermissions({ service: 'users' })
-	],
-	patch: [
-		auth.authenticate('jwt'),
-		permissions.hooks.checkPermissions({ service: 'users' })
-	],
-	remove: [
-		auth.authenticate('jwt'),
-		permissions.hooks.checkPermissions({ service: 'users' })
-	]
+	create: [],
+	update: [],
+	patch: [],
+	remove: []
 };
 
 exports.after = {

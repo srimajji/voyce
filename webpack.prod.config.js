@@ -14,9 +14,9 @@ module.exports = {
 		filename: '[name].bundle.js',
 	},
 	plugins: [
-		new webpack.optimize.DedupePlugin(),
-		new webpack.optimize.AggressiveMergingPlugin(),
 		new webpack.ProvidePlugin({
+			$: 'jquery',
+			jQuery: 'jquery',
 			'window.jQuery': 'jquery'
 		}),
 		new webpack.DefinePlugin({
@@ -33,11 +33,14 @@ module.exports = {
 			minimize: true,
 			verbose: false,
 		}),
-		new webpack.NoErrorsPlugin()
+		new webpack.optimize.DedupePlugin(),
+		new webpack.optimize.AggressiveMergingPlugin(),
+		new webpack.NoErrorsPlugin(),
 	],
 	resolve: {
 		alias: {
 			'react': path.resolve(__dirname, 'node_modules', 'react'),
+			'react-dom': path.resolve(__dirname, 'node_modules', 'react-dom')
 		},
 		extensions: ['', '.js', '.jsx', '.scss', '.css', '.jpg'],
 		modulesDirectories: ['node_modules'],
