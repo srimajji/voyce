@@ -18,9 +18,10 @@ module.exports = {
 			name: 'bestbuy',
 			location: 'Geary St, San Francisco',
 			website: 'http://bestbuy.com',
-			categories: 'food,goog',
-			createdAt: new Date(),
-			lastUpdated: new Date()
+			categories: "{ 'food','goog'}",
+			location: 'Bryant St, San Franciso, CA',
+			created_at: new Date(),
+			updated_at: new Date()
 		}], {});
 
 	},

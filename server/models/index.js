@@ -25,7 +25,26 @@ module.exports = function () {
 		}
 	});
 
-	sequelize.sync();
+	sequelize.sync()
+		.then(() => {
+			app.service('users').create({
+				email: 'sri@sri.com',
+				password: 'password',
+				name: 'Sri Majji',
+			}).then((user) => {
+				logger.info('Created user', user.toJSON());
+			});
+
+			app.service('companies').create({
+				alias: 'bestbuy',
+				name: 'bestbuy',
+				location: 'Geary St, San Francisco',
+				categories: ['food', 'employee', 'building', 'merchendise'],
+				website: 'http://bestbuy.com'
+			}).then((company) => {
+				logger.info('Created company', company.toJSON());
+			})
+		});
 
 	/* sequelize.sync().then(() => {
 		// temp to test rest

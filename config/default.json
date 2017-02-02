@@ -8,6 +8,7 @@
 		"password": "",
 		"database": "gripe",
 		"migrationStorageTableName": "_migrations",
+		"seederStorageTableName": "_seeders",
 		"dialect": "mysql"
 	},
 	"auth": {

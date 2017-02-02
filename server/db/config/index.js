@@ -9,6 +9,7 @@ module.exports = {
 		password: dbConfig.password,
 		database: dbConfig.database,
 		migrationStorageTableName: dbConfig.migrationStorageTableName,
+		seederStorageTableName: dbConfig.seederStorageTableName,
 		dialect: dbConfig.dialect
 	}
 }
