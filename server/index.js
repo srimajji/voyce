@@ -66,6 +66,7 @@ app.use('/', feathers.static(path.join(root, 'public')))
 // .use(webpackHotMiddleware(webpackCompiler, {
 // 	log: logger.info
 // }))
+
 const port = 3030;
 const server = app.listen(port);
 api.setup(server);
@@ -78,6 +79,22 @@ function serveAdmin(req, res) {
 	res.sendFile('admin.html', { root: path.join(root, 'public') });
 }
 
-server.on('listening', () =>
-	logger.info(`Feathers application started on localhost:${port}`)
-);
+server.on('listening', () => {
+	logger.info(`Feathers application started on localhost:${port}`);
+
+	// Sync models
+	const User = api.get('models').user;
+
+	User.findOne().then(user => {
+		if (!user) {
+			api.service('users').create({
+				email: 'sri@sri.com',
+				password: 'password',
+				name: 'Sri Majji'
+			}
+			).then((user) => {
+				logger.info('Created user', user.toJSON());
+			});
+		}
+	});
+});
