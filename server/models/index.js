@@ -8,7 +8,8 @@ const logger = require('../utils/logger');
 
 module.exports = function () {
 	const app = this;
-	const sequelize = new Sequelize(app.get('mysql'), {
+	const dbConfig = app.get('datasource');
+	const sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, {
 		dialect: 'mysql',
 		logging: logger.debug,
 		define: { underscored: true },
@@ -69,5 +70,6 @@ module.exports = function () {
 				}).catch(error => logger.error(error));
 			})
 		});
-	}); */
+	}); 
+	*/
 };
