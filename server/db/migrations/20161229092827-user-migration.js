@@ -36,6 +36,10 @@ module.exports = {
 					type: Sequelize.STRING,
 					allowNull: false
 				},
+				roles: {
+					type: Sequelize.STRING,
+					allowNull: false
+				},
 				createdAt: {
 					type: Sequelize.DATE,
 					defaultValue: Sequelize.NOW,

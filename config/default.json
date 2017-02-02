@@ -18,8 +18,21 @@
 			"secret": "/f8l5dQUaPOfIK40dQCFJvAliA1sLZeG3hIEZv0hzZXOi1UbKkRxnqIzGvNHy5YHemetzKpPhvreoTc0Gvz5og==",
 			"payload": []
 		},
-		"local": {},
-		"session": true,
+		"local": {
+			"session": true
+		},
+		"successRedirect": false,
+		"failureRedirect": false,
+		"localEndpoint ": "/auth/local",
+		"userEndpoint": "/users",
+		"tokenEndpoint": "/auth/token",
+		"header": "Authorization",
+		"cookie": {
+			"name": "gripe-jwt",
+			"httpOnly": "false",
+			"secure": true,
+			"maxAge": "3000"
+		},
 		"facebook": {
 			"clientID": "your facebook client id",
 			"clientSecret": "your facebook client secret",

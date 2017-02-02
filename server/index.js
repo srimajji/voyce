@@ -90,7 +90,8 @@ server.on('listening', () => {
 			api.service('users').create({
 				email: 'sri@sri.com',
 				password: 'password',
-				name: 'Sri Majji'
+				name: 'Sri Majji',
+				roles: ['superadmin', 'user']
 			}
 			).then((user) => {
 				logger.info('Created user', user.toJSON());

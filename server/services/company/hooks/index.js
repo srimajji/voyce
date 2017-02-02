@@ -7,7 +7,13 @@ exports.before = {
 	all: [
 		auth.verifyToken(),
 		auth.populateUser(),
-		auth.restrictToAuthenticated()
+		auth.restrictToAuthenticated(),
+		auth.restrictToRoles({
+			roles: ['superadmin'],
+			fieldName: 'roles',
+			idField: 'id',
+			owner: false
+		})
 	],
 	find: [],
 	get: [],

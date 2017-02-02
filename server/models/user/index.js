@@ -29,6 +29,16 @@ module.exports = function () {
 		password: {
 			type: Sequelize.STRING,
 			allowNull: false
+		},
+		roles: {
+			type: Sequelize.STRING,
+			allowNull: false,
+			get: function () {
+				return JSON.parse(this.getDataValue('roles'));
+			},
+			set: function (val) {
+				return this.setDataValue('roles', JSON.stringify(val));
+			}
 		}
 		// sequelize mysql doesn't support Sequelize.ARRAY so get/set () are used to mimick
 		// storing array of strings
