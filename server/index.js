@@ -1,5 +1,3 @@
-'use strict';
-
 const path = require('path');
 const compress = require('compression');
 const feathers = require('feathers');
@@ -91,7 +89,7 @@ server.on('listening', () => {
 				email: 'sri@sri.com',
 				password: 'password',
 				name: 'Sri Majji',
-				roles: ['superadmin', 'user']
+				roles: ['superadmin', 'owner', 'user']
 			}
 			).then((user) => {
 				logger.info('Created user', user.toJSON());

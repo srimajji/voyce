@@ -43,7 +43,8 @@ module.exports = function () {
 			freezeTableName: true,
 			classMethods: {
 				associate() {
-					company.hasMany(sequelize.model('feedback'));
+					company.hasMany(sequelize.models['feedback']);
+					company.belongsToMany(sequelize.models['user'], { through: sequelize.models['companyUser'] });
 				}
 			}
 		}

@@ -45,7 +45,12 @@ module.exports = function () {
 		// https://stackoverflow.com/questions/25565212/how-to-define-array-of-objects-in-sequelize-js
 	},
 		{
-			freezeTableName: true
+			freezeTableName: true,
+			classMethods: {
+				associate() {
+					user.belongsToMany(sequelize.models['company'], { through: sequelize.models['companyUser'] });
+				}
+			}
 		});
 
 	return user;

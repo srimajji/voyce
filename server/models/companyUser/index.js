@@ -10,36 +10,29 @@ const Sequelize = require('sequelize');
 module.exports = function () {
 	const app = this;
 	const sequelize = app.get('sequelize');
-	const feedback = sequelize.define('feedback', {
-		title: {
-			type: Sequelize.STRING,
-			allowNull: false,
-		},
-		description: {
-			type: Sequelize.TEXT('long'),
-			allowNull: false
-		},
-		type: {
-			type: Sequelize.STRING,
-			allowNull: false
-		},
+	const companyUser = sequelize.define('companyUser', {
 		companyId: {
 			type: Sequelize.INTEGER,
 			allowNull: false,
-			// model: sequelize.model('company'),
-			// key: 'id',
+			unique: true,
 			field: 'company_id'
-		}
+		},
+		userId: {
+			type: Sequelize.INTEGER,
+			allowNull: false,
+			field: 'user_id'
+		},
 	},
 		{
 			freezeTableName: true,
 			classMethods: {
 				associate() {
-					feedback.belongsTo(sequelize.models['company']);
+					companyUser.belongsTo(sequelize.models['user']);
+					companyUser.belongsTo(sequelize.models['company']);
 				}
 			}
+		}
+	);
 
-		});
-
-	return feedback;
+	return companyUser;
 };

@@ -4,6 +4,7 @@ const Sequelize = require('sequelize');
 const user = require('./user');
 const company = require('./company');
 const feedback = require('./feedback');
+const companyUser = require('./companyUser');
 const logger = require('../utils/logger');
 
 module.exports = function () {
@@ -18,6 +19,7 @@ module.exports = function () {
 	app.configure(user);
 	app.configure(company);
 	app.configure(feedback);
+	app.configure(companyUser);
 	app.set('models', sequelize.models);
 	Object.keys(sequelize.models).forEach(function (modelName) {
 		if ('associate' in sequelize.models[modelName]) {
