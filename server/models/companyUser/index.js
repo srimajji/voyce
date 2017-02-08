@@ -10,7 +10,7 @@ const Sequelize = require('sequelize');
 module.exports = function () {
 	const app = this;
 	const sequelize = app.get('sequelize');
-	const companyUser = sequelize.define('companyUser', {
+	const CompanyUser = sequelize.define('companyUser', {
 		companyId: {
 			type: Sequelize.INTEGER,
 			allowNull: false,
@@ -25,14 +25,16 @@ module.exports = function () {
 	},
 		{
 			freezeTableName: true,
+			tableName: 'company_users',
+			version: true,
 			classMethods: {
 				associate() {
-					companyUser.belongsTo(sequelize.models['user']);
-					companyUser.belongsTo(sequelize.models['company']);
+					CompanyUser.belongsTo(sequelize.models['user']);
+					CompanyUser.belongsTo(sequelize.models['company']);
 				}
 			}
 		}
 	);
 
-	return companyUser;
+	return CompanyUser;
 };

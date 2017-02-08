@@ -5,9 +5,9 @@ const hooks = require('./hooks');
 
 module.exports = function () {
 	const app = this;
-	const models = app.get('models');
+	const Company = app.get('models').company;
 	const options = {
-		Model: models['company'],
+		Model: Company,
 		paginate: {
 			default: 5,
 			max: 25

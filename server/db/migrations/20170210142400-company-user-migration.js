@@ -9,7 +9,7 @@ module.exports = {
 		  return queryInterface.createTable('users', { id: Sequelize.INTEGER });
 		*/
 
-		return queryInterface.createTable('companyUser',
+		return queryInterface.createTable('company_users',
 			{
 				id: {
 					type: Sequelize.INTEGER,
@@ -67,7 +67,7 @@ module.exports = {
 		  return queryInterface.dropTable('users');
 		*/
 
-		return queryInterface.dropTable('companyUser');
+		return queryInterface.dropTable('company_users');
 
 	}
 };

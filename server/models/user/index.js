@@ -11,7 +11,7 @@ module.exports = function () {
 	const app = this;
 	const sequelize = app.get('sequelize');
 
-	const user = sequelize.define('user', {
+	const User = sequelize.define('user', {
 		facebookId: {
 			type: Sequelize.STRING,
 			allowNull: true,
@@ -46,12 +46,14 @@ module.exports = function () {
 	},
 		{
 			freezeTableName: true,
+			version: true,
+			tableName: 'user',
 			classMethods: {
 				associate() {
-					user.belongsToMany(sequelize.models['company'], { through: sequelize.models['companyUser'] });
+					User.belongsToMany(sequelize.models['company'], { through: sequelize.models['companyUser'] });
 				}
 			}
 		});
 
-	return user;
+	return User;
 };

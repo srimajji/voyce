@@ -10,10 +10,6 @@ const socketio = require('feathers-socketio');
 const middleware = require('./middleware');
 const services = require('./services');
 
-
-console.log(process.env.NODE_ENV);
-
-
 const app = feathers();
 
 app.configure(configuration(path.join(__dirname, '..')));
