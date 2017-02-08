@@ -45,7 +45,6 @@
     "feathers-logger": "^0.2.2",
     "feathers-rest": "^1.5.2",
     "feathers-sequelize": "^1.4.0",
-    "feathers-sequelize-associations": "^1.0.3",
     "feathers-socketio": "^1.4.2",
     "lodash": "^4.17.3",
     "material-ui": "^0.16.5",
