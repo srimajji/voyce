@@ -49,7 +49,7 @@ module.exports = {
 					type: Sequelize.DATE,
 					defaultValue: Sequelize.NOW,
 					field: 'updated_at',
-				}
+				},
 			},
 			{
 				engine: 'InnoDB',

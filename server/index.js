@@ -1,3 +1,5 @@
+'use strict';
+
 const path = require('path');
 const compress = require('compression');
 const feathers = require('feathers');
@@ -6,6 +8,7 @@ const cors = require('cors');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const favicon = require('serve-favicon');
 const morgan = require('morgan');
+const socketio = require('feathers-socketio');
 // const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackConfig = require('../webpack.dev.config.js');
 const logger = require('./utils/logger');
@@ -53,7 +56,7 @@ app.use('/', feathers.static(path.join(root, 'public')))
 	.use('/api', api)
 
 	// serve admin.html 
-	.get('/admin/*', serveAdmin)
+	.use('/admin', serveAdmin)
 
 	// route everything else to client/react-router
 	.get('/*', serveIndex)

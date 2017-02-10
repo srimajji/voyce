@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const socketio = require('feathers-socketio');
 const middleware = require('./middleware');
 const services = require('./services');
+const logger = require('./utils/logger');
 
 const app = feathers();
 
@@ -18,8 +19,17 @@ app.use(bodyParser.json())
 	.use(bodyParser.urlencoded({ extended: true }))
 	.configure(hooks())
 	.configure(rest())
-	.configure(socketio())
+	.configure(socketio({
+		path: '/ws/', function(io) {
+			io.on('connection', function (socket) {
+				socket.on('authenticate', function (data) {
+					logger.debug(data);
+				});
+			})
+		}
+	}))
 	.configure(services)
 	.configure(middleware);
+
 
 module.exports = app;
