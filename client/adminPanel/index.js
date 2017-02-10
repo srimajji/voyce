@@ -27,8 +27,14 @@ if (nodeEnv === 'production') {
 // Sign in with the JWT currently in localStorage
 if (localStorage['feathers-jwt']) {
 	store.dispatch(feathersAuthentication.authenticate())
+		.then(() => {
+			initLogger(store.dispatch, feathersServices.logs);
+			logger('info', 'Agent connected'); // todo You may want to remove this
+			const router = require('./router').default; // eslint-disable-line global-require
+			router(store, history);
+		})
 		.catch(err => {
-			console.log('authenticate catch', err); // eslint-disable-line no-console
+			logger('info', 'authenticate catch', err); // eslint-disable-line no-console
 			return err;
 		});
 }
@@ -51,9 +57,7 @@ configLoad(store, feathersServices)
 */
 // you cannot place a catch here because of the require inside then()
 
-const router = require('./router').default; // eslint-disable-line global-require
 
-router(store, history);
 // Handle uncaught exceptions
 function setupOnUncaughtExceptions() { // eslint-disable-line no-unused-vars
 	window.addEventListener('error', (e) => {
