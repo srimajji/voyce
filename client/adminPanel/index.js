@@ -30,8 +30,7 @@ if (localStorage['feathers-jwt']) {
 		.then(() => {
 			initLogger(store.dispatch, feathersServices.logs);
 			logger('info', 'Agent connected'); // todo You may want to remove this
-			const router = require('./router').default; // eslint-disable-line global-require
-			router(store, history);
+
 		})
 		.catch(err => {
 			logger('info', 'authenticate catch', err); // eslint-disable-line no-console
@@ -56,7 +55,8 @@ configLoad(store, feathersServices)
 	});
 */
 // you cannot place a catch here because of the require inside then()
-
+const router = require('./router').default; // eslint-disable-line global-require
+router(store, history);
 
 // Handle uncaught exceptions
 function setupOnUncaughtExceptions() { // eslint-disable-line no-unused-vars
