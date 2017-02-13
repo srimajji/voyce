@@ -13,5 +13,5 @@ export default [
 	reduxMulti, // Dispatch multiple actions
 	reduxPromiseMiddleware(), // Resolve, reject promises with conditional optimistic updates
 	routerMiddleware(browserHistory), // !! IMPORTANT for location.href changes
-	logger, // A basic middleware logger
+	//logger, // A basic middleware logger
 ];

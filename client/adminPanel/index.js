@@ -28,12 +28,12 @@ if (nodeEnv === 'production') {
 if (localStorage['feathers-jwt']) {
 	store.dispatch(feathersAuthentication.authenticate())
 		.then(() => {
-			initLogger(store.dispatch, feathersServices.logs);
-			logger('info', 'Agent connected'); // todo You may want to remove this
+			//initLogger(store.dispatch, feathersServices.logs);
+			//logger('info', 'Agent connected'); // todo You may want to remove this
 
 		})
 		.catch(err => {
-			logger('info', 'authenticate catch', err); // eslint-disable-line no-console
+			console.error('info', 'authenticate catch', err); // eslint-disable-line no-console
 			return err;
 		});
 }

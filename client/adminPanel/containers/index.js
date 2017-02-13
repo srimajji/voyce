@@ -1,8 +1,9 @@
 
 import React, { PropTypes } from 'react';
+import styles from './index.scss';
 
 const AppWrapper = (props) => (
-	<div>
+	<div className={styles.AppWrapper}>
 		{props.children}
 	</div>
 );

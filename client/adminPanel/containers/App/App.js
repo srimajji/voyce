@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import AppBar from 'material-ui/AppBar';
+import Drawer from 'material-ui/Drawer';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
@@ -12,9 +13,17 @@ import styles from './App.scss';
 class App extends React.Component {
 	constructor() {
 		super();
+		this.state = {
+			openDrawer: false
+		};
 
+		this._onClickOpenDrawer = this._onClickOpenDrawer.bind(this);
 		this._onClickLogout = this._onClickLogout.bind(this);
 		this._renderUserMenu = this._renderUserMenu.bind(this);
+	}
+
+	_onClickOpenDrawer() {
+		this.setState({ openDrawer: !this.state.openDrawer });
 	}
 
 	_onClickLogout() {
@@ -37,7 +46,12 @@ class App extends React.Component {
 		return (
 			<AppBar title='My AppBar'
 				iconElementRight={this._renderUserMenu()}
-			/>
+				style={{ zIndex: 'inherit' }}
+				onLeftIconButtonTouchTap={this._onClickOpenDrawer}
+				zDepth={2}
+			>
+				<Drawer docked={this.state.openDrawer} containerStyle={{ marginTop: '64px', zIndex: '-999' }} />
+			</AppBar>
 		);
 	}
 }
