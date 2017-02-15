@@ -44,14 +44,16 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<AppBar title='My AppBar'
-				iconElementRight={this._renderUserMenu()}
-				style={{ zIndex: 'inherit' }}
-				onLeftIconButtonTouchTap={this._onClickOpenDrawer}
-				zDepth={2}
-			>
+			<div className={styles.App}>
+				<AppBar title='My AppBar'
+					iconElementRight={this._renderUserMenu()}
+					style={{ zIndex: 'inherit' }}
+					onLeftIconButtonTouchTap={this._onClickOpenDrawer}
+					zDepth={0}
+				>
+				</AppBar>
 				<Drawer docked={this.state.openDrawer} containerStyle={{ marginTop: '64px', zIndex: '-999' }} />
-			</AppBar>
+			</div>
 		);
 	}
 }
