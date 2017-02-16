@@ -1,13 +1,14 @@
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
-import Drawer from 'material-ui/Drawer';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import ActionAccountCircle from 'material-ui/svg-icons/action/account-circle';
 import withWidth, { MEDIUM, LARGE } from 'material-ui/utils/withWidth';
+
 import { feathersAuthentication } from '../../../feathers';
+import SideNavigation from '../SideNavigation/SideNavigation.js';
 
 class TopNavigation extends React.Component {
 	constructor() {
@@ -49,7 +50,7 @@ class TopNavigation extends React.Component {
 		const isFullWidth = this.props.width == LARGE;
 		return (
 			<div>
-				<AppBar title='My AppBar'
+				<AppBar title='Gripe Admin Panel'
 					iconElementRight={this._renderUserMenu()}
 					style={{ zIndex: 'inherit' }}
 					onLeftIconButtonTouchTap={this._onClickOpenDrawer}
@@ -57,7 +58,7 @@ class TopNavigation extends React.Component {
 					zDepth={0}
 				>
 				</AppBar>
-				<Drawer open={isFullWidth || this.state.openDrawer} containerStyle={{ marginTop: '64px' }} />
+				<SideNavigation openDrawer={isFullWidth || this.state.openDrawer} containerStyle={{ marginTop: '64px' }} />
 			</div>
 		);
 	}
