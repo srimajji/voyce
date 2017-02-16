@@ -23,10 +23,6 @@ module.exports = {
 			$: 'jquery',
 			jQuery: 'jquery',
 			'window.jQuery': 'jquery',
-			React: 'React',
-			react: 'React',
-			'window.react': 'React',
-			'window.React': 'React'
 		}),
 		new webpack.DefinePlugin({
 			'process.env': {
