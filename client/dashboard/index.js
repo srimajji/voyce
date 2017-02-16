@@ -1,13 +1,11 @@
 
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { browserHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
-
-
+import { AppContainer } from 'react-hot-loader';
 import configureStore from './store';
 import { feathersServices, feathersAuthentication } from './feathers'; // does feathers init
-import { setClientValidationsConfig } from '../../common/helpers/usersClientValidations';
-import { configLoad } from './utils/config';
-import { initLogger, logger } from './utils/loggerRedux';
+import App from './containers';
 import './utils/react-tap-event';
 
 // __processEnvNODE_ENV__ is replaced during the webpack build process
@@ -17,12 +15,6 @@ console.log(`..This bundle was built for the ${nodeEnv} env.`); // eslint-disabl
 
 // Initialize Redux
 const store = configureStore();
-const history = syncHistoryWithStore(browserHistory, store);
-
-// Handle uncaught exceptions.
-if (nodeEnv === 'production') {
-	setupOnUncaughtExceptions();
-}
 
 // Sign in with the JWT currently in localStorage
 if (localStorage['feathers-jwt']) {
@@ -38,48 +30,22 @@ if (localStorage['feathers-jwt']) {
 		});
 }
 
-/*
-// Get client config
-configLoad(store, feathersServices)
-	.then(clientConfig => { // the rest of the client startup requires the config be loaded
-		// Setup client logger first so we can log asap
-		initLogger(store.dispatch, feathersServices.logs);
-		logger('info', 'Agent connected'); // todo You may want to remove this
+// Initialize App
+const container = <AppContainer><App store={store} /></AppContainer>;
+ReactDOM.render(
+	container,
+	document.getElementById('root')
+);
 
-		// Explicitly pass the config to code common to both server and client.
-		setClientValidationsConfig(clientConfig);
-
-		// Setup React Router which starts up the rest of the app.
-		// A hack. Lemme know if you have a better idea.
-
-	});
-*/
-// you cannot place a catch here because of the require inside then()
-const router = require('./router').default; // eslint-disable-line global-require
-router(store, history);
-
-// Handle uncaught exceptions
-function setupOnUncaughtExceptions() { // eslint-disable-line no-unused-vars
-	window.addEventListener('error', (e) => {
-		e.preventDefault();
-		const error = e.error;
-		console.error( // eslint-disable-line no-console
-			'onUncaughtExceptions caught error:\n', error
+// Initialize hot module
+if (module.hot) {
+	module.hot.accept('./containers/index', () => {
+		const RootContainer = require('./containers').default;
+		ReactDOM.render(
+			<AppContainer>
+				<RootContainer store={store} />
+			</AppContainer>,
+			document.getElementById('root')
 		);
-
-		const message = error.message || ''; // eslint-disable-line no-unused-vars
-		const stack = (error.stack || '').split('\n'); // eslint-disable-line no-unused-vars
-
-		// We cannot depend on the logger running properly. Try to log to server directly.
-		if (store && store.dispatch && feathersServices && feathersServices.logs) {
-			store.dispatch(feathersServices.logs.create({
-				level: 'error',
-				msg: 'Uncaught exception',
-				error: { message, stack, deviceId: localStorage.deviceId },
-			}))
-				.catch(err => console.log( // eslint-disable-line no-console
-					'onUncaughtExceptions error while logging:\n', err
-				));
-		}
-	});
+	})
 }

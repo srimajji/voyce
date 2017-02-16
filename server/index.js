@@ -8,8 +8,7 @@ const cors = require('cors');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const favicon = require('serve-favicon');
 const morgan = require('morgan');
-const socketio = require('feathers-socketio');
-// const webpackHotMiddleware = require('webpack-hot-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 const webpackConfig = require('../webpack.dev.config.js');
 const logger = require('./utils/logger');
 const webpackCompiler = webpack(webpackConfig);
@@ -41,7 +40,8 @@ if (process.env.NODE_ENV === 'development') {
 		},
 		noInfo: false,
 		quiet: false,
-	}));
+	}))
+		.use(webpackHotMiddleware(webpackCompiler));
 } else {
 	app.use('/dist', feathers.static(path.join(root, 'public/dist')));
 }
@@ -63,10 +63,6 @@ app.use('/', feathers.static(path.join(root, 'public')))
 
 	// set favicon
 	.use(favicon(path.join(__dirname, '..', 'public/favicon.ico')));
-
-// .use(webpackHotMiddleware(webpackCompiler, {
-// 	log: logger.info
-// }))
 
 const port = 3030;
 const server = app.listen(port);

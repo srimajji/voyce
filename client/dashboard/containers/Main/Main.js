@@ -8,9 +8,9 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import ActionAccountCircle from 'material-ui/svg-icons/action/account-circle';
 import { feathersAuthentication } from '../../feathers';
-import styles from './App.scss';
+import styles from './Main.scss';
 
-class App extends React.Component {
+class Main extends React.Component {
 	constructor() {
 		super();
 		this.state = {
@@ -58,4 +58,4 @@ class App extends React.Component {
 	}
 }
 
-export default connect()(App);
+export default connect()(Main);

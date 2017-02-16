@@ -4,11 +4,9 @@ import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, IndexRedirect } from 'react-router';
 import { replace } from 'react-router-redux';
 import { UserAuthWrapper } from 'redux-auth-wrapper';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import { config } from './utils/config';
-import AppWrapper from './containers';
-import App from './containers/App/App.js';
+import Wrapper from './containers/Wrapper';
+import Main from './containers/Main/Main.js';
 import UserLogin from './containers/UserLogin/UserLogin.js';
 import NotFound from './containers/NotFound/NotFound';
 import Loading from './components/Loading';
@@ -41,7 +39,16 @@ const UserIsAuthenticated = UserAuthWrapper({
 
 const defaultRoute = '/dashboard';
 
-export default function (store, history) {
+export default (
+	<Route path='/' component={Wrapper}>
+		<IndexRedirect to={defaultRoute} />
+		<Route path={defaultRoute} component={UserIsAuthenticated(Main)} />
+		<Route path='/login' component={UserLogin} />
+		<Route path='*' component={NotFound} />
+	</Route>
+);
+
+/*export default function (store, history) {
 	ReactDOM.render(
 		<MuiThemeProvider>
 			<Provider store={store}>
@@ -57,4 +64,4 @@ export default function (store, history) {
 		</MuiThemeProvider>,
 		document.getElementById('root')
 	);
-}
+}*/

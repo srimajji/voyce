@@ -7,7 +7,7 @@ module.exports = {
 	devtool: 'inline-source-map',
 	entry: {
 		newFeedback: ['babel-polyfill', './client/gripe/index.js'],
-		dashboard: ['babel-polyfill', './client/dashboard/index.js']
+		dashboard: ['babel-polyfill', 'webpack/hot/dev-server', 'webpack-hot-middleware/client', 'react-hot-loader/patch', './client/dashboard/index.js']
 	},
 	output: {
 		path: path.resolve(__dirname, '..', 'public/dist'),
@@ -17,15 +17,11 @@ module.exports = {
 	plugins: [
 		new webpack.optimize.OccurenceOrderPlugin(),
 		new webpack.OldWatchingPlugin(),
-		// new webpack.HotModuleReplacementPlugin(),
+		new webpack.HotModuleReplacementPlugin(),
 		new webpack.ProvidePlugin({
 			$: 'jquery',
 			jQuery: 'jquery',
 			'window.jQuery': 'jquery',
-			React: 'React',
-			react: 'React',
-			'window.react': 'React',
-			'window.React': 'React'
 		}),
 		new webpack.DefinePlugin({
 			'process.env': {
