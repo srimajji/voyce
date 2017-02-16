@@ -1,10 +1,12 @@
 .AppWrapper {
-	background-color: white;
+	height: 100%;
 }
 
 .MainLayout {
-	padding-left: 256px;
+	height: 100%;
+	margin-left: 256px;
+	// padding: 40px 20px;
 	@media screen and (max-width: 992px) {
-		padding-left: 0;
+		margin-left: 0;
 	}
 }

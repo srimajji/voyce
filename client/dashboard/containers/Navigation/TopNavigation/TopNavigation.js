@@ -52,7 +52,7 @@ class TopNavigation extends React.Component {
 			<div>
 				<AppBar title='Gripe Admin Panel'
 					iconElementRight={this._renderUserMenu()}
-					style={{ zIndex: 'inherit' }}
+					style={{ zIndex: 'inherit', position: 'fixed' }}
 					onLeftIconButtonTouchTap={this._onClickOpenDrawer}
 					showMenuIconButton={!isFullWidth}
 					zDepth={0}

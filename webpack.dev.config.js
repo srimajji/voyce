@@ -51,7 +51,7 @@ module.exports = {
 			{
 				test: /(\.css|\.scss)$/,
 				loaders: ['style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap'],
-				includes: [path.resolve(__dirname, 'client')],
+				includes: [path.resolve(__dirname, 'client'), '/flexboxgrid/'],
 			},
 			{
 				test: /\.(png|woff|woff2|eot|ttf|svg|jpg)$/,

@@ -31,7 +31,7 @@ if (localStorage['feathers-jwt']) {
 }
 
 // Initialize App
-const container = <AppContainer><App store={store} /></AppContainer>;
+const container = <AppContainer style={{ height: '100%' }}><App store={store} /></AppContainer>;
 ReactDOM.render(
 	container,
 	document.getElementById('root')
