@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Layout, NavDrawer, Panel, Sidebar, AppBar } from 'react-toolbox';
+import { Layout, NavDrawer, Panel, Sidebar } from 'react-toolbox';
+import AppBar from 'react-toolbox/lib/app_bar';
+import Navigation from 'react-toolbox/lib/navigation';
 import { feathersAuthentication } from '../../feathers';
 import styles from './App.scss';
 
@@ -26,14 +28,13 @@ class App extends React.Component {
 	render() {
 		return (
 			<div>
-				<AppBar title='Gripe' />
 				<Layout>
 					<NavDrawer
 						pinned={true} permanentAt='xxxl' width='wide'
 					>
 						<p> Naw drawser </p>
 					</NavDrawer>
-					<Panel scrollY={false}>
+					<Panel>
 						<p> This is the main content </p>
 					</Panel>
 				</Layout>

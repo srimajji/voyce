@@ -1,6 +1,7 @@
 const autoprefixer = require('autoprefixer');
 const normalize = require('postcss-normalize');
 const cssNext = require('postcss-cssnext');
+const postcssImport = require('postcss-import');
 const path = require('path');
 const webpack = require('webpack');
 
@@ -8,7 +9,7 @@ module.exports = {
 	devtool: 'inline-source-map',
 	entry: {
 		newFeedback: ['babel-polyfill', './client/gripe/index.js'],
-		adminPanel: ['babel-polyfill', './client/adminPanel/index.js'],
+		dashboard: ['babel-polyfill', './client/dashboard/index.js'],
 	},
 	output: {
 		path: path.resolve(__dirname, '..', 'public/dist'),
@@ -40,7 +41,7 @@ module.exports = {
 		extensions: ['', '.js', '.jsx', '.scss', '.css', '.jpg'],
 		modulesDirectories: ['node_modules'],
 	},
-	postcss: [normalize, cssNext],
+	postcss: [postcssImport, cssNext],
 	module: {
 		loaders: [
 			{

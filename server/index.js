@@ -55,9 +55,6 @@ app.use('/', feathers.static(path.join(root, 'public')))
 	// serve sub-app feathers from api.js 
 	.use('/api', api)
 
-	// serve admin.html 
-	.use('/admin', serveAdmin)
-
 	// route everything else to client/react-router
 	.get('/*', serveIndex)
 
@@ -76,8 +73,8 @@ function serveIndex(req, res) {
 	res.sendFile('index.html', { root: path.join(root, 'public') });
 }
 
-function serveAdmin(req, res) {
-	res.sendFile('admin.html', { root: path.join(root, 'public') });
+function serveDashboard(req, res) {
+	res.sendFile('dashboard.html', { root: path.join(root, 'public') });
 }
 
 server.on('listening', () => {
