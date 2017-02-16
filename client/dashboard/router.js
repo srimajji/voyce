@@ -27,7 +27,7 @@ const UserIsAuthenticated = UserAuthWrapper({
 	// determine if user is authenticated
 	predicate: user => user && user.roles,
 	// route to signin component
-	failureRedirectPath: '/admin/login',
+	failureRedirectPath: '/login',
 
 	/* Once signin is successful: */
 	// redirect on successful signin to component being authenticated
@@ -39,15 +39,17 @@ const UserIsAuthenticated = UserAuthWrapper({
 	wrapperDisplayName: 'UserIsAuthenticated',
 });
 
+const defaultRoute = '/dashboard';
+
 export default function (store, history) {
 	ReactDOM.render(
 		<MuiThemeProvider>
 			<Provider store={store}>
 				<Router history={history}>
-					<Route path='/admin' component={AppWrapper}>
-						<IndexRedirect to='/admin/app' />
-						<Route path='/admin/login' component={UserLogin} />
-						<Route path='/admin/app' component={UserIsAuthenticated(App)} />
+					<Route path='/' component={AppWrapper}>
+						<IndexRedirect to={defaultRoute} />
+						<Route path={defaultRoute} component={UserIsAuthenticated(App)} />
+						<Route path='/login' component={UserLogin} />
 						<Route path='*' component={NotFound} />
 					</Route>
 				</Router>

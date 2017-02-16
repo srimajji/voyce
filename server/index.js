@@ -56,7 +56,7 @@ app.use('/', feathers.static(path.join(root, 'public')))
 	.use('/api', api)
 
 	// serve admin.html 
-	.use('/admin', serveAdmin)
+	// .use('/admin', serveAdmin)
 
 	// route everything else to client/react-router
 	.get('/*', serveIndex)

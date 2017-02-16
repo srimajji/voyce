@@ -23,7 +23,7 @@ class UserLogin extends React.Component {
 
 	componentWillReceiveProps(nextProps) {
 		if (!this.props.isAuthenticated && nextProps.isAuthenticated) {
-			this.props.dispatch(push('/admin/app'));
+			this.props.dispatch(push('/dashboard'));
 		}
 	}
 
@@ -85,7 +85,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 		dispatch(feathersAuthentication.logout());
 	},
 	handleRedirect: () => {
-		dispatch(push(ownProps.redirectTo || '/admin'));
+		dispatch(push(ownProps.redirectTo || '/dashboard'));
 	},
 	dispatch
 });
