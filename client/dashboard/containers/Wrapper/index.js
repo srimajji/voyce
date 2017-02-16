@@ -1,10 +1,15 @@
 
 import React, { PropTypes } from 'react';
+import TopNavigation from '../Navigation/TopNavigation/TopNavigation';
+
 import styles from './index.scss';
 
 const Wrapper = (props) => (
 	<div className={styles.AppWrapper}>
-		{props.children}
+		<TopNavigation />
+		<div className={styles.MainLayout}>
+			{props.children}
+		</div>
 	</div>
 );
 
