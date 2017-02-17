@@ -4,6 +4,7 @@ import MenuItem from 'material-ui/MenuItem';
 import ActionDashboard from 'material-ui/svg-icons/action/dashboard';
 import ActionSettings from 'material-ui/svg-icons/action/settings';
 import ActionFeedback from 'material-ui/svg-icons/action/feedback';
+import ArrowLeft from 'material-ui/svg-icons/navigation-arrow-drop-right';
 import Divider from 'material-ui/Divider';
 
 import styles from './SideNavigation.scss';
@@ -22,9 +23,9 @@ class SideNavigation extends React.Component {
 				<div className={styles.SideNavigation}>
 					<CompanyProfile />
 					<div className={styles.MenuWrapper}>
-						<MenuItem primaryText='Dashboard' leftIcon={<ActionDashboard />} />
-						<MenuItem primaryText='Submissions' leftIcon={<ActionSettings />} />
-						<MenuItem primaryText='Settings' leftIcon={<ActionFeedback />} />
+						<MenuItem primaryText='Dashboard' leftIcon={<ActionDashboard />} rightIcon={<ArrowLeft />} />
+						<MenuItem primaryText='Submissions' leftIcon={<ActionSettings />} rightIcon={<ArrowLeft />} />
+						<MenuItem primaryText='Settings' leftIcon={<ActionFeedback />} rightIcon={<ArrowLeft />} />
 					</div>
 					<Divider />
 					<div className={styles.Footer}>
