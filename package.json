@@ -33,6 +33,7 @@
   "dependencies": {
     "autoprefixer": "^6.5.4",
     "body-parser": "^1.15.2",
+    "chart.js": "^2.5.0",
     "classnames": "^2.2.5",
     "compression": "^1.6.2",
     "cors": "^2.8.1",
@@ -60,6 +61,7 @@
     "passport-facebook-token": "^3.3.0",
     "postcss-normalize": "^0.3.0",
     "react": "^15.4.2",
+    "react-chartjs-2": "^2.0.0",
     "react-dom": "^15.4.2",
     "react-flexbox-grid": "^0.10.2",
     "react-redux": "^5.0.1",
