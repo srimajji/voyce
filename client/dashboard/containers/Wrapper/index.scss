@@ -2,11 +2,12 @@
 	height: 100%;
 }
 
-.MainLayout {
+.SectionWrapper {
 	height: 100%;
-	margin-left: 256px;
+	padding-left: 256px;
+	padding-top: 64px;
 	// padding: 40px 20px;
 	@media screen and (max-width: 992px) {
-		margin-left: 0;
+		padding-left: 0;
 	}
 }

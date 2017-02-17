@@ -49,17 +49,15 @@ class TopNavigation extends React.Component {
 	render() {
 		const isFullWidth = this.props.width == LARGE;
 		return (
-			<div>
-				<AppBar title='Gripe Admin Panel'
-					iconElementRight={this._renderUserMenu()}
-					style={{ zIndex: 'inherit', position: 'fixed' }}
-					onLeftIconButtonTouchTap={this._onClickOpenDrawer}
-					showMenuIconButton={!isFullWidth}
-					zDepth={0}
-				>
-				</AppBar>
+			<AppBar title='Gripe Admin Panel'
+				iconElementRight={this._renderUserMenu()}
+				style={{ zIndex: 'inherit', position: 'fixed' }}
+				onLeftIconButtonTouchTap={this._onClickOpenDrawer}
+				showMenuIconButton={!isFullWidth}
+				zDepth={0}
+			>
 				<SideNavigation openDrawer={isFullWidth || this.state.openDrawer} containerStyle={{ marginTop: '64px' }} />
-			</div>
+			</AppBar>
 		);
 	}
 }
