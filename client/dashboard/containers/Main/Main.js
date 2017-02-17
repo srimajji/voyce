@@ -22,14 +22,21 @@ class Main extends React.Component {
 					<Row>
 						<Col xs={4} md={4} lg={4}>
 							<Paper style={style} zDepth={1}>
-								<h1>Submissions</h1>
+								<h1>Feedbacks</h1>
+								<h4>today</h4>
 							</Paper>
 						</Col>
 						<Col xs={4} md={4} lg={4}>
-							<Paper style={style} zDepth={1} />
+							<Paper style={style} zDepth={1}>
+								<h1>Feedbacks</h1>
+								<h4>this month</h4>
+							</Paper>
 						</Col>
 						<Col xs={4} md={4} lg={4}>
-							<Paper style={style} zDepth={1} />
+							<Paper style={style} zDepth={1}>
+								<h1>Feedbacks</h1>
+								<h4>total</h4>
+							</Paper>
 						</Col>
 					</Row>
 					<Row>

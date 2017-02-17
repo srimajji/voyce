@@ -1,5 +1,6 @@
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
+import { connect } from 'react-redux';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
@@ -20,10 +21,6 @@ class TopNavigation extends React.Component {
 		this._onClickOpenDrawer = this._onClickOpenDrawer.bind(this);
 		this._onClickLogout = this._onClickLogout.bind(this);
 		this._renderUserMenu = this._renderUserMenu.bind(this);
-	}
-
-	componentWillReceiveProps(nextProps) {
-
 	}
 
 	_onClickOpenDrawer() {
@@ -62,4 +59,4 @@ class TopNavigation extends React.Component {
 	}
 }
 
-export default withWidth()(TopNavigation);
+export default withWidth()(connect()(TopNavigation));
