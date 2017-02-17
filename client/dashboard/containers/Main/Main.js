@@ -9,6 +9,7 @@ class Main extends React.Component {
 	render() {
 		const style = {
 			height: 200,
+			padding: 20,
 			width: '100%',
 			textAlign: 'center',
 			display: 'inline-block',
@@ -20,7 +21,9 @@ class Main extends React.Component {
 				<Grid fluid>
 					<Row>
 						<Col xs={4} md={4} lg={4}>
-							<Paper style={style} zDepth={1} />
+							<Paper style={style} zDepth={1}>
+								<h1>Submissions</h1>
+							</Paper>
 						</Col>
 						<Col xs={4} md={4} lg={4}>
 							<Paper style={style} zDepth={1} />

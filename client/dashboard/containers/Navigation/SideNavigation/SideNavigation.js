@@ -23,7 +23,7 @@ class SideNavigation extends React.Component {
 				<div className={styles.SideNavigation}>
 					<CompanyProfile />
 					<div className={styles.MenuWrapper}>
-						<MenuItem primaryText='Dashboard' leftIcon={<ActionDashboard />} rightIcon={<ArrowLeft />} />
+						<MenuItem checked={true} primaryText='Dashboard' leftIcon={<ActionDashboard />} rightIcon={<ArrowLeft />} />
 						<MenuItem primaryText='Submissions' leftIcon={<ActionSettings />} rightIcon={<ArrowLeft />} />
 						<MenuItem primaryText='Settings' leftIcon={<ActionFeedback />} rightIcon={<ArrowLeft />} />
 					</div>

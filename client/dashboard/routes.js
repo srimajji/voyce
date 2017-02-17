@@ -9,7 +9,7 @@ import Wrapper from './containers/Wrapper';
 import Main from './containers/Main/Main.js';
 import UserLogin from './containers/UserLogin/UserLogin.js';
 import NotFound from './containers/NotFound/NotFound';
-import Loading from './components/Loading';
+import Loading from './components/Loading/Loading.js';
 // Authentication Higher Order Components to wrap route components.
 const UserIsAuthenticated = UserAuthWrapper({
 	// extract user data from state
