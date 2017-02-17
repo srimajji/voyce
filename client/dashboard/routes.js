@@ -10,6 +10,8 @@ import Main from './containers/Main/Main.js';
 import UserLogin from './containers/UserLogin/UserLogin.js';
 import NotFound from './containers/NotFound/NotFound';
 import Loading from './components/Loading/Loading.js';
+import AppWrapper from './containers/Layouts/App/AppWrapper.js';
+
 // Authentication Higher Order Components to wrap route components.
 const UserIsAuthenticated = UserAuthWrapper({
 	// extract user data from state
@@ -40,10 +42,12 @@ const UserIsAuthenticated = UserAuthWrapper({
 const defaultRoute = '/dashboard';
 
 export default (
-	<Route path='/' component={Wrapper}>
+	<Route path='/' component={AppWrapper}>
 		<IndexRedirect to={defaultRoute} />
-		<Route path={defaultRoute} component={UserIsAuthenticated(Main)} />
 		<Route path='/login' component={UserLogin} />
+		<Route path={defaultRoute} component={UserIsAuthenticated(Wrapper)}>
+			<IndexRoute component={Main} />
+		</Route>
 		<Route path='*' component={NotFound} />
 	</Route>
 );
