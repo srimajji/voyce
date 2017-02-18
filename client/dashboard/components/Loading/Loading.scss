@@ -1,6 +1,8 @@
 .Wrapper {
 	height: 100%;
 	width: 100%;
-	text-align: center;
-	vertical-align: middle;
+	flex-direction: row;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }

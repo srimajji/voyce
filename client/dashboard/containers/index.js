@@ -13,9 +13,7 @@ class App extends Component {
 		return (
 			<MuiThemeProvider>
 				<Provider store={store}>
-					<div>
-						<Router history={history} routes={routes} />
-					</div>
+					<Router history={history} routes={routes} />
 				</Provider>
 			</MuiThemeProvider>
 		);
