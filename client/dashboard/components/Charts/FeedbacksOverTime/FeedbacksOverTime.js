@@ -5,11 +5,11 @@ import Paper from 'material-ui/Paper';
 import styles from './FeedbacksOverTime.scss';
 
 const data = {
-	labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+	labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
 	datasets: [
 		{
 			label: 'Feedbacks over time',
-			fill: false,
+			fill: true,
 			lineTension: 0.1,
 			backgroundColor: 'rgba(75,192,192,0.4)',
 			borderColor: 'rgba(75,192,192,1)',
@@ -27,7 +27,7 @@ const data = {
 			pointRadius: 1,
 			pointHitRadius: 10,
 			data: [65, 59, 80, 81, 56, 55, 40],
-			spanGaps: false,
+			spanGaps: true,
 		}
 	]
 };
@@ -44,7 +44,7 @@ const FeedbacksOverTime = () => {
 	return (
 		<Paper style={graph} zDepth={1}>
 			<Line data={data} height={350} options={{
-				maintainAspectRatio: false
+				maintainAspectRatio: false,
 			}} />
 		</Paper>
 	);
