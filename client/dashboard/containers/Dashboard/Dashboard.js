@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import Paper from 'material-ui/Paper';
 import FeedbacksOverTime from '../../components/Charts/FeedbacksOverTime/FeedbacksOverTime.js';
-import styles from './Main.scss';
+import styles from './Dashboard.scss';
 
-class Main extends React.Component {
+class Dashboard extends React.Component {
 	render() {
 		const style = {
 			height: 200,
+			marginTop: 20,
 			padding: 20,
 			width: '100%',
 			textAlign: 'center',
@@ -17,22 +18,22 @@ class Main extends React.Component {
 		};
 
 		return (
-			<div className={styles.MainLayout}>
+			<div className={styles.Dashboard}>
 				<Grid fluid>
 					<Row>
-						<Col xs={4} md={4} lg={4}>
+						<Col xs={12} md={4} lg={4}>
 							<Paper style={style} zDepth={1}>
 								<h1>Feedbacks</h1>
 								<h4>today</h4>
 							</Paper>
 						</Col>
-						<Col xs={4} md={4} lg={4}>
+						<Col xs={12} md={4} lg={4}>
 							<Paper style={style} zDepth={1}>
 								<h1>Feedbacks</h1>
 								<h4>this month</h4>
 							</Paper>
 						</Col>
-						<Col xs={4} md={4} lg={4}>
+						<Col xs={12} md={4} lg={4}>
 							<Paper style={style} zDepth={1}>
 								<h1>Feedbacks</h1>
 								<h4>total</h4>
@@ -50,4 +51,4 @@ class Main extends React.Component {
 	}
 }
 
-export default connect()(Main);
+export default connect()(Dashboard);

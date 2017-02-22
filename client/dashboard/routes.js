@@ -5,12 +5,12 @@ import { Router, Route, IndexRoute, IndexRedirect } from 'react-router';
 import { replace } from 'react-router-redux';
 import { UserAuthWrapper } from 'redux-auth-wrapper';
 
-import Wrapper from './containers/Wrapper';
-import Main from './containers/Main/Main.js';
+import AppWrapper from './containers/Layout/AppWrapper/AppWrapper.js';
+import Dashboard from './containers/Dashboard/Dashboard.js';
 import UserLogin from './containers/UserLogin/UserLogin.js';
 import NotFound from './containers/NotFound/NotFound';
 import Loading from './components/Loading/Loading.js';
-import AppWrapper from './containers/Layouts/App/AppWrapper.js';
+import App from './containers/Layout/App/App.js';
 
 // Authentication Higher Order Components to wrap route components.
 const UserIsAuthenticated = UserAuthWrapper({
@@ -45,8 +45,8 @@ export default (
 	<Route path='/' component={AppWrapper}>
 		<IndexRedirect to={defaultRoute} />
 		<Route path='/login' component={UserLogin} />
-		<Route path={defaultRoute} component={UserIsAuthenticated(Wrapper)}>
-			<IndexRoute component={Main} />
+		<Route path={defaultRoute} component={UserIsAuthenticated(App)}>
+			<IndexRoute component={Dashboard} />
 		</Route>
 		<Route path='*' component={NotFound} />
 	</Route>
