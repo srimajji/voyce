@@ -6,7 +6,7 @@ import styles from './App.scss';
 
 const App = (props) => (
 	<div className={styles.App}>
-		<TopNavigation />
+		<TopNavigation router={props.router} />
 		<div className={styles.Section}>
 			{props.children}
 		</div>

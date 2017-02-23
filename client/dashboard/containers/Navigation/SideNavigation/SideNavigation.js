@@ -6,6 +6,7 @@ import ActionSettings from 'material-ui/svg-icons/action/settings';
 import ActionFeedback from 'material-ui/svg-icons/action/feedback';
 import ArrowLeft from 'material-ui/svg-icons/navigation-arrow-drop-right';
 import Divider from 'material-ui/Divider';
+import { List, ListItem, makeSelectable } from 'material-ui/List';
 
 import styles from './SideNavigation.scss';
 
@@ -17,16 +18,28 @@ const CompanyProfile = () => {
 };
 
 class SideNavigation extends React.Component {
+	constructor() {
+		super();
+
+		this.onClickListItem = this.onClickListItem.bind(this);
+	}
+
+	onClickListItem(event, value) {
+		this.props.router.push(value);
+	}
+
 	render() {
+		const { containerStyle, openDrawer, router } = this.props;
+		const SelectableList = makeSelectable(List);
 		return (
-			<Drawer open={this.props.openDrawer} containerStyle={this.props.containerStyle}>
+			<Drawer open={openDrawer} containerStyle={containerStyle}>
 				<div className={styles.SideNavigation}>
 					<CompanyProfile />
-					<div className={styles.MenuWrapper}>
-						<MenuItem checked={true} primaryText='Dashboard' leftIcon={<ActionDashboard />} rightIcon={<ArrowLeft />} />
-						<MenuItem primaryText='Submissions' leftIcon={<ActionSettings />} rightIcon={<ArrowLeft />} />
-						<MenuItem primaryText='Settings' leftIcon={<ActionFeedback />} rightIcon={<ArrowLeft />} />
-					</div>
+					<SelectableList className={styles.MenuWrapper} onChange={this.onClickListItem} value={router.location.pathname}>
+						<ListItem checked={true} primaryText='Dashboard' leftIcon={<ActionDashboard />} rightIcon={<ArrowLeft />} value='/dashboard' />
+						<ListItem primaryText='Submissions' leftIcon={<ActionSettings />} rightIcon={<ArrowLeft />} value='/submissions' />
+						<ListItem primaryText='Settings' leftIcon={<ActionFeedback />} rightIcon={<ArrowLeft />} value='/settings' />
+					</SelectableList>
 					<Divider />
 					<div className={styles.Footer}>
 						<span><strong>SummerSix &copy;</strong></span>

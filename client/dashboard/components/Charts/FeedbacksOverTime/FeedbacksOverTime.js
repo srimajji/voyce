@@ -5,7 +5,7 @@ import Paper from 'material-ui/Paper';
 import styles from './FeedbacksOverTime.scss';
 
 const data = {
-	labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+	labels: ['1', '2', '3', '4', '5', '6', '7'],
 	datasets: [
 		{
 			label: 'Feedbacks over time',

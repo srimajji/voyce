@@ -26,16 +26,10 @@ class Dashboard extends React.Component {
 							<FeedbacksOverTimeBar style={style} />
 						</Col>
 						<Col xs={12} md={4} lg={4}>
-							<Paper style={style} zDepth={1}>
-								<h1>Feedbacks</h1>
-								<h4>this month</h4>
-							</Paper>
+							<FeedbacksOverTimeBar style={style} />
 						</Col>
 						<Col xs={12} md={4} lg={4}>
-							<Paper style={style} zDepth={1}>
-								<h1>Feedbacks</h1>
-								<h4>total</h4>
-							</Paper>
+							<FeedbacksOverTimeBar style={style} />
 						</Col>
 					</Row>
 					<Row>

@@ -1,32 +1,31 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import Paper from 'material-ui/Paper';
+import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 
 import styles from './FeedbacksOverTimeBar.scss';
 
+function getRandom(low, high) {
+	return Math.floor(Math.random() * (high - low + 1) + low);
+}
+
+function randomIntInc() {
+	let numbers = new Array(35);
+	for (var i = 0; i < numbers.length; i++) {
+		numbers[i] = getRandom(0, 100);
+	}
+	return numbers;
+}
+
+
 const data = {
-	labels: ["January", "February", "March", "April", "May", "June", "July"],
+	labels: ['1', '2', '3', '4', '5', '6', '7', '1', '2', '3', '4', '5', '6', '7', '2', '3', '4', '5', '6', '7', '2', '3', '4', '5', '6', '7', '2', '3', '4', '5', '6', '7'],
 	datasets: [
 		{
 			label: 'this',
-			backgroundColor: [
-				'rgba(255, 99, 132, 0.2)',
-				'rgba(54, 162, 235, 0.2)',
-				'rgba(255, 206, 86, 0.2)',
-				'rgba(75, 192, 192, 0.2)',
-				'rgba(153, 102, 255, 0.2)',
-				'rgba(255, 159, 64, 0.2)'
-			],
-			borderColor: [
-				'rgba(255,99,132,1)',
-				'rgba(54, 162, 235, 1)',
-				'rgba(255, 206, 86, 1)',
-				'rgba(75, 192, 192, 1)',
-				'rgba(153, 102, 255, 1)',
-				'rgba(255, 159, 64, 1)'
-			],
 			borderWidth: 1,
-			data: [65, 59, 80, 81, 56, 55, 40],
+			data: randomIntInc(),
 		}
 	]
 };
@@ -50,13 +49,32 @@ const options = {
 
 const graph = {
 	height: 400,
-	padding: 20,
-	marginTop: 20,
+	padding: 0,
+	marginTop: 0,
 	width: '100%',
 	zDepth: 1
 };
 
-const FeedbacksOverTimeBar = ({style}) => {
+const FeedbacksOverTimeBar = () => (
+	<Card className={styles.Wrapper}>
+		<CardHeader
+			title="# of feedbacks today"
+			subtitle={getRandom(0, 100)}
+			actAsExpander={false}
+			showExpandableButton={false}
+		/>
+		<CardActions>
+			<Bar
+				data={data}
+				width={150}
+				height={10}
+				options={options}
+			/>
+		</CardActions>
+	</Card>
+);
+
+/*const FeedbacksOverTimeBar = ({style}) => {
 	return (
 		<Paper style={style} zDepth={1} className={styles.Wrapper}>
 			<h2>Feedbacks today</h2>
@@ -69,6 +87,6 @@ const FeedbacksOverTimeBar = ({style}) => {
 			/>
 		</Paper>
 	);
-};
+};*/
 
 export default FeedbacksOverTimeBar;
