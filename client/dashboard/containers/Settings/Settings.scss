@@ -1,0 +1,13 @@
+.Wrapper {
+	display: flex;
+	flex-direction: column;
+	margin: 20px;
+	padding: 20px;
+}
+
+.FormButtonWrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 300px;
+}

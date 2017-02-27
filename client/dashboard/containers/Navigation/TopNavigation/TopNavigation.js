@@ -48,7 +48,7 @@ class TopNavigation extends React.Component {
 		return (
 			<AppBar title='Voyce Admin Panel'
 				iconElementRight={this._renderUserMenu()}
-				style={{ zIndex: 'inherit', position: 'fixed' }}
+				style={{ zIndex: '2000', position: 'fixed' }}
 				onLeftIconButtonTouchTap={this._onClickOpenDrawer}
 				showMenuIconButton={!isFullWidth}
 				zDepth={0}

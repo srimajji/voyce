@@ -26,19 +26,20 @@ class SideNavigation extends React.Component {
 
 	onClickListItem(event, value) {
 		this.props.router.push(value);
+		this.forceUpdate(); // force render to update drawer on location change
 	}
 
 	render() {
 		const { containerStyle, openDrawer, router } = this.props;
 		const SelectableList = makeSelectable(List);
 		return (
-			<Drawer open={openDrawer} containerStyle={containerStyle}>
+			<Drawer open={openDrawer} containerStyle={containerStyle} style={{ zIndex: '2000' }}>
 				<div className={styles.SideNavigation}>
 					<CompanyProfile />
 					<SelectableList className={styles.MenuWrapper} onChange={this.onClickListItem} value={router.location.pathname}>
 						<ListItem checked={true} primaryText='Dashboard' leftIcon={<ActionDashboard />} rightIcon={<ArrowLeft />} value='/dashboard' />
-						<ListItem primaryText='Submissions' leftIcon={<ActionSettings />} rightIcon={<ArrowLeft />} value='/submissions' />
-						<ListItem primaryText='Settings' leftIcon={<ActionFeedback />} rightIcon={<ArrowLeft />} value='/settings' />
+						<ListItem primaryText='Feedbacks' leftIcon={<ActionSettings />} rightIcon={<ArrowLeft />} value='/dashboard/feedbacks' />
+						<ListItem primaryText='Settings' leftIcon={<ActionFeedback />} rightIcon={<ArrowLeft />} value='/dashboard/settings' />
 					</SelectableList>
 					<Divider />
 					<div className={styles.Footer}>

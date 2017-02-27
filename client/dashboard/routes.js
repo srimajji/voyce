@@ -11,6 +11,8 @@ import UserLogin from './containers/UserLogin/UserLogin.js';
 import NotFound from './containers/NotFound/NotFound';
 import Loading from './components/Loading/Loading.js';
 import App from './containers/Layout/App/App.js';
+import Feedbacks from './containers/Feedbacks/Feedbacks.js';
+import Settings from './containers/Settings/Settings.js';
 
 // Authentication Higher Order Components to wrap route components.
 const UserIsAuthenticated = UserAuthWrapper({
@@ -47,6 +49,8 @@ export default (
 		<Route path='/login' component={UserLogin} />
 		<Route path={defaultRoute} component={UserIsAuthenticated(App)}>
 			<IndexRoute component={Dashboard} />
+			<Route path='feedbacks' component={Feedbacks} />
+			<Route path='settings' component={Settings} />
 		</Route>
 		<Route path='*' component={NotFound} />
 	</Route>
