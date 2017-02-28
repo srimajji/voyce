@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -11,32 +12,34 @@ class Settings extends React.Component {
 	}
 
 	render() {
+		const { user } = this.props;
+		const company = user.companies[0];
 		return (
 			<Paper className={styles.Wrapper}>
-				<h1>BestBuy Settings</h1>
+				<h1 className={styles.Title}>{company.name} Settings</h1>
 				<TextField
 					id="text-field-default"
-					defaultValue="best-buy"
+					defaultValue={company.alias}
 					floatingLabelText="Alias"
 				/><br />
 				<TextField
 					id="text-field-default"
-					defaultValue="Best Buy"
+					defaultValue={company.name}
 					floatingLabelText="Name"
 				/><br />
 				<TextField
 					id="text-field-default"
-					defaultValue="Employee, Store, Experience"
+					defaultValue={company.categories}
 					floatingLabelText="Categories"
 				/><br />
 				<TextField
 					id="text-field-default"
-					defaultValue="245 Geary St, San Francisco, CA 94123"
+					defaultValue={company.location}
 					floatingLabelText="Location"
 				/><br />
 				<TextField
 					id="text-field-default"
-					defaultValue="http://bestbuy.com"
+					defaultValue={company.website}
 					floatingLabelText="Website"
 				/><br />
 				<div className={styles.FormButtonWrapper}>
@@ -48,4 +51,8 @@ class Settings extends React.Component {
 
 }
 
-export default Settings;
+const mapStateToProps = (state) => ({
+	user: state.auth.user,
+});
+
+export default connect(mapStateToProps)(Settings);
