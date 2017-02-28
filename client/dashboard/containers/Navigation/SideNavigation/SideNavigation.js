@@ -5,7 +5,9 @@ import ActionDashboard from 'material-ui/svg-icons/action/dashboard';
 import ActionSettings from 'material-ui/svg-icons/action/settings';
 import ActionFeedback from 'material-ui/svg-icons/action/feedback';
 import ArrowLeft from 'material-ui/svg-icons/navigation-arrow-drop-right';
+import ActionStore from 'material-ui/svg-icons/action/store';
 import Divider from 'material-ui/Divider';
+import ActionSubject from 'material-ui/svg-icons/action/subject';
 import { List, ListItem, makeSelectable } from 'material-ui/List';
 
 import styles from './SideNavigation.scss';
@@ -38,8 +40,13 @@ class SideNavigation extends React.Component {
 					<CompanyProfile />
 					<SelectableList className={styles.MenuWrapper} onChange={this.onClickListItem} value={router.location.pathname}>
 						<ListItem checked={true} primaryText='Dashboard' leftIcon={<ActionDashboard />} rightIcon={<ArrowLeft />} value='/dashboard' />
-						<ListItem primaryText='Feedbacks' leftIcon={<ActionSettings />} rightIcon={<ArrowLeft />} value='/dashboard/feedbacks' />
-						<ListItem primaryText='Settings' leftIcon={<ActionFeedback />} rightIcon={<ArrowLeft />} value='/dashboard/settings' />
+						<ListItem primaryText='Feedbacks' leftIcon={<ActionFeedback />} rightIcon={<ArrowLeft />} value='/dashboard/feedbacks' />
+						<ListItem primaryText='Settings' leftIcon={<ActionSettings />} primaryTogglesNestedList={true}
+							nestedItems={[
+								<ListItem primaryText='Company' leftIcon={<ActionStore />} value='/dashboard/settings/company' />,
+								<ListItem primaryText='Form' leftIcon={<ActionSubject />} value='/dashboard/settings/feedback-form' />
+							]}
+						/>
 					</SelectableList>
 					<Divider />
 					<div className={styles.Footer}>

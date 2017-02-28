@@ -50,7 +50,11 @@ export default (
 		<Route path={defaultRoute} component={UserIsAuthenticated(App)}>
 			<IndexRoute component={Dashboard} />
 			<Route path='feedbacks' component={Feedbacks} />
-			<Route path='settings' component={Settings} />
+			<Route path='settings'>
+				<IndexRedirect to='company' />
+				<Route path='company' component={Settings} />
+				<Route path='feedback-form' component={Settings} />
+			</Route>
 		</Route>
 		<Route path='*' component={NotFound} />
 	</Route>
