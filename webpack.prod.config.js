@@ -7,7 +7,7 @@ module.exports = {
 	devtool: 'cheap-module-source-map',
 	entry: {
 		newFeedback: ['babel-polyfill', './client/gripe/index.js'],
-		adminPanel: ['babel-polyfill', './client/adminPanel/index.js']
+		dashboard: ['babel-polyfill', './client/dashboard/index.js']
 	},
 	output: {
 		path: path.resolve(__dirname, 'public/dist'),
@@ -51,13 +51,13 @@ module.exports = {
 			{
 				test: /\.jsx?$/,
 				loaders: ['babel'],
-				exclude: path.join(__dirname, 'node_modules'),
-				include: path.resolve(__dirname, 'client')
+				exclude: path.join(__dirname, '/node_modules/'),
+				include: path.join(__dirname, '/client/')
 			},
 			{
 				test: /(\.css|\.scss)$/,
 				loaders: ['style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap'],
-				include: path.resolve(__dirname, 'client')
+				includes: [path.resolve(__dirname, 'client'), '/flexboxgrid/'],
 			},
 			{
 				test: /\.(png|woff|woff2|eot|ttf|svg|jpg)$/,

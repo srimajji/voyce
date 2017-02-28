@@ -6,8 +6,8 @@ const webpack = require('webpack');
 module.exports = {
 	devtool: 'inline-source-map',
 	entry: {
-		newFeedback: ['babel-polyfill', './client/gripe/index.js'],
-		adminPanel: ['babel-polyfill', './client/adminPanel/index.js']
+		// newFeedback: ['babel-polyfill', './client/gripe/index.js'],
+		dashboard: ['babel-polyfill', 'webpack/hot/dev-server', 'webpack-hot-middleware/client', 'react-hot-loader/patch', './client/dashboard/index.js']
 	},
 	output: {
 		path: path.resolve(__dirname, '..', 'public/dist'),
@@ -17,15 +17,11 @@ module.exports = {
 	plugins: [
 		new webpack.optimize.OccurenceOrderPlugin(),
 		new webpack.OldWatchingPlugin(),
-		// new webpack.HotModuleReplacementPlugin(),
+		new webpack.HotModuleReplacementPlugin(),
 		new webpack.ProvidePlugin({
 			$: 'jquery',
 			jQuery: 'jquery',
 			'window.jQuery': 'jquery',
-			React: 'React',
-			react: 'React',
-			'window.react': 'React',
-			'window.React': 'React'
 		}),
 		new webpack.DefinePlugin({
 			'process.env': {
@@ -55,7 +51,7 @@ module.exports = {
 			{
 				test: /(\.css|\.scss)$/,
 				loaders: ['style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap'],
-				include: path.resolve(__dirname, 'client')
+				includes: [path.resolve(__dirname, 'client'), '/flexboxgrid/'],
 			},
 			{
 				test: /\.(png|woff|woff2|eot|ttf|svg|jpg)$/,

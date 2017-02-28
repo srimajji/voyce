@@ -10,7 +10,7 @@ const Sequelize = require('sequelize');
 module.exports = function () {
 	const app = this;
 	const sequelize = app.get('sequelize');
-	const company = sequelize.define('company', {
+	const Company = sequelize.define('company', {
 		alias: {
 			type: Sequelize.STRING,
 			allowNull: false,
@@ -41,13 +41,16 @@ module.exports = function () {
 	},
 		{
 			freezeTableName: true,
+			version: true,
+			tableName: 'company',
 			classMethods: {
 				associate() {
-					company.hasMany(sequelize.model('feedback'));
+					Company.hasMany(sequelize.models['feedback']);
+					Company.belongsToMany(sequelize.models['user'], { through: sequelize.models['companyUser'] });
 				}
 			}
 		}
 	);
 
-	return company;
+	return Company;
 };

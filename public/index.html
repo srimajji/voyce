@@ -4,18 +4,27 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="description" content="Google's material design UI components built with React.">
+	<meta name="description" content="Voyce admin panel">
 
 	<!-- Use minimum-scale=1 to enable GPU rasterization -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, maximum-scale=1, minimum-scale=1">
-	<title>Welcome to Feathers</title>
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<title>Voyce admin panel</title>
+	<style type="text/css">
+		html,
+		body,
+		#root,
+		#root > div {
+			background-color: #f4f4f4;
+			height: 100%;
+			width: 100%;
+		}
+	</style>
 </head>
 
 <body>
 	<div id="root"></div>
-	<script src="/dist/newFeedback.bundle.js"></script>
-
+	<script src="/ws/socket.io.js"></script>
+	<script src="/dist/dashboard.bundle.js"></script>
 </body>
 
 </html>

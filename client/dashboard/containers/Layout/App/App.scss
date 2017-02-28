@@ -1,0 +1,11 @@
+.App {
+	height: 100%;
+}
+
+.Section {
+	padding-left: 256px;
+	padding-top: 64px;
+	@media screen and (max-width: 992px) {
+		padding-left: 0;
+	}
+}

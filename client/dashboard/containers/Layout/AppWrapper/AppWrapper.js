@@ -1,4 +1,3 @@
-
 import React, { PropTypes } from 'react';
 
 const AppWrapper = (props) => (

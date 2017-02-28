@@ -11,7 +11,7 @@ module.exports = function () {
 	const app = this;
 	const sequelize = app.get('sequelize');
 
-	const user = sequelize.define('user', {
+	const User = sequelize.define('user', {
 		facebookId: {
 			type: Sequelize.STRING,
 			allowNull: true,
@@ -45,8 +45,15 @@ module.exports = function () {
 		// https://stackoverflow.com/questions/25565212/how-to-define-array-of-objects-in-sequelize-js
 	},
 		{
-			freezeTableName: true
+			freezeTableName: true,
+			version: true,
+			tableName: 'user',
+			classMethods: {
+				associate() {
+					User.belongsToMany(sequelize.models['company'], { through: sequelize.models['companyUser'] });
+				}
+			}
 		});
 
-	return user;
+	return User;
 };

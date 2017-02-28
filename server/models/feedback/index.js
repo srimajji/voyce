@@ -10,7 +10,7 @@ const Sequelize = require('sequelize');
 module.exports = function () {
 	const app = this;
 	const sequelize = app.get('sequelize');
-	const feedback = sequelize.define('feedback', {
+	const Feedback = sequelize.define('feedback', {
 		title: {
 			type: Sequelize.STRING,
 			allowNull: false,
@@ -33,13 +33,15 @@ module.exports = function () {
 	},
 		{
 			freezeTableName: true,
+			version: true,
+			tableName: 'feedback',
 			classMethods: {
 				associate() {
-					feedback.belongsTo(sequelize.model('company'));
+					Feedback.belongsTo(sequelize.models['company']);
 				}
 			}
 
 		});
 
-	return feedback;
+	return Feedback;
 };

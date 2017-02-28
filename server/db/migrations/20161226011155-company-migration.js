@@ -27,13 +27,7 @@ module.exports = {
         },
         categories: {
           type: Sequelize.STRING,
-          allowNull: false,
-          get: function () {
-            return JSON.parse(this.getDataValue('categories'));
-          },
-          set: function (val) {
-            return this.setDataValue('categories', JSON.stringify(val));
-          }
+          allowNull: false
         },
         location: {
           type: Sequelize.STRING,
@@ -53,7 +47,6 @@ module.exports = {
           defaultValue: Sequelize.NOW,
           field: 'updated_at'
         }
-
       },
       {
         engine: 'InnoDB',
