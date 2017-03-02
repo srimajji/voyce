@@ -34,6 +34,9 @@ const options = {
 	legend: {
 		display: false
 	},
+	tooltips: {
+		enabled: false
+	},
 	maintainAspectRatio: true,
 	scales: {
 		xAxes: [{

@@ -2,6 +2,7 @@ const autoprefixer = require('autoprefixer');
 const normalize = require('postcss-normalize');
 const path = require('path');
 const webpack = require('webpack');
+const bundleAnalyzer = require('webpack-bundle-analyzer');
 
 module.exports = {
 	devtool: 'inline-source-map',
@@ -29,6 +30,7 @@ module.exports = {
 				'API_URL': JSON.stringify('http://localhost:3030/api/')
 			}
 		}),
+		new bundleAnalyzer.BundleAnalyzerPlugin(),
 		new webpack.NoErrorsPlugin()
 	],
 	resolve: {
