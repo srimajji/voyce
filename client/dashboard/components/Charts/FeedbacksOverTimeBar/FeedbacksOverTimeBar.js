@@ -61,8 +61,8 @@ const graph = {
 const FeedbacksOverTimeBar = () => (
 	<Card className={styles.Wrapper}>
 		<CardHeader
-			title="# of feedbacks today"
-			subtitle={getRandom(0, 100)}
+			title={getRandom(0, 100)}
+			subtitle="# of feedbacks today"
 			actAsExpander={false}
 			showExpandableButton={false}
 		/>

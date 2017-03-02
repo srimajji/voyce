@@ -4,9 +4,9 @@ import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import styles from './Settings.scss';
+import styles from './CompanySettings.scss';
 
-class Settings extends React.Component {
+class CompanySettings extends React.Component {
 	constructor() {
 		super();
 	}
@@ -55,4 +55,4 @@ const mapStateToProps = (state) => ({
 	user: state.auth.user,
 });
 
-export default connect(mapStateToProps)(Settings);
+export default connect(mapStateToProps)(CompanySettings);

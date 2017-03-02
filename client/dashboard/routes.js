@@ -12,7 +12,8 @@ import NotFound from './containers/NotFound/NotFound';
 import Loading from './components/Loading/Loading.js';
 import App from './containers/Layout/App/App.js';
 import Feedbacks from './containers/Feedbacks/Feedbacks.js';
-import Settings from './containers/Settings/Settings.js';
+import CompanySettings from './containers/Settings/Company/CompanySettings.js';
+import FormSettings from './containers/Settings/Form/FormSettings.js';
 
 // Authentication Higher Order Components to wrap route components.
 const UserIsAuthenticated = UserAuthWrapper({
@@ -52,8 +53,8 @@ export default (
 			<Route path='feedbacks' component={Feedbacks} />
 			<Route path='settings'>
 				<IndexRedirect to='company' />
-				<Route path='company' component={UserIsAuthenticated(Settings)} />
-				<Route path='feedback-form' component={UserIsAuthenticated(Settings)} />
+				<Route path='company' component={UserIsAuthenticated(CompanySettings)} />
+				<Route path='feedback-form' component={UserIsAuthenticated(FormSettings)} />
 			</Route>
 		</Route>
 		<Route path='*' component={NotFound} />
