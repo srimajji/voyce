@@ -54,7 +54,7 @@ class Rating extends React.Component {
 	render() {
 		const { hoveredIndex, checkedIndex } = this.state;
 		const { readOnly, values = defaultValues, style } = this.props;
-		return (<div style={{}} className={style}>
+		return (<div style={{}}>
 			{values.map((i) => {
 				let
 					onClick = readOnly ? undefined : this.onCheck.bind(this, i),
