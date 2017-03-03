@@ -1,7 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Paper from 'material-ui/Paper';
-import { Rating } from 'material-ui-rating';
+import TextField from 'material-ui/TextField';
 
+import Rating from '../../../components/Rating/Rating.js';
 import styles from './FormSettings.scss';
 
 class FormSettings extends React.Component {
@@ -19,11 +21,15 @@ class FormSettings extends React.Component {
 				<Rating
 					onChange={this._onChange}
 					max={5}
-					value={3}
 				/>
+				<TextField
+					hintText="Feedback"
+					floatingLabelText="Enter feedback"
+					multiLine={true}
+					rows={2} />
 			</Paper>
 		);
 	}
 }
 
-export default FormSettings;
+export default connect()(FormSettings);
