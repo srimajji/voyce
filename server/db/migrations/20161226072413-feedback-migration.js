@@ -27,7 +27,11 @@ module.exports = {
 				},
 				type: {
 					type: Sequelize.STRING,
-					allowNull: false
+					allowNull: true
+				},
+				rating: {
+					type: Sequelize.INTEGER,
+					allowNull: false,
 				},
 				companyId: {
 					type: Sequelize.INTEGER,

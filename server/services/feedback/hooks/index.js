@@ -4,21 +4,65 @@ const hooks = require('feathers-hooks-common');
 const auth = require('feathers-authentication').hooks;
 
 exports.before = {
-	all: [
+	all: [],
+	find: [
 		auth.verifyToken(),
-		auth.populateUser(),
-		auth.restrictToAuthenticated()
+		auth.restrictToAuthenticated(),
+		auth.restrictToRoles({
+			roles: ['superadmin', 'user'],
+			fieldName: 'roles',
+			idField: 'id',
+			owner: false
+		}),
 	],
-	find: [],
-	get: [],
+	get: [
+		auth.verifyToken(),
+		auth.restrictToAuthenticated(),
+		auth.restrictToRoles({
+			roles: ['superadmin', 'user'],
+			fieldName: 'roles',
+			idField: 'id',
+			owner: false
+		}),
+	],
 	create(hook) {
 		if (hook.data.description && !hook.data.title) {
 			hook.data.title = hook.data.description.slice(0, 140);
 		}
 	},
-	update: [],
-	patch: [],
-	remove: []
+	update: [
+		auth.verifyToken(),
+		auth.populateUser(),
+		auth.restrictToAuthenticated(),
+		auth.restrictToRoles({
+			roles: ['superadmin'],
+			fieldName: 'roles',
+			idField: 'id',
+			owner: false
+		}),
+	],
+	patch: [
+		auth.verifyToken(),
+		auth.populateUser(),
+		auth.restrictToAuthenticated(),
+		auth.restrictToRoles({
+			roles: ['superadmin'],
+			fieldName: 'roles',
+			idField: 'id',
+			owner: false
+		}),
+	],
+	remove: [
+		auth.verifyToken(),
+		auth.populateUser(),
+		auth.restrictToAuthenticated(),
+		auth.restrictToRoles({
+			roles: ['superadmin'],
+			fieldName: 'roles',
+			idField: 'id',
+			owner: false
+		}),
+	]
 };
 
 exports.after = {

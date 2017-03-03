@@ -21,14 +21,17 @@ module.exports = function () {
 		},
 		type: {
 			type: Sequelize.STRING,
-			allowNull: false
+			allowNull: true
 		},
 		companyId: {
 			type: Sequelize.INTEGER,
 			allowNull: false,
-			// model: sequelize.model('company'),
-			// key: 'id',
 			field: 'company_id'
+		},
+		rating: {
+			type: Sequelize.INTEGER,
+			allowNull: false,
+			field: 'rating'
 		}
 	},
 		{
