@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 
-import Rating from '../../../components/Rating/Rating.js';
+import FeedbackForm from '../../../components/FeedbackForm/FeedbackForm.js';
 import styles from './FormSettings.scss';
 
 class FormSettings extends React.Component {
@@ -18,15 +18,7 @@ class FormSettings extends React.Component {
 	render() {
 		return (
 			<Paper className={styles.Wrapper}>
-				<Rating
-					onChange={this._onChange}
-					max={5}
-				/>
-				<TextField
-					hintText="Feedback"
-					floatingLabelText="Enter feedback"
-					multiLine={true}
-					rows={2} />
+				<FeedbackForm />
 			</Paper>
 		);
 	}

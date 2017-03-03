@@ -53,8 +53,8 @@ class Rating extends React.Component {
 
 	render() {
 		const { hoveredIndex, checkedIndex } = this.state;
-		const { readOnly, values = defaultValues } = this.props;
-		return (<div style={{}}>
+		const { readOnly, values = defaultValues, style } = this.props;
+		return (<div style={{}} className={style}>
 			{values.map((i) => {
 				let
 					onClick = readOnly ? undefined : this.onCheck.bind(this, i),
@@ -81,7 +81,8 @@ export default Rating
 React.propTypes = {
 	value: React.PropTypes.int,
 	readOnly: React.PropTypes.bool,
-	onChange: React.PropTypes.function
+	onChange: React.PropTypes.function,
+	style: React.PropTypes.object
 };
 React.defaultProps = {
 	value: 0,
