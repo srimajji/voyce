@@ -5,7 +5,7 @@ const hooks = require('feathers-hooks');
 
 exports.before = {
 	all: [
-		auth.verifyToken(),
+		/*auth.verifyToken(),
 		auth.populateUser(),
 		auth.restrictToAuthenticated(),
 		auth.restrictToRoles({
@@ -13,7 +13,7 @@ exports.before = {
 			fieldName: 'roles',
 			idField: 'id',
 			owner: false
-		})
+		})*/
 	],
 	find: [],
 	get: [],

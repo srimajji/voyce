@@ -11,6 +11,7 @@ module.exports = function () {
 	const app = this;
 	const dbConfig = app.get('datasource');
 	const sequelize = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, {
+		host: dbConfig.host,
 		dialect: 'mysql',
 		logging: logger.debug,
 		define: { underscored: true },

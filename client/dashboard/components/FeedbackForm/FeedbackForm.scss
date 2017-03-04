@@ -1,0 +1,17 @@
+.Wrapper {
+	display: flex;
+	flex-direction: column;
+	max-width: 300px;
+	padding: 20px;
+}
+
+.RatingWrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+
+.FeedbackInput {
+	margin-bottom: 20px;
+}
