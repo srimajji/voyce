@@ -81,7 +81,7 @@
     "serve-favicon": "^2.3.2",
     "webpack-bundle-analyzer": "^2.3.0",
     "winston": "^2.3.0",
-    "webpack": "^1.14.0",
+    "webpack": "^1.14.0"
   },
   "devDependencies": {
     "babel-core": "^6.20.0",
