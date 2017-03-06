@@ -13,6 +13,11 @@ module.exports = {
 		path: path.resolve(__dirname, 'public/dist'),
 		filename: '[name].bundle.js',
 	},
+	resolveLoader: {
+		modulesDirectories: [
+			path.join(__dirname, 'node_modules')
+		]
+	},
 	plugins: [
 		new webpack.ProvidePlugin({
 			$: 'jquery',

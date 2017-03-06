@@ -3,15 +3,10 @@
 const path = require('path');
 const compress = require('compression');
 const feathers = require('feathers');
-const webpack = require('webpack');
 const cors = require('cors');
-const webpackDevMiddleware = require('webpack-dev-middleware');
 const favicon = require('serve-favicon');
 const morgan = require('morgan');
-const webpackHotMiddleware = require('webpack-hot-middleware');
-const webpackConfig = require('../webpack.dev.config.js');
 const logger = require('./utils/logger');
-const webpackCompiler = webpack(webpackConfig);
 const root = process.cwd();
 
 const api = require('./api');
@@ -27,7 +22,10 @@ app.options('*', cors())
 
 // serve webpack files via '/dist'
 if (process.env.NODE_ENV === 'development') {
-	app.use(webpackDevMiddleware(webpackCompiler, {
+	const webpackConfig = require('../webpack.dev.config.js');
+	const webpack = require('webpack');
+	const webpackCompiler = webpack(webpackConfig);
+	app.use(require('webpack-dev-middleware')(webpackCompiler, {
 		publicPath: webpackConfig.output.publicPath,
 		stats: {
 			assets: true,
@@ -41,7 +39,7 @@ if (process.env.NODE_ENV === 'development') {
 		noInfo: false,
 		quiet: false,
 	}))
-		.use(webpackHotMiddleware(webpackCompiler));
+		.use(require('webpack-hot-middleware')(webpackCompiler));
 } else {
 	app.use('/dist', feathers.static(path.join(root, 'public/dist')));
 }
