@@ -62,7 +62,7 @@ app.use('/', feathers.static(path.join(root, 'public')))
 	// set favicon
 	.use(favicon(path.join(__dirname, '..', 'public/favicon.ico')));
 
-const port = 3030;
+const port = process.env.PORT || 3030;
 const server = app.listen(port);
 api.setup(server);
 
