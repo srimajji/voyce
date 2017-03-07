@@ -12,7 +12,7 @@ class FeedbackForm extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			rating: null,
+			rating: 1,
 			description: null,
 		};
 
@@ -43,7 +43,7 @@ class FeedbackForm extends React.Component {
 					<Rating
 						onChange={this._onChange}
 						max={5}
-						value={1}
+						value={this.state.rating}
 					/>
 					<TextField
 						className={styles.FeedbackInput}
