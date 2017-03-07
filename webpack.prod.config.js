@@ -30,14 +30,14 @@ module.exports = {
 				'API_URL': JSON.stringify('http://localhost:3030/api/')
 			}
 		}),
-		// new webpack.optimize.UglifyJsPlugin({
-		// 	compress: { warnings: false },
-		// 	comments: false,
-		// 	sourceMap: false,
-		// 	mangle: true,
-		// 	minimize: true,
-		// 	verbose: false,
-		// }),
+		new webpack.optimize.UglifyJsPlugin({
+			compress: { warnings: false },
+			comments: false,
+			sourceMap: false,
+			mangle: true,
+			minimize: true,
+			verbose: false,
+		}),
 		new webpack.optimize.DedupePlugin(),
 		new webpack.optimize.AggressiveMergingPlugin(),
 		new webpack.NoErrorsPlugin(),
