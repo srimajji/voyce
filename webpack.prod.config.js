@@ -34,9 +34,10 @@ module.exports = {
 			compress: { warnings: false },
 			comments: false,
 			sourceMap: false,
-			mangle: true,
+			mangle: false,
 			minimize: true,
 			verbose: false,
+			beautify: true
 		}),
 		new webpack.optimize.DedupePlugin(),
 		new webpack.optimize.AggressiveMergingPlugin(),
