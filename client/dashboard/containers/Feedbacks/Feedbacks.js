@@ -21,6 +21,7 @@ class Feedbacks extends React.Component {
 		const { feedbacks } = this.props;
 		const view = feedbacks.data.map((feedback, key) => {
 			const createdAt = moment(feedback.created_at).format('MMMM Do YYYY');
+			console.log(feedback.created_at, createdAt);
 			return (
 				<TableRow key={key}>
 					<TableRowColumn>{feedback.rating}</TableRowColumn>
