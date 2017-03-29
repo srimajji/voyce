@@ -17,7 +17,7 @@ app.options('*', cors())
 	// set log config using the custom logger.js
 	.use(morgan('combined', { 'stream': logger.stream }))
 
-	// compress 
+	// compress
 	.use(compress());
 
 // serve webpack files via '/dist'
@@ -50,10 +50,10 @@ app.use('/', feathers.static(path.join(root, 'public')))
 	// serve public/dist folder via '/'
 	.use('/', feathers.static(path.join(root, 'public/dist')))
 
-	// serve sub-app feathers from api.js 
+	// serve sub-app feathers from api.js
 	.use('/api', api)
 
-	// serve admin.html 
+	// serve admin.html
 	// .use('/admin', serveAdmin)
 
 	// route everything else to client/react-router

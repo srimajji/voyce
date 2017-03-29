@@ -29,7 +29,7 @@
 		"header": "Authorization",
 		"cookie": {
 			"name": "gripe-jwt",
-			"httpOnly": "false",
+			"httpOnly": "true",
 			"secure": true,
 			"maxAge": "3000"
 		},

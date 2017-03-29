@@ -30,7 +30,7 @@ module.exports = {
 				'API_URL': JSON.stringify('http://localhost:3030/api/')
 			}
 		}),
-		new bundleAnalyzer.BundleAnalyzerPlugin(),
+		// new bundleAnalyzer.BundleAnalyzerPlugin(),
 		new webpack.NoErrorsPlugin()
 	],
 	resolve: {

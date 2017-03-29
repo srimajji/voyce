@@ -16,6 +16,12 @@ const app = feathers()
 	.configure(feathers.authentication({
 		storage: window.localStorage, // store the token in localStorage and initially sign in with that
 	}));
+
+socket.io.engine.on('upgrade', function (transport) {
+	console.log('transport changed');
+	app.authenticate();
+});
+
 export default app;
 
 // Reduxify feathers-authentication

@@ -25,7 +25,7 @@ app.use(bodyParser.json())
 				socket.on('authenticate', function (data) {
 					logger.debug(data);
 				});
-			})
+			});
 		}
 	}))
 	.configure(services)
