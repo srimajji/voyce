@@ -2,7 +2,7 @@
 
 const authentication = require('feathers-authentication');
 const authManagement = require('feathers-authentication-management');
-
+const logger = require('../../utils/logger');
 const FacebookStrategy = require('passport-facebook').Strategy;
 const FacebookTokenStrategy = require('passport-facebook-token');
 

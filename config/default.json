@@ -14,13 +14,14 @@
 	"auth": {
 		"idField": "id",
 		"token": {
-			"issuer": "gripe",
+			"header": {
+				"type": "access"
+			},
+			"issuer": "voyce",
 			"secret": "/f8l5dQUaPOfIK40dQCFJvAliA1sLZeG3hIEZv0hzZXOi1UbKkRxnqIzGvNHy5YHemetzKpPhvreoTc0Gvz5og==",
-			"payload": []
+			"payload": [],
 		},
-		"local": {
-			"session": true
-		},
+		"local": {},
 		"successRedirect": false,
 		"failureRedirect": false,
 		"localEndpoint ": "/auth/local",
@@ -28,8 +29,9 @@
 		"tokenEndpoint": "/auth/token",
 		"header": "Authorization",
 		"cookie": {
-			"name": "gripe-jwt",
-			"httpOnly": "true",
+			"enabled": true,
+			"name": "voyce-jwt-cook",
+			"httpOnly": false,
 			"secure": true,
 			"maxAge": "3000"
 		},
