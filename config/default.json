@@ -19,7 +19,7 @@
 			},
 			"issuer": "voyce",
 			"secret": "/f8l5dQUaPOfIK40dQCFJvAliA1sLZeG3hIEZv0hzZXOi1UbKkRxnqIzGvNHy5YHemetzKpPhvreoTc0Gvz5og==",
-			"payload": [],
+			"payload": []
 		},
 		"local": {},
 		"successRedirect": false,

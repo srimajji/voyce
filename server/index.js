@@ -6,12 +6,24 @@ const feathers = require('feathers');
 const cors = require('cors');
 const favicon = require('serve-favicon');
 const morgan = require('morgan');
+const rest = require('feathers-rest');
+const socketio = require('feathers-socketio');
 const logger = require('./utils/logger');
 const root = process.cwd();
 
 const api = require('./api');
 const app = feathers();
 app.options('*', cors())
+	.configure(rest())
+	.configure(socketio({
+		path: '/ws/', function(io) {
+			io.on('connection', function (socket) {
+				socket.on('api/auth/local::create', function (data) {
+					logger.debug(data);
+				});
+			});
+		}
+	}))
 	.use(cors())
 
 	// set log config using the custom logger.js
