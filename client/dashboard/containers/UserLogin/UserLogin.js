@@ -15,7 +15,7 @@ class UserLogin extends React.Component {
 		this.state = {
 			email: '',
 			password: '',
-		}
+		};
 
 		this._onChangeInput = this._onChangeInput.bind(this);
 		this._onSubmit = this._onSubmit.bind(this);

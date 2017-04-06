@@ -3,28 +3,16 @@
 const path = require('path');
 const compress = require('compression');
 const feathers = require('feathers');
-const cors = require('cors');
 const favicon = require('serve-favicon');
 const morgan = require('morgan');
 const rest = require('feathers-rest');
-const socketio = require('feathers-socketio');
 const logger = require('./utils/logger');
 const root = process.cwd();
 
 const api = require('./api');
 const app = feathers();
-app.options('*', cors())
-	.configure(rest())
-	.configure(socketio({
-		path: '/ws/', function(io) {
-			io.on('connection', function (socket) {
-				socket.on('api/auth/local::create', function (data) {
-					logger.debug(data);
-				});
-			});
-		}
-	}))
-	.use(cors())
+
+app.configure(rest())
 
 	// set log config using the custom logger.js
 	.use(morgan('combined', { 'stream': logger.stream }))
@@ -51,6 +39,8 @@ if (process.env.NODE_ENV === 'development') {
 		noInfo: false,
 		quiet: false,
 	}))
+
+		// configure webpack hot reload for react
 		.use(require('webpack-hot-middleware')(webpackCompiler));
 } else {
 	app.use('/dist', feathers.static(path.join(root, 'public/dist')));
@@ -85,6 +75,8 @@ function serveIndex(req, res) {
 function serveAdmin(req, res) {
 	res.sendFile('admin.html', { root: path.join(root, 'public') });
 }
+
+api.service('feedbacks').on('created', data => logger.error(data));
 
 server.on('listening', () => {
 	logger.info(`Feathers application started on localhost:${port}`);

@@ -23,7 +23,7 @@
 		"start": "node --harmony server/",
 		"start:dev": "nodemon --config .nodemon.json",
 		"start:dev-debug": "nodemon --config .nodemon.json debug",
-		"win:start:dev": "set NODE_ENV=development && set DEBUG=feathers* && npm run start:dev",
+		"win:start:dev": "set NODE_ENV=development && npm run start:dev",
 		"win:start:dev-debug": "set NODE_ENV=development && npm run start:dev-debug",
 		"win:start:prod": "set NODE_ENV=production npm run prebuild && npm run build && node --harmony server/",
 		"start:prod": "npm run prebuild && npm run build && NODE_ENV=production node --harmony server/",

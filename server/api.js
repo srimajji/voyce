@@ -17,15 +17,7 @@ app.configure(configuration(path.join(__dirname, '..')));
 
 app.configure(hooks())
 	.configure(rest())
-	.configure(socketio({
-		path: '/ws/', function(io) {
-			io.on('connection', function (socket) {
-				socket.on('authenticate', function (data) {
-					logger.debug(data);
-				});
-			});
-		}
-	}))
+	.configure(socketio({ path: '/ws/' }))
 	.use(bodyParser.json())
 	.use(bodyParser.urlencoded({ extended: true }))
 	.configure(services)
