@@ -325,6 +325,15 @@ babel-core@^6.18.0, babel-core@^6.20.0:
     slash "^1.0.0"
     source-map "^0.5.0"
 
+babel-eslint@^7.2.1:
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-7.2.1.tgz#079422eb73ba811e3ca0865ce87af29327f8c52f"
+  dependencies:
+    babel-code-frame "^6.22.0"
+    babel-traverse "^6.23.1"
+    babel-types "^6.23.0"
+    babylon "^6.16.1"
+
 babel-generator@^6.20.0:
   version "6.20.0"
   resolved "https://registry.yarnpkg.com/babel-generator/-/babel-generator-6.20.0.tgz#fee63614e0449390103b3097f3f6a118016c6766"
@@ -899,7 +908,7 @@ babel-traverse@^6.16.0, babel-traverse@^6.18.0, babel-traverse@^6.20.0:
     invariant "^2.2.0"
     lodash "^4.2.0"
 
-babel-traverse@^6.22.0, babel-traverse@^6.23.0:
+babel-traverse@^6.22.0, babel-traverse@^6.23.0, babel-traverse@^6.23.1:
   version "6.23.1"
   resolved "https://registry.yarnpkg.com/babel-traverse/-/babel-traverse-6.23.1.tgz#d3cb59010ecd06a97d81310065f966b699e14f48"
   dependencies:
@@ -935,7 +944,7 @@ babylon@^6.11.0:
   version "6.14.1"
   resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.14.1.tgz#956275fab72753ad9b3435d7afe58f8bf0a29815"
 
-babylon@^6.15.0:
+babylon@^6.15.0, babylon@^6.16.1:
   version "6.16.1"
   resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.16.1.tgz#30c5a22f481978a9e7f8cdfdf496b11d94b404d3"
 
@@ -1659,7 +1668,7 @@ debug@0.7.x:
   version "0.7.4"
   resolved "https://registry.yarnpkg.com/debug/-/debug-0.7.4.tgz#06e1ea8082c2cb14e39806e22e2f6f757f92af39"
 
-debug@2.2.0, debug@^2.1.1, debug@^2.2.0, debug@~2.2.0:
+debug@2.2.0, debug@~2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.2.0.tgz#f87057e995b1a1f6ae6a4960664137bc56f039da"
   dependencies:
@@ -1671,7 +1680,7 @@ debug@2.3.3:
   dependencies:
     ms "0.7.2"
 
-debug@^2.6.0:
+debug@^2.1.1, debug@^2.2.0, debug@^2.6.0:
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.3.tgz#0f7eb8c30965ec08c72accfa0130c8b79984141d"
   dependencies:
@@ -2359,13 +2368,13 @@ feathers-configuration@^0.4.1:
     config "^1.21.0"
     debug "^2.2.0"
 
-feathers-errors@2.5.0, feathers-errors@^2.0.1, feathers-errors@^2.2.0, feathers-errors@^2.4.0:
+feathers-errors@2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/feathers-errors/-/feathers-errors-2.5.0.tgz#103c1440fe76776b1d3c47af1e8b8b5e7e85362b"
   dependencies:
     debug "^2.2.0"
 
-feathers-errors@^2.6.2:
+feathers-errors@^2.0.1, feathers-errors@^2.2.0, feathers-errors@^2.4.0, feathers-errors@^2.6.2:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/feathers-errors/-/feathers-errors-2.6.2.tgz#85ff2658fcacabb989783fbe44aa1a1b700560a6"
   dependencies:
@@ -2378,7 +2387,7 @@ feathers-hooks-common@2.0.1:
     debug "^2.2.0"
     feathers-errors "^2.4.0"
 
-feathers-hooks-common@^2.0.0, feathers-hooks-common@^2.0.3:
+feathers-hooks-common@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/feathers-hooks-common/-/feathers-hooks-common-2.0.3.tgz#e9f12abebdbc163f28d4cb4c85094e29aa24635d"
   dependencies:
@@ -2394,15 +2403,7 @@ feathers-hooks@1.7.1:
     feathers-hooks-common "^2.0.3"
     uberproto "^1.2.0"
 
-feathers-hooks@^1.5.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/feathers-hooks/-/feathers-hooks-1.7.0.tgz#8f2fca5837ab7c1249c90a101e031c42d192ef1c"
-  dependencies:
-    feathers-commons "^0.8.6"
-    feathers-hooks-common "^2.0.0"
-    uberproto "^1.2.0"
-
-feathers-hooks@^1.8.1:
+feathers-hooks@^1.5.0, feathers-hooks@^1.8.1:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/feathers-hooks/-/feathers-hooks-1.8.1.tgz#cba0c46f309cd6e368faeb4957a2dec9d7f2898f"
   dependencies:
