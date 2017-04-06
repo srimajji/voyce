@@ -1,10 +1,9 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { browserHistory } from 'react-router';
 import { AppContainer } from 'react-hot-loader';
 import configureStore from './store';
-import { feathersServices, feathersAuthentication } from './feathers'; // does feathers init
+import { feathersAuthentication } from './feathers'; // does feathers init
 import App from './containers';
 import './utils/react-tap-event';
 
@@ -47,5 +46,5 @@ if (module.hot) {
 			</AppContainer>,
 			document.getElementById('root')
 		);
-	})
+	});
 }

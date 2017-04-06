@@ -76,8 +76,6 @@ function serveAdmin(req, res) {
 	res.sendFile('admin.html', { root: path.join(root, 'public') });
 }
 
-api.service('feedbacks').on('created', data => logger.error(data));
-
 server.on('listening', () => {
 	logger.info(`Feathers application started on localhost:${port}`);
 

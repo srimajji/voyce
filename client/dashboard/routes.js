@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { Router, Route, IndexRoute, IndexRedirect } from 'react-router';
+import { Route, IndexRoute, IndexRedirect } from 'react-router';
 import { replace } from 'react-router-redux';
 import { UserAuthWrapper } from 'redux-auth-wrapper';
 
@@ -23,7 +21,7 @@ const UserIsAuthenticated = UserAuthWrapper({
 	/* When signin is pending but not fulfilled: */
 	// determine if signin is pending
 	authenticatingSelector: (state /* , ownProps */) => state.auth.isLoading,
-	// component to render while signin is pending 
+	// component to render while signin is pending
 	LoadingComponent: Loading,
 
 	/* When signin is not pending. User is authenticated or not. */
