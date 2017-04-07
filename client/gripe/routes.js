@@ -1,7 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { Router, Route, IndexRoute, IndexRedirect } from 'react-router';
+import { Route, IndexRoute, IndexRedirect } from 'react-router';
 import { replace } from 'react-router-redux';
 import { UserAuthWrapper } from 'redux-auth-wrapper';
 
@@ -44,7 +42,7 @@ export default (
 	<Route path='/' component={AppWrapper}>
 		<IndexRedirect to={defaultRoute} />
 		<Route path='/login' component={UserLogin} />
-		<Route path={defaultRoute} component={UserIsAuthenticated(App)}>
+		<Route path={defaultRoute} component={UserIsAuthenticated(AppWrapper)}>
 			<IndexRoute component={Dashboard} />
 			<Route path='feedbacks' component={Feedbacks} />
 		</Route>

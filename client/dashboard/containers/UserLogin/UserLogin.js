@@ -34,14 +34,14 @@ class UserLogin extends React.Component {
 		this.setState({ [name]: value });
 	}
 
-	_onSubmit(event) {
+	_onSubmit() {
 		this.props.dispatch(feathersAuthentication.authenticate(
 			{ type: 'local', email: this.state.email, password: this.state.password }
 		))
 			.catch(err => {
 				err instanceof errors.BadRequest
-					? new SubmissionError(Object.assign({}, err.errors, { _error: err.message || '' }))
-					: err
+					? new SubmissionError(Object.assign({}, err.errors, { _error: err.message || '' })) //eslint-disable-line no-undef
+					: err;
 			});
 	}
 

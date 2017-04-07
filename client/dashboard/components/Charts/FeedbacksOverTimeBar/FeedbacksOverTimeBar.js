@@ -1,8 +1,6 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
-import Paper from 'material-ui/Paper';
-import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import { Card, CardActions, CardHeader } from 'material-ui/Card';
 
 import styles from './FeedbacksOverTimeBar.scss';
 
@@ -48,14 +46,6 @@ const options = {
 			display: false
 		}]
 	}
-};
-
-const graph = {
-	height: 400,
-	padding: 0,
-	marginTop: 0,
-	width: '100%',
-	zDepth: 1
 };
 
 const FeedbacksOverTimeBar = () => (

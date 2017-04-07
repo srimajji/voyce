@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -21,3 +21,7 @@ class App extends Component {
 }
 
 export default App;
+
+App.propTypes = {
+	store: React.PropTypes.object.isRequired
+};

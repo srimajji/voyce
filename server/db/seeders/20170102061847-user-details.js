@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	up: function (queryInterface, Sequelize) {
+	up: function (queryInterface, Sequelize) { // eslint-disable-line
 		/*
 		  Add altering commands here.
 		  Return a promise to correctly handle asynchronicity.
@@ -23,7 +23,7 @@ module.exports = {
 
 	},
 
-	down: function (queryInterface, Sequelize) {
+	down: function (queryInterface, Sequelize) { // eslint-disable-line
 		/*
 		  Add reverting commands here.
 		  Return a promise to correctly handle asynchronicity.

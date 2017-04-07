@@ -80,7 +80,7 @@ class Form extends React.Component {
 						fullWidth={true}
 						value={this.state.descriptionText}
 						onChange={this._onChangeDescriptionField}
-						/>
+					/>
 				</div>
 				<RaisedButton label='Submit' fullWidth={true} primary={true} onClick={this._onClickSubmitFeedbackBtn} />
 			</form>
@@ -98,7 +98,7 @@ class Form extends React.Component {
 					fullWidth={true}
 					primary={true}
 					onClick={this._onClickNewFeedbackBtn}
-					/>
+				/>
 			</div>
 		);
 	}

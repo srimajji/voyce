@@ -37,46 +37,50 @@ class Rating extends React.Component {
 		this.setState({ checkedIndex: nextProps.value });
 	}
 
-	onCheck(i, e) {
+	onCheck(i) {
 		this.setState({ checkedIndex: i });
 		if (this.props.onChange)
 			this.props.onChange(i);
 	}
 
-	onMouseEnter(i, e) {
+	onMouseEnter(i) {
 		this.setState({ hoveredIndex: i });
 	}
 
-	onMouseLeave(i, e) {
+	onMouseLeave() {
 		this.setState({ hoveredIndex: 0 });
 	}
 
 	render() {
 		const { hoveredIndex, checkedIndex } = this.state;
-		const { readOnly, values = defaultValues, style } = this.props;
-		return (<div style={{}}>
-			{values.map((i) => {
-				let
-					onClick = readOnly ? undefined : this.onCheck.bind(this, i),
-					onMouseEnter = readOnly ? undefined : this.onMouseEnter.bind(this, i),
-					onMouseLeave = readOnly ? undefined : this.onMouseLeave.bind(this, i),
-					checked = i <= checkedIndex,
-					hovered = i <= hoveredIndex;
+		const { readOnly, values = defaultValues } = this.props;
+		return (
+			<div style={{}}>
+				{values.map((i) => {
+					let
+						onClick = readOnly ? undefined : this.onCheck.bind(this, i),
+						onMouseEnter = readOnly ? undefined : this.onMouseEnter.bind(this, i),
+						onMouseLeave = readOnly ? undefined : this.onMouseLeave.bind(this, i),
+						checked = i <= checkedIndex,
+						hovered = i <= hoveredIndex;
 
-				if (hoveredIndex > 0 && checkedIndex > 0 && i > hoveredIndex && i <= checkedIndex) {
-					checked = false;
-					hovered = true;
-				}
+					if (hoveredIndex > 0 && checkedIndex > 0 && i > hoveredIndex && i <= checkedIndex) {
+						checked = false;
+						hovered = true;
+					}
 
-				return <Ch checked={checked} key={i} hovered={hovered} readOnly={readOnly}
-					onClick={onClick} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}
-				/>
-			})}
-		</div>)
+					return (
+						<Ch checked={checked} key={i} hovered={hovered} readOnly={readOnly}
+							onClick={onClick} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}
+						/>
+					);
+				})}
+			</div>
+		);
 	}
 }
 
-export default Rating
+export default Rating;
 
 React.propTypes = {
 	value: React.PropTypes.int,

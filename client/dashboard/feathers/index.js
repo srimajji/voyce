@@ -18,7 +18,7 @@ const app = feathers()
 	}));
 
 socket.io.engine.on('upgrade', function (transport) {
-	console.log('transport changed');
+	console.log('transport changed', transport); //eslint-disable-line no-console
 	app.authenticate();
 });
 
@@ -26,7 +26,7 @@ export default app;
 
 // Reduxify feathers-authentication
 export const feathersAuthentication = reduxifyAuthentication(app,
-	{ isUserAuthorized: (user) => true } // user must be verified to authenticate
+	{ isUserAuthorized: (user) => true } // eslint-disable-line no-unused-vars
 );
 
 // Reduxify feathers services
