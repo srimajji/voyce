@@ -48,7 +48,8 @@ module.exports = function () {
 		isVerified: {
 			type: Sequelize.BOOLEAN,
 			allowNull: false,
-			defaultValue: false
+			defaultValue: false,
+			field: 'is_verified'
 		}
 		// sequelize mysql doesn't support Sequelize.ARRAY so get/set () are used to mimick
 		// storing array of strings
