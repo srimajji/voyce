@@ -49,6 +49,15 @@ module.exports = {
 					type: Sequelize.DATE,
 					defaultValue: Sequelize.NOW,
 					field: 'updated_at'
+				},
+				enabled: {
+					type: Sequelize.BOOLEAN,
+					allowNull: false,
+					defaultValue: true,
+				},
+				status: {
+					type: Sequelize.STRING,
+					allowNull: false,
 				}
 			},
 			{

@@ -7,7 +7,7 @@ module.exports = {
 		/*
 		  Add altering commands here.
 		  Return a promise to correctly handle asynchronicity.
-	
+
 		  Example:
 		  return queryInterface.createTable('users', { id: Sequelize.INTEGER });
 		*/
@@ -52,6 +52,17 @@ module.exports = {
 					defaultValue: Sequelize.NOW,
 					field: 'updated_at',
 				},
+				enabled: {
+					type: Sequelize.BOOLEAN,
+					allowNull: false,
+					defaultValue: true,
+				},
+				isVerified: {
+					type: Sequelize.BOOLEAN,
+					allowNull: false,
+					defaultValue: false,
+					field: 'is_verified'
+				},
 			},
 			{
 				engine: 'InnoDB',
@@ -66,7 +77,7 @@ module.exports = {
 		/*
 		  Add reverting commands here.
 		  Return a promise to correctly handle asynchronicity.
-	
+
 		  Example:
 		  return queryInterface.dropTable('users');
 		*/
