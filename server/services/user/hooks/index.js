@@ -1,6 +1,5 @@
 'use strict';
 
-const globalHooks = require('../../../hooks');
 const hooks = require('feathers-hooks-common');
 const auth = require('feathers-authentication').hooks;
 
@@ -9,7 +8,7 @@ exports.before = {
 		function (hook) {
 			hook.params.sequelize = {
 				include: [{ model: hook.app.service('companies').Model, through: { attributes: [] } }],
-			}
+			};
 		},
 	],
 	find: [

@@ -1,4 +1,5 @@
 'use strict';
+
 const authentication = require('./authentication');
 const userService = require('./user');
 const companyService = require('./company');

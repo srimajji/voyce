@@ -72,7 +72,7 @@ function serveIndex(req, res) {
 	res.sendFile('index.html', { root: path.join(root, 'public') });
 }
 
-function serveAdmin(req, res) {
+function serveAdmin(req, res) { // eslint-disable-line no-unused-vars
 	res.sendFile('admin.html', { root: path.join(root, 'public') });
 }
 

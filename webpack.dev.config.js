@@ -2,7 +2,7 @@ const autoprefixer = require('autoprefixer');
 const normalize = require('postcss-normalize');
 const path = require('path');
 const webpack = require('webpack');
-const bundleAnalyzer = require('webpack-bundle-analyzer');
+const bundleAnalyzer = require('webpack-bundle-analyzer'); //eslint-disable-line no-unused-vars
 
 module.exports = {
 	devtool: 'inline-source-map',
