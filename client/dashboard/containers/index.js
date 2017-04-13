@@ -5,9 +5,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {
-	cyan500, cyan700,
-	pinkA200,
-	grey100, grey300, grey400, grey500,
+	indigo500, indigo700, indigo100, grey500, teal500, teal700, teal100, grey900, cyan500,
 	white, darkBlack, fullBlack,
 } from 'material-ui/styles/colors';
 import { fade } from 'material-ui/utils/colorManipulator';
@@ -23,23 +21,20 @@ class App extends Component {
 		// More on Colors: http://www.material-ui.com/#/customization/colors
 		const muiTheme = getMuiTheme({
 			palette: {
-				primary1Color: '#3F51B5',
-				primary2Color: '#303F9F',
-				primary3Color: '#C5CAE9',
-				accent1Color: '#607D8B',
-				accent2Color: '#C5CAE9',
-				accent3Color: grey500,
-				textColor: '#212121',
+				primary1Color: indigo500,
+				primary2Color: indigo700,
+				primary3Color: indigo100,
+				accent1Color: teal500,
+				accent2Color: teal700,
+				accent3Color: teal100,
+				textColor: grey900,
 				alternateTextColor: white,
-				canvasColor: white,
-				borderColor: grey300,
+				canvasColor: 'rgba(255, 255, 255, 0.64)',
+				borderColor: '#ccc',
 				disabledColor: '#BDBDBD',
-				pickerHeaderColor: cyan500,
+				pickerHeaderColor: indigo500,
 				clockCircleColor: fade(darkBlack, 0.07),
 				shadowColor: fullBlack,
-			},
-			appBar: {
-				height: 50,
 			},
 		});
 

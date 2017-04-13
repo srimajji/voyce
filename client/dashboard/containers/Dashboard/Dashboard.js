@@ -42,4 +42,8 @@ class Dashboard extends React.Component {
 	}
 }
 
-export default connect()(Dashboard);
+const mapStateToProps = (state) => ({
+	user: state.auth.user,
+});
+
+export default connect(mapStateToProps)(Dashboard);
