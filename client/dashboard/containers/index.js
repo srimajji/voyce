@@ -29,7 +29,7 @@ class App extends Component {
 				accent3Color: teal100,
 				textColor: grey900,
 				alternateTextColor: white,
-				canvasColor: 'rgba(255, 255, 255, 0.64)',
+				canvasColor: white,
 				borderColor: '#ccc',
 				disabledColor: '#BDBDBD',
 				pickerHeaderColor: indigo500,

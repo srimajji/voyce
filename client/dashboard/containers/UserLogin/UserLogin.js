@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
+import { Tabs, Tab } from 'material-ui/Tabs';
 
 import errors from 'feathers-errors';
 import { feathersAuthentication } from '../../feathers';
@@ -47,31 +48,44 @@ class UserLogin extends React.Component {
 
 	render() {
 		return (
-			<div className={styles.container} >
-				<div >
-					<Paper className={styles.form} zDepth={2}>
-						<p className={styles.formTitle}>Log In</p>
-						<TextField
-							name='email'
-							floatingLabelText='Email'
-							hintText='Enter email'
-							fullWidth={true}
-							className={styles.formUsername}
-							type='email'
-							onChange={this._onChangeInput}
-						/>
-						<TextField
-							name='password'
-							floatingLabelText='Password'
-							hintText='Enter password'
-							fullWidth={true}
-							type='password'
-							onChange={this._onChangeInput}
-						/>
-						<RaisedButton type='submit' label='Login' fullWidth={true} className={styles.formSubmitBtn} primary={true} onClick={this._onSubmit} />
-					</Paper>
-				</div>
-			</div >
+			<div className={styles.container}>
+				<Paper zDepth={2} className={styles.paper}>
+					<Tabs className={styles.tabsContainer} >
+						<Tab label="Log in">
+							<div className={styles.tabContainer}>
+								<TextField
+									name='email'
+									floatingLabelText='Email'
+									hintText='Enter email'
+									fullWidth={true}
+									className={styles.formUsername}
+									type='email'
+									onChange={this._onChangeInput}
+								/>
+								<TextField
+									name='password'
+									floatingLabelText='Password'
+									hintText='Enter password'
+									fullWidth={true}
+									type='password'
+									onChange={this._onChangeInput}
+								/>
+								<RaisedButton type='submit' label='Login' fullWidth={true} className={styles.formSubmitBtn} primary={true} onClick={this._onSubmit} />
+							</div >
+						</Tab>
+						<Tab label="Sign up">
+							<div>
+								<p>
+									This is an example tab.
+        						</p>
+								<p>
+									You can put any sort of HTML or react component in here. It even keeps the component state!
+       							</p>
+							</div>
+						</Tab>
+					</Tabs>
+				</Paper>
+			</div>
 		);
 	}
 }
