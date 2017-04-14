@@ -7,7 +7,7 @@ import TextField from 'material-ui/TextField';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import Divider from 'material-ui/Divider';
 import errors from 'feathers-errors';
-import { feathersAuthentication } from '../../feathers';
+import { feathersAuthentication, feathersServices } from '../../feathers';
 import styles from './UserLogin.scss';
 
 class UserLogin extends React.Component {
@@ -23,6 +23,7 @@ class UserLogin extends React.Component {
 		this._onChangeInput = this._onChangeInput.bind(this);
 		this._onSubmitLogin = this._onSubmitLogin.bind(this);
 		this._onSubmitSignUp = this._onSubmitSignUp.bind(this);
+		this._clearState = this._clearState.bind(this);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -50,14 +51,25 @@ class UserLogin extends React.Component {
 	}
 
 	_onSubmitSignUp() {
-		this.props.dispatch(feathersAuthentication.authenticate(
-			{ type: 'local', email: this.state.email, password: this.state.password }
-		))
+		this.props.dispatch(feathersServices.users.create(
+			{ email: this.state.email, password: this.state.password, name: this.state.name }
+		)).then(response => {
+			this._clearState();
+		})
 			.catch(err => {
 				err instanceof errors.BadRequest
 					? new SubmissionError(Object.assign({}, err.errors, { _error: err.message || '' })) //eslint-disable-line no-undef
 					: err;
 			});
+	}
+
+	_clearState() {
+		this.setState({
+			name: '',
+			email: '',
+			password: '',
+			companyName: '',
+		});
 	}
 
 
@@ -127,7 +139,7 @@ class UserLogin extends React.Component {
 									value={this.state.companyName}
 									onChange={this._onChangeInput}
 								/>
-								<RaisedButton type='submit' label='Sign up' fullWidth={true} className={styles.formSubmitBtn} primary={true} onClick={this._onSubmit} />
+								<RaisedButton type='submit' label='Sign up' fullWidth={true} className={styles.formSubmitBtn} primary={true} onClick={this._onSubmitSignUp} />
 							</div>
 						</Tab>
 					</Tabs>

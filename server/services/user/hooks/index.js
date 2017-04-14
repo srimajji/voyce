@@ -35,6 +35,9 @@ exports.before = {
 		}),
 	],
 	create: [
+		function (hook) {
+			hook.data.roles = ['user'];
+		},
 		auth.hashPassword()
 	],
 	update: [
