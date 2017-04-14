@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import { Tabs, Tab } from 'material-ui/Tabs';
-
+import Divider from 'material-ui/Divider';
 import errors from 'feathers-errors';
 import { feathersAuthentication } from '../../feathers';
 import styles from './UserLogin.scss';
@@ -74,13 +74,43 @@ class UserLogin extends React.Component {
 							</div >
 						</Tab>
 						<Tab label="Sign up">
-							<div>
-								<p>
-									This is an example tab.
-        						</p>
-								<p>
-									You can put any sort of HTML or react component in here. It even keeps the component state!
-       							</p>
+							<div className={styles.tabContainer}>
+								<TextField
+									name='name'
+									floatingLabelText='Name'
+									hintText='Enter your name'
+									fullWidth={true}
+									className={styles.formUsername}
+									type='text'
+									onChange={this._onChangeInput}
+								/>
+								<TextField
+									name='email'
+									floatingLabelText='Email'
+									hintText='Enter email'
+									fullWidth={true}
+									className={styles.formUsername}
+									type='email'
+									onChange={this._onChangeInput}
+								/>
+								<TextField
+									name='password'
+									floatingLabelText='Password'
+									hintText='Enter password'
+									fullWidth={true}
+									type='password'
+									onChange={this._onChangeInput}
+								/>
+								<TextField
+									name='companyName'
+									floatingLabelText='Name of the Company'
+									hintText='Enter company name'
+									fullWidth={true}
+									className={styles.formUsername}
+									type='text'
+									onChange={this._onChangeInput}
+								/>
+								<RaisedButton type='submit' label='Sign up' fullWidth={true} className={styles.formSubmitBtn} primary={true} onClick={this._onSubmit} />
 							</div>
 						</Tab>
 					</Tabs>
