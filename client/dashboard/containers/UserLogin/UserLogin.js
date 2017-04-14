@@ -16,10 +16,13 @@ class UserLogin extends React.Component {
 		this.state = {
 			email: '',
 			password: '',
+			name: '',
+			companyName: '',
 		};
 
 		this._onChangeInput = this._onChangeInput.bind(this);
-		this._onSubmit = this._onSubmit.bind(this);
+		this._onSubmitLogin = this._onSubmitLogin.bind(this);
+		this._onSubmitSignUp = this._onSubmitSignUp.bind(this);
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -35,7 +38,7 @@ class UserLogin extends React.Component {
 		this.setState({ [name]: value });
 	}
 
-	_onSubmit() {
+	_onSubmitLogin() {
 		this.props.dispatch(feathersAuthentication.authenticate(
 			{ type: 'local', email: this.state.email, password: this.state.password }
 		))
@@ -46,11 +49,23 @@ class UserLogin extends React.Component {
 			});
 	}
 
+	_onSubmitSignUp() {
+		this.props.dispatch(feathersAuthentication.authenticate(
+			{ type: 'local', email: this.state.email, password: this.state.password }
+		))
+			.catch(err => {
+				err instanceof errors.BadRequest
+					? new SubmissionError(Object.assign({}, err.errors, { _error: err.message || '' })) //eslint-disable-line no-undef
+					: err;
+			});
+	}
+
+
 	render() {
 		return (
 			<div className={styles.container}>
 				<Paper zDepth={2} className={styles.paper}>
-					<Tabs className={styles.tabsContainer} >
+					<Tabs>
 						<Tab label="Log in">
 							<div className={styles.tabContainer}>
 								<TextField
@@ -58,8 +73,8 @@ class UserLogin extends React.Component {
 									floatingLabelText='Email'
 									hintText='Enter email'
 									fullWidth={true}
-									className={styles.formUsername}
 									type='email'
+									value={this.state.email}
 									onChange={this._onChangeInput}
 								/>
 								<TextField
@@ -68,9 +83,10 @@ class UserLogin extends React.Component {
 									hintText='Enter password'
 									fullWidth={true}
 									type='password'
+									value={this.state.password}
 									onChange={this._onChangeInput}
 								/>
-								<RaisedButton type='submit' label='Login' fullWidth={true} className={styles.formSubmitBtn} primary={true} onClick={this._onSubmit} />
+								<RaisedButton type='submit' label='Login' fullWidth={true} className={styles.formSubmitBtn} primary={true} onClick={this._onSubmitLogin} />
 							</div >
 						</Tab>
 						<Tab label="Sign up">
@@ -80,8 +96,8 @@ class UserLogin extends React.Component {
 									floatingLabelText='Name'
 									hintText='Enter your name'
 									fullWidth={true}
-									className={styles.formUsername}
 									type='text'
+									value={this.state.name}
 									onChange={this._onChangeInput}
 								/>
 								<TextField
@@ -89,8 +105,8 @@ class UserLogin extends React.Component {
 									floatingLabelText='Email'
 									hintText='Enter email'
 									fullWidth={true}
-									className={styles.formUsername}
 									type='email'
+									value={this.state.email}
 									onChange={this._onChangeInput}
 								/>
 								<TextField
@@ -99,15 +115,16 @@ class UserLogin extends React.Component {
 									hintText='Enter password'
 									fullWidth={true}
 									type='password'
+									value={this.state.password}
 									onChange={this._onChangeInput}
 								/>
 								<TextField
 									name='companyName'
-									floatingLabelText='Name of the Company'
+									floatingLabelText='Company'
 									hintText='Enter company name'
 									fullWidth={true}
-									className={styles.formUsername}
 									type='text'
+									value={this.state.companyName}
 									onChange={this._onChangeInput}
 								/>
 								<RaisedButton type='submit' label='Sign up' fullWidth={true} className={styles.formSubmitBtn} primary={true} onClick={this._onSubmit} />
