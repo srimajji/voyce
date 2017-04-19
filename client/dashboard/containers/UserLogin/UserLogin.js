@@ -5,8 +5,9 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import { Tabs, Tab } from 'material-ui/Tabs';
-import Divider from 'material-ui/Divider';
+import { ActionDone } from 'material-ui/svg-icons';
 import errors from 'feathers-errors';
+import { green500 } from 'material-ui/styles/colors';
 import { feathersAuthentication, feathersServices } from '../../feathers';
 import styles from './UserLogin.scss';
 
@@ -17,7 +18,7 @@ class UserLogin extends React.Component {
 			email: '',
 			password: '',
 			name: '',
-			companyName: '',
+			sigupSuccess: false,
 		};
 
 		this._onChangeInput = this._onChangeInput.bind(this);
@@ -68,7 +69,7 @@ class UserLogin extends React.Component {
 			name: '',
 			email: '',
 			password: '',
-			companyName: '',
+			sigupSuccess: true,
 		});
 	}
 
@@ -103,43 +104,44 @@ class UserLogin extends React.Component {
 						</Tab>
 						<Tab label="Sign up">
 							<div className={styles.tabContainer}>
-								<TextField
-									name='name'
-									floatingLabelText='Name'
-									hintText='Enter your name'
-									fullWidth={true}
-									type='text'
-									value={this.state.name}
-									onChange={this._onChangeInput}
-								/>
-								<TextField
-									name='email'
-									floatingLabelText='Email'
-									hintText='Enter email'
-									fullWidth={true}
-									type='email'
-									value={this.state.email}
-									onChange={this._onChangeInput}
-								/>
-								<TextField
-									name='password'
-									floatingLabelText='Password'
-									hintText='Enter password'
-									fullWidth={true}
-									type='password'
-									value={this.state.password}
-									onChange={this._onChangeInput}
-								/>
-								<TextField
-									name='companyName'
-									floatingLabelText='Company'
-									hintText='Enter company name'
-									fullWidth={true}
-									type='text'
-									value={this.state.companyName}
-									onChange={this._onChangeInput}
-								/>
-								<RaisedButton type='submit' label='Sign up' fullWidth={true} className={styles.formSubmitBtn} primary={true} onClick={this._onSubmitSignUp} />
+								{ !this.state.signupSuccess ?
+									<div>
+										<TextField
+											name='name'
+											floatingLabelText='Name'
+											hintText='Enter your name'
+											fullWidth={true}
+											type='text'
+											value={this.state.name}
+											onChange={this._onChangeInput}
+										/>
+										<TextField
+											name='email'
+											floatingLabelText='Email'
+											hintText='Enter email'
+											fullWidth={true}
+											type='email'
+											value={this.state.email}
+											onChange={this._onChangeInput}
+										/>
+										<TextField
+											name='password'
+											floatingLabelText='Password'
+											hintText='Enter password'
+											fullWidth={true}
+											type='password'
+											value={this.state.password}
+											onChange={this._onChangeInput}
+										/>
+										<RaisedButton type='submit' label='Sign up' fullWidth={true} className={styles.formSubmitBtn} primary={true} onClick={this._onSubmitSignUp} />
+									</div>
+									:
+									<div className={styles.signupSuccess}>
+										<ActionDone style={{width: 40, height: 40}} color={green500} />
+										<h3>Success!</h3>
+										<p>You will receive an email once verified! </p>
+									</div>
+								}
 							</div>
 						</Tab>
 					</Tabs>
