@@ -12,7 +12,7 @@ module.exports = {
 		  return queryInterface.createTable('users', { id: Sequelize.INTEGER });
 		*/
 
-		return queryInterface.createTable('company_users',
+		return queryInterface.createTable('company_user',
 			{
 				id: {
 					type: Sequelize.INTEGER,
