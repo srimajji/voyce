@@ -7,7 +7,7 @@ const bundleAnalyzer = require('webpack-bundle-analyzer'); //eslint-disable-line
 module.exports = {
 	devtool: 'inline-source-map',
 	entry: {
-		// newFeedback: ['babel-polyfill', './client/gripe/index.js'],
+		submissionForm: ['babel-polyfill', './client/gripe/index.js'],
 		dashboard: ['babel-polyfill', 'webpack/hot/dev-server', 'webpack-hot-middleware/client', 'react-hot-loader/patch', './client/dashboard/index.js']
 	},
 	output: {

@@ -4,7 +4,7 @@ import { replace } from 'react-router-redux';
 import { UserAuthWrapper } from 'redux-auth-wrapper';
 
 import AppWrapper from './containers/Layout/AppWrapper/AppWrapper.js';
-import UserLogin from './containers/UserLogin/UserLogin.js';
+import UserLogin from '../dashboard/containers/UserLogin/UserLogin.js';
 import NotFound from '../../shared/components/NotFound/NotFound';
 import Loading from '../../shared/components/Loading/Loading.js';
 import Feedbacks from './containers/Feedbacks/Feedbacks.js';

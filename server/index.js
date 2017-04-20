@@ -56,7 +56,7 @@ app.use('/', feathers.static(path.join(root, 'public')))
 	.use('/api', api)
 
 	// serve admin.html
-	// .use('/admin', serveAdmin)
+	.get('/gripe', serveForm)
 
 	// route everything else to client/react-router
 	.get('/*', serveIndex)
@@ -72,8 +72,8 @@ function serveIndex(req, res) {
 	res.sendFile('index.html', { root: path.join(root, 'public') });
 }
 
-function serveAdmin(req, res) { // eslint-disable-line no-unused-vars
-	res.sendFile('admin.html', { root: path.join(root, 'public') });
+function serveForm(req, res) { // eslint-disable-line no-unused-vars
+	res.sendFile('form.html', { root: path.join(root, 'public') });
 }
 
 server.on('listening', () => {

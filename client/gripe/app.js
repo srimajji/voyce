@@ -24,9 +24,10 @@ class App extends React.Component {
 				}
 			});
 	}
+
 	render() {
 		const { company } = this.state;
-		return (<div>{!isEmpty(company) ? <Form {...company} /> : null}</div>);
+		return ( <Form {...company} />);
 	}
 }
 
