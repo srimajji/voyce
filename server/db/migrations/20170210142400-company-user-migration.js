@@ -14,11 +14,6 @@ module.exports = {
 
 		return queryInterface.createTable('company_user',
 			{
-				id: {
-					type: Sequelize.INTEGER,
-					primaryKey: true,
-					autoIncrement: true
-				},
 				companyId: {
 					type: Sequelize.INTEGER,
 					allowNull: false,
