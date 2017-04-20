@@ -70,7 +70,7 @@ module.exports = {
 		  return queryInterface.dropTable('users');
 		*/
 
-		return queryInterface.dropTable('company_users');
+		return queryInterface.dropTable('company_user');
 
 	}
 };
