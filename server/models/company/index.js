@@ -56,7 +56,7 @@ module.exports = function () {
 			classMethods: {
 				associate() {
 					Company.hasMany(sequelize.models['feedback']);
-					Company.belongsToMany(sequelize.models['user'], { through: sequelize.models['companyUser'] });
+					Company.belongsToMany(sequelize.models['user'], { through: { model: sequelize.models['companyUser'] } });
 				}
 			}
 		}

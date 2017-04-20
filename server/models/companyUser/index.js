@@ -11,22 +11,23 @@ module.exports = function () {
 	const app = this;
 	const sequelize = app.get('sequelize');
 	const CompanyUser = sequelize.define('companyUser', {
-		companyId: {
-			type: Sequelize.INTEGER,
-			allowNull: false,
-			unique: true,
-			field: 'company_id'
-		},
-		userId: {
-			type: Sequelize.INTEGER,
-			allowNull: false,
-			field: 'user_id'
-		},
+		// companyId: {
+		// 	type: Sequelize.INTEGER,
+		// 	allowNull: false,
+		// 	unique: true,
+		// 	field: 'company_id'
+		// },
+		// userId: {
+		// 	type: Sequelize.INTEGER,
+		// 	allowNull: false,
+		// 	field: 'user_id'
+		// },
 	},
 		{
 			freezeTableName: true,
 			tableName: 'company_user',
 			version: true,
+			underscored: true,
 			classMethods: {
 				associate() {
 					CompanyUser.belongsTo(sequelize.models['user']);

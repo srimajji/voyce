@@ -1,6 +1,7 @@
 'use strict';
 
 const auth = require('feathers-authentication').hooks;
+const logger = require('../../../utils/logger');
 
 exports.before = {
 	all: [
@@ -28,15 +29,13 @@ exports.after = {
 	get: [],
 	create: [
 		function (hook) {
-			const data = {
-				companyId: hook.result.dataValues.id,
-				userId: 1,
-
-			};
-			hook.app.service('companyUsers').create(data).then(result => {
-				return hook;
-			}).catch(error => console.log(error));
-		}
+			hook.result.addUser(hook.params.user)
+				.then(() => {
+					return hook;
+				}).catch(error => {
+					logger.error(error);
+				});
+		},
 	],
 	update: [],
 	patch: [],
