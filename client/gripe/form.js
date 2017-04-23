@@ -1,12 +1,9 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
-import FontIcon from 'material-ui/FontIcon';
-import { green500 } from 'material-ui/styles/colors';
 import styles from './form.scss';
 
 class Form extends React.Component {
@@ -50,9 +47,9 @@ class Form extends React.Component {
 		fetch('/api/feedbacks', params)
 			.then(response => {
 				if (response.status !== 200 && response.status !== 201) {
-					console.error('Error sending feedback', response.status);
+					console.error('Error sending feedback', response.status); // eslint-disable-line no-console
 				} else {
-					console.log('Feedback added', response.json());
+					console.log('Feedback added', response.json()); // eslint-disable-line no-console
 					this.setState({ submitSuccess: true });
 				}
 			});
@@ -80,7 +77,7 @@ class Form extends React.Component {
 						fullWidth={true}
 						value={this.state.descriptionText}
 						onChange={this._onChangeDescriptionField}
-						/>
+					/>
 				</div>
 				<RaisedButton label='Submit' fullWidth={true} primary={true} onClick={this._onClickSubmitFeedbackBtn} />
 			</form>
@@ -98,7 +95,7 @@ class Form extends React.Component {
 					fullWidth={true}
 					primary={true}
 					onClick={this._onClickNewFeedbackBtn}
-					/>
+				/>
 			</div>
 		);
 	}

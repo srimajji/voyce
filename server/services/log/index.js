@@ -10,14 +10,14 @@ module.exports = {
 	},
 	create(data, params) {
 		const payload = {};
-		const logLevel = data.level || "info"
+		const logLevel = data.level || 'info';
 		const user = params.user;
 
 		if (user) {
 			payload.user = {
 				id: user.dataValues.id,
 				email: user.dataValues.email,
-			}
+			};
 		}
 
 		logger[logLevel](`CLIENT: ${data.msg}`, payload);

@@ -1,7 +1,7 @@
 'use strict';
 
 // user-model.js - A sequelize model
-// 
+//
 // See http://docs.sequelizejs.com/en/latest/docs/models-definition/
 // for more of what you can do here.
 
@@ -39,6 +39,17 @@ module.exports = function () {
 			set: function (val) {
 				return this.setDataValue('roles', JSON.stringify(val));
 			}
+		},
+		enabled: {
+			type: Sequelize.BOOLEAN,
+			allowNull: false,
+			defaultValue: true
+		},
+		isVerified: {
+			type: Sequelize.BOOLEAN,
+			allowNull: false,
+			defaultValue: false,
+			field: 'is_verified'
 		}
 		// sequelize mysql doesn't support Sequelize.ARRAY so get/set () are used to mimick
 		// storing array of strings
@@ -50,7 +61,7 @@ module.exports = function () {
 			tableName: 'user',
 			classMethods: {
 				associate() {
-					User.belongsToMany(sequelize.models['company'], { through: sequelize.models['companyUser'] });
+					User.belongsToMany(sequelize.models['company'], { through: { model: sequelize.models['companyUser'] } });
 				}
 			}
 		});

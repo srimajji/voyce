@@ -2,12 +2,12 @@ const autoprefixer = require('autoprefixer');
 const normalize = require('postcss-normalize');
 const path = require('path');
 const webpack = require('webpack');
-const bundleAnalyzer = require('webpack-bundle-analyzer');
+const bundleAnalyzer = require('webpack-bundle-analyzer'); //eslint-disable-line no-unused-vars
 
 module.exports = {
 	devtool: 'inline-source-map',
 	entry: {
-		// newFeedback: ['babel-polyfill', './client/gripe/index.js'],
+		submissionForm: ['babel-polyfill', './client/gripe/index.js'],
 		dashboard: ['babel-polyfill', 'webpack/hot/dev-server', 'webpack-hot-middleware/client', 'react-hot-loader/patch', './client/dashboard/index.js']
 	},
 	output: {
@@ -30,7 +30,7 @@ module.exports = {
 				'API_URL': JSON.stringify('http://localhost:3030/api/')
 			}
 		}),
-		new bundleAnalyzer.BundleAnalyzerPlugin(),
+		// new bundleAnalyzer.BundleAnalyzerPlugin(),
 		new webpack.NoErrorsPlugin()
 	],
 	resolve: {

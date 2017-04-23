@@ -1,16 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { Router, Route, IndexRoute, IndexRedirect } from 'react-router';
+import { Route, IndexRoute, IndexRedirect } from 'react-router';
 import { replace } from 'react-router-redux';
 import { UserAuthWrapper } from 'redux-auth-wrapper';
 
-import AppWrapper from './containers/Layout/AppWrapper/AppWrapper.js';
+import AppWrapper from '../shared/components/Layout/AppWrapper/AppWrapper.js';
+import App from './containers/Layout/App/App.js';
 import Dashboard from './containers/Dashboard/Dashboard.js';
 import UserLogin from './containers/UserLogin/UserLogin.js';
 import NotFound from './containers/NotFound/NotFound';
 import Loading from './components/Loading/Loading.js';
-import App from './containers/Layout/App/App.js';
 import Feedbacks from './containers/Feedbacks/Feedbacks.js';
 import CompanySettings from './containers/Settings/Company/CompanySettings.js';
 import FormSettings from './containers/Settings/Form/FormSettings.js';
@@ -20,25 +18,21 @@ const UserIsAuthenticated = UserAuthWrapper({
 	// extract user data from state
 	authSelector: (state /* , ownProps, boolean */) => state.auth.user,
 
-	/* When signin is pending but not fulfilled: */
-	// determine if signin is pending
+	// use feathers-reduxy auth store to check if its in loading state
 	authenticatingSelector: (state /* , ownProps */) => state.auth.isLoading,
+
+	predicate: user => user,
+
 	// component to render while signin is pending
 	LoadingComponent: Loading,
 
-	/* When signin is not pending. User is authenticated or not. */
-	// determine if user is authenticated
-	predicate: user => user && user.roles,
-	// route to signin component
+	// redirect to login if auth failed
 	failureRedirectPath: '/login',
 
-	/* Once signin is successful: */
-	// redirect on successful signin to component being authenticated
-	allowRedirectBack: true,
 	// action to dispatch to redirect
 	redirectAction: replace,
 
-	/* For documentation: */
+	// for react-devtools wrapper name
 	wrapperDisplayName: 'UserIsAuthenticated',
 });
 
@@ -53,8 +47,8 @@ export default (
 			<Route path='feedbacks' component={Feedbacks} />
 			<Route path='settings'>
 				<IndexRedirect to='company' />
-				<Route path='company' component={UserIsAuthenticated(CompanySettings)} />
-				<Route path='feedback-form' component={UserIsAuthenticated(FormSettings)} />
+				<Route path='company' component={CompanySettings} />
+				<Route path='feedback-form' component={FormSettings} />
 			</Route>
 		</Route>
 		<Route path='*' component={NotFound} />

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 'use strict';
 
 module.exports = {
@@ -18,15 +20,14 @@ module.exports = {
 			name: 'bestbuy',
 			location: 'Geary St, San Francisco',
 			website: 'http://bestbuy.com',
-			categories: "{ 'food','goog'}",
-			location: 'Bryant St, San Franciso, CA',
+			categories: '{ "food","goog"}',
 			created_at: new Date(),
 			updated_at: new Date()
 		}], {});
 
 	},
 
-	down: function (queryInterface, Sequelize) {
+	down: function (queryInterface, Sequelize) { //eslint-disable-line
 		/*
 			Add reverting commands here.
 			Return a promise to correctly handle asynchronicity.

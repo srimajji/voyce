@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
 import ActionDashboard from 'material-ui/svg-icons/action/dashboard';
 import ActionSettings from 'material-ui/svg-icons/action/settings';
 import ActionFeedback from 'material-ui/svg-icons/action/feedback';

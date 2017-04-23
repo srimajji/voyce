@@ -2,8 +2,6 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 import Paper from 'material-ui/Paper';
 
-import styles from './FeedbacksOverTime.scss';
-
 const data = {
 	labels: ['1', '2', '3', '4', '5', '6', '7'],
 	datasets: [

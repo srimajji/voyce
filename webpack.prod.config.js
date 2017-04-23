@@ -6,7 +6,6 @@ const webpack = require('webpack');
 module.exports = {
 	devtool: 'cheap-module-source-map',
 	entry: {
-		newFeedback: ['babel-polyfill', './client/gripe/index.js'],
 		dashboard: ['babel-polyfill', './client/dashboard/index.js']
 	},
 	output: {

@@ -9,7 +9,7 @@ module.exports = function () {
 	const options = {
 		Model: Feedback,
 		paginate: {
-			default: 5,
+			default: 10,
 			max: 25
 		}
 	};

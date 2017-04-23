@@ -1,11 +1,11 @@
 'use strict';
 
 const auth = require('feathers-authentication').hooks;
-const hooks = require('feathers-hooks');
+const logger = require('../../../utils/logger');
 
 exports.before = {
 	all: [
-		/*auth.verifyToken(),
+		auth.verifyToken(),
 		auth.populateUser(),
 		auth.restrictToAuthenticated(),
 		auth.restrictToRoles({
@@ -13,7 +13,7 @@ exports.before = {
 			fieldName: 'roles',
 			idField: 'id',
 			owner: false
-		})*/
+		})
 	],
 	find: [],
 	get: [],
@@ -27,7 +27,16 @@ exports.after = {
 	all: [],
 	find: [],
 	get: [],
-	create: [],
+	create: [
+		function (hook) {
+			hook.result.addUser(hook.params.user)
+				.then(() => {
+					return hook;
+				}).catch(error => {
+					logger.error(error);
+				});
+		},
+	],
 	update: [],
 	patch: [],
 	remove: []

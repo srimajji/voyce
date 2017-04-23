@@ -1,7 +1,7 @@
 'use strict';
 
 // company-model.js - A sequelize model
-// 
+//
 // See http://docs.sequelizejs.com/en/latest/docs/models-definition/
 // for more of what you can do here.
 
@@ -37,6 +37,16 @@ module.exports = function () {
 		website: {
 			type: Sequelize.STRING,
 			allowNull: true
+		},
+		enabled: {
+			type: Sequelize.BOOLEAN,
+			allowNull: false,
+			defaultValue: true,
+		},
+		status: {
+			type: Sequelize.STRING,
+			allowNull: false,
+			defaultValue: 'TRIAL'
 		}
 	},
 		{
@@ -46,7 +56,7 @@ module.exports = function () {
 			classMethods: {
 				associate() {
 					Company.hasMany(sequelize.models['feedback']);
-					Company.belongsToMany(sequelize.models['user'], { through: sequelize.models['companyUser'] });
+					Company.belongsToMany(sequelize.models['user'], { through: { model: sequelize.models['companyUser'] } });
 				}
 			}
 		}

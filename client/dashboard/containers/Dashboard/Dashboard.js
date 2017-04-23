@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Grid, Row, Col } from 'react-flexbox-grid';
-import Paper from 'material-ui/Paper';
 import FeedbacksOverTime from '../../components/Charts/FeedbacksOverTime/FeedbacksOverTime.js';
 import FeedbacksOverTimeBar from '../../components/Charts/FeedbacksOverTimeBar/FeedbacksOverTimeBar.js';
 import styles from './Dashboard.scss';
@@ -43,4 +42,8 @@ class Dashboard extends React.Component {
 	}
 }
 
-export default connect()(Dashboard);
+const mapStateToProps = (state) => ({
+	user: state.auth.user,
+});
+
+export default connect(mapStateToProps)(Dashboard);

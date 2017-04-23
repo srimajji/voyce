@@ -3,21 +3,21 @@
 const path = require('path');
 const compress = require('compression');
 const feathers = require('feathers');
-const cors = require('cors');
 const favicon = require('serve-favicon');
 const morgan = require('morgan');
+const rest = require('feathers-rest');
 const logger = require('./utils/logger');
 const root = process.cwd();
 
 const api = require('./api');
 const app = feathers();
-app.options('*', cors())
-	.use(cors())
+
+app.configure(rest())
 
 	// set log config using the custom logger.js
 	.use(morgan('combined', { 'stream': logger.stream }))
 
-	// compress 
+	// compress
 	.use(compress());
 
 // serve webpack files via '/dist'
@@ -39,6 +39,8 @@ if (process.env.NODE_ENV === 'development') {
 		noInfo: false,
 		quiet: false,
 	}))
+
+		// configure webpack hot reload for react
 		.use(require('webpack-hot-middleware')(webpackCompiler));
 } else {
 	app.use('/dist', feathers.static(path.join(root, 'public/dist')));
@@ -50,11 +52,11 @@ app.use('/', feathers.static(path.join(root, 'public')))
 	// serve public/dist folder via '/'
 	.use('/', feathers.static(path.join(root, 'public/dist')))
 
-	// serve sub-app feathers from api.js 
+	// serve sub-app feathers from api.js
 	.use('/api', api)
 
-	// serve admin.html 
-	// .use('/admin', serveAdmin)
+	// serve admin.html
+	.get('/gripe', serveForm)
 
 	// route everything else to client/react-router
 	.get('/*', serveIndex)
@@ -70,8 +72,8 @@ function serveIndex(req, res) {
 	res.sendFile('index.html', { root: path.join(root, 'public') });
 }
 
-function serveAdmin(req, res) {
-	res.sendFile('admin.html', { root: path.join(root, 'public') });
+function serveForm(req, res) { // eslint-disable-line no-unused-vars
+	res.sendFile('form.html', { root: path.join(root, 'public') });
 }
 
 server.on('listening', () => {

@@ -1,12 +1,11 @@
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import { connect } from 'react-redux';
-import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import ActionAccountCircle from 'material-ui/svg-icons/action/account-circle';
-import withWidth, { MEDIUM, LARGE } from 'material-ui/utils/withWidth';
+import withWidth, { LARGE } from 'material-ui/utils/withWidth';
 
 import { feathersAuthentication } from '../../../feathers';
 import SideNavigation from '../SideNavigation/SideNavigation.js';

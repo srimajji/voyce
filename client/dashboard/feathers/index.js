@@ -16,11 +16,17 @@ const app = feathers()
 	.configure(feathers.authentication({
 		storage: window.localStorage, // store the token in localStorage and initially sign in with that
 	}));
+
+socket.io.engine.on('upgrade', function (transport) {
+	console.log('transport changed', transport); //eslint-disable-line no-console
+	app.authenticate();
+});
+
 export default app;
 
 // Reduxify feathers-authentication
 export const feathersAuthentication = reduxifyAuthentication(app,
-	{ isUserAuthorized: (user) => true } // user must be verified to authenticate
+	{ isUserAuthorized: (user) => true } // eslint-disable-line no-unused-vars
 );
 
 // Reduxify feathers services

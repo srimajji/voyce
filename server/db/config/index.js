@@ -12,4 +12,4 @@ module.exports = {
 		seederStorageTableName: dbConfig.seederStorageTableName,
 		dialect: dbConfig.dialect
 	}
-}
+};

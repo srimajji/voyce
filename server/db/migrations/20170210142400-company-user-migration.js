@@ -1,21 +1,19 @@
+/* eslint-disable */
+
 'use strict';
+
 module.exports = {
 	up: function (queryInterface, Sequelize) {
 		/*
 		  Add altering commands here.
 		  Return a promise to correctly handle asynchronicity.
-	
+
 		  Example:
 		  return queryInterface.createTable('users', { id: Sequelize.INTEGER });
 		*/
 
-		return queryInterface.createTable('company_users',
+		return queryInterface.createTable('company_user',
 			{
-				id: {
-					type: Sequelize.INTEGER,
-					primaryKey: true,
-					autoIncrement: true
-				},
 				companyId: {
 					type: Sequelize.INTEGER,
 					allowNull: false,
@@ -62,12 +60,12 @@ module.exports = {
 		/*
 		  Add reverting commands here.
 		  Return a promise to correctly handle asynchronicity.
-	
+
 		  Example:
 		  return queryInterface.dropTable('users');
 		*/
 
-		return queryInterface.dropTable('company_users');
+		return queryInterface.dropTable('company_user');
 
 	}
 };

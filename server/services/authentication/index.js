@@ -1,8 +1,8 @@
 'use strict';
 
 const authentication = require('feathers-authentication');
-const authManagement = require('feathers-authentication-management');
-
+const authManagement = require('feathers-authentication-management'); // eslint-disable-line no-unused-vars
+const logger = require('../../utils/logger'); // eslint-disable-line no-unused-vars
 const FacebookStrategy = require('passport-facebook').Strategy;
 const FacebookTokenStrategy = require('passport-facebook-token');
 

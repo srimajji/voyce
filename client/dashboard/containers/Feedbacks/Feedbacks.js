@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 
 import { feathersServices } from '../../feathers';
@@ -19,11 +20,13 @@ class Feedbacks extends React.Component {
 	_renderList() {
 		const { feedbacks } = this.props;
 		const view = feedbacks.data.map((feedback, key) => {
+			const createdAt = moment(feedback.created_at).format('MMMM Do YYYY');
 			return (
 				<TableRow key={key}>
 					<TableRowColumn>{feedback.rating}</TableRowColumn>
 					<TableRowColumn>{feedback.description}</TableRowColumn>
-					<TableRowColumn>{feedback.email || 'none'}</TableRowColumn>
+					<TableRowColumn>{feedback.email || 'NA'}</TableRowColumn>
+					<TableRowColumn>{createdAt}</TableRowColumn>
 				</TableRow>
 			);
 		});
@@ -41,6 +44,7 @@ class Feedbacks extends React.Component {
 							<TableHeaderColumn>Rating</TableHeaderColumn>
 							<TableHeaderColumn>Feedback</TableHeaderColumn>
 							<TableHeaderColumn>Email</TableHeaderColumn>
+							<TableHeaderColumn>Date</TableHeaderColumn>
 						</TableRow>
 					</TableHeader>
 					<TableBody displayRowCheckbox={false}>
