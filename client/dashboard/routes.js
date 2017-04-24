@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, IndexRoute, IndexRedirect } from 'react-router';
+import { Route, IndexRoute, IndexRedirect, Redirect } from 'react-router';
 import { replace } from 'react-router-redux';
 import { UserAuthWrapper } from 'redux-auth-wrapper';
 
@@ -12,6 +12,7 @@ import Loading from './components/Loading/Loading.js';
 import Feedbacks from './containers/Feedbacks/Feedbacks.js';
 import CompanySettings from './containers/Settings/Company/CompanySettings.js';
 import FormSettings from './containers/Settings/Form/FormSettings.js';
+import NewFeedbackForm from './containers/NewFeedbackForm/NewFeedbackForm.js';
 
 // Authentication Higher Order Components to wrap route components.
 const UserIsAuthenticated = UserAuthWrapper({
@@ -48,9 +49,9 @@ export default (
 			<Route path='settings'>
 				<IndexRedirect to='company' />
 				<Route path='company' component={CompanySettings} />
-				<Route path='feedback-form' component={FormSettings} />
 			</Route>
 		</Route>
+		<Route path='gripe' component={NewFeedbackForm} />
 		<Route path='*' component={NotFound} />
 	</Route>
 );

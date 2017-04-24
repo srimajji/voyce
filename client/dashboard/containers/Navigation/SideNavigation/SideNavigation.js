@@ -43,7 +43,7 @@ class SideNavigation extends React.Component {
 						<ListItem primaryText='Settings' leftIcon={<ActionSettings />} primaryTogglesNestedList={true}
 							nestedItems={[
 								<ListItem primaryText='Company' leftIcon={<ActionStore />} value='/dashboard/settings/company' />,
-								<ListItem primaryText='Form' leftIcon={<ActionSubject />} value='/dashboard/settings/feedback-form' />
+								<ListItem primaryText='Form' leftIcon={<ActionSubject />} value='/gripe' />
 							]}
 						/>
 					</SelectableList>
