@@ -6,7 +6,8 @@ import { colors } from 'material-ui/styles';
 
 const styles = {
 	editable: {
-		cursor: 'pointer'
+		cursor: 'pointer',
+		textAlign: 'center'
 	}
 };
 
@@ -55,7 +56,7 @@ class Rating extends React.Component {
 		const { hoveredIndex, checkedIndex } = this.state;
 		const { readOnly, values = defaultValues } = this.props;
 		return (
-			<div style={{}}>
+			<div style={{ textAlign: 'center' }}>
 				{values.map((i) => {
 					let
 						onClick = readOnly ? undefined : this.onCheck.bind(this, i),
