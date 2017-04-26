@@ -55,8 +55,8 @@ app.use('/', feathers.static(path.join(root, 'public')))
 	// serve sub-app feathers from api.js
 	.use('/api', api)
 
-	// serve admin.html
-	.get('/gripe', serveForm)
+	// serve form html
+	// .get('/gripe', serveForm)
 
 	// route everything else to client/react-router
 	.get('/*', serveIndex)
