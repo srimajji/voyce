@@ -18,7 +18,7 @@ class UserLogin extends React.Component {
 			email: '',
 			password: '',
 			name: '',
-			sigupSuccess: false,
+			signupSuccess: false,
 		};
 
 		this._onChangeInput = this._onChangeInput.bind(this);
@@ -29,7 +29,7 @@ class UserLogin extends React.Component {
 
 	componentWillReceiveProps(nextProps) {
 		if (!this.props.isAuthenticated && nextProps.isAuthenticated) {
-			this.props.dispatch(push('/dashboard'));
+			this.props.dispatch(push(nextProps.location.query.redirect || '/dashboard'));
 		}
 	}
 
@@ -69,7 +69,7 @@ class UserLogin extends React.Component {
 			name: '',
 			email: '',
 			password: '',
-			sigupSuccess: true,
+			signupSuccess: true,
 		});
 	}
 
@@ -104,7 +104,7 @@ class UserLogin extends React.Component {
 						</Tab>
 						<Tab label="Sign up">
 							<div className={styles.tabContainer}>
-								{ !this.state.signupSuccess ?
+								{!this.state.signupSuccess ?
 									<div>
 										<TextField
 											name='name'
@@ -137,9 +137,9 @@ class UserLogin extends React.Component {
 									</div>
 									:
 									<div className={styles.signupSuccess}>
-										<ActionDone style={{width: 40, height: 40}} color={green500} />
+										<ActionDone style={{ width: 40, height: 40 }} color={green500} />
 										<h3>Success!</h3>
-										<p>You will receive an email once verified! </p>
+										<p>You will receive an email once verified. </p>
 									</div>
 								}
 							</div>
